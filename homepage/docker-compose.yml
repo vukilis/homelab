@@ -1,0 +1,57 @@
+---
+services:
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    depends_on:
+      - homepage
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
+      restart_policy:
+        condition: unless-stopped
+        delay: 5s
+        window: 120s
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v0.8.12
+    container_name: homepage
+    ports:
+      - 80:3000
+    volumes:
+      - ./config:/app/config
+      - ./images:/app/public/images
+      - ./icons:/app/public/icons
+    environment:
+      - LOG_LEVEL=debug
+      - HOMEPAGE_VAR_PROXMOX_USERNAME=${HOMEPAGE_VAR_PROXMOX_USERNAME}
+      - HOMEPAGE_VAR_PROXMOX_PASSWORD=${HOMEPAGE_VAR_PROXMOX_PASSWORD}
+      - HOMEPAGE_VAR_PORTAINER_KEY=${HOMEPAGE_VAR_PORTAINER_KEY}
+      - HOMEPAGE_VAR_QBITTORRENT_USERNAME=${HOMEPAGE_VAR_QBITTORRENT_USERNAME}
+      - HOMEPAGE_VAR_QBITTORRENT_PASSWORD=${HOMEPAGE_VAR_QBITTORRENT_PASSWORD}
+      - HOMEPAGE_VAR_NAVIDROME_USERNAME=${HOMEPAGE_VAR_NAVIDROME_USERNAME}
+      - HOMEPAGE_VAR_NAVIDROME_TOKEN=${HOMEPAGE_VAR_NAVIDROME_TOKEN}
+      - HOMEPAGE_VAR_NAVIDROME_SALT=${HOMEPAGE_VAR_NAVIDROME_SALT}
+      - HOMEPAGE_VAR_ADGUARD_USERNAME=${HOMEPAGE_VAR_ADGUARD_USERNAME}
+      - HOMEPAGE_VAR_ADGUARD_PASSWORD=${HOMEPAGE_VAR_ADGUARD_PASSWORD}
+    restart: unless-stopped
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - SERVICES=1
+      - TASKS=1
+      - POST=0
+    ports:
+      - 127.0.0.1:2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+  

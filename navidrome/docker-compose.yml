@@ -1,0 +1,34 @@
+services:
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    depends_on:
+      - navidrome
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
+      restart_policy:
+        condition: unless-stopped
+        delay: 5sb/docker/volumes:/var/lib/docker/volumes
+        window: 120s
+  navidrome:
+    image: deluan/navidrome:latest
+    user: 0:0
+    ports:
+      - "80:4533"
+    restart: unless-stopped
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 24h
+      ND_BASEURL: ""
+    volumes:
+      - "./data:/data"
+      - "/mnt/music:/music:ro"
