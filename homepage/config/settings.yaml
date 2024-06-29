@@ -34,6 +34,8 @@ layout:
     icon: mdi-auto-fix-#FFFFFF
   Monitoring:
     icon: mdi-list-status-#FFFFFF
+  Media & Entertainment:
+    icon: mdi-multimedia-#FFFFFF
   Automation:
     icon: mdi-cog-play-#FFFFFF
   IoT and Smarthome:

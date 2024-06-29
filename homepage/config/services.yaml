@@ -70,6 +70,13 @@
             type: uptimekuma
             url: http://192.168.0.201
             slug: services
+    - Netdata:
+        href: http://192.168.0.200:19999
+        description: resource monitoring
+        icon: netdata.png
+        widget:
+            type: netdata
+            url: http://192.168.0.200:19999
 
 - Security and Identity:
     - AdGuard Home:

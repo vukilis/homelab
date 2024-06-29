@@ -4,21 +4,36 @@
 
 - Developer:
     - Github:
-        - abbr: GH
+        - icon: github.png
           href: https://github.com/vukilis
+    - Website:
+        - icon: /icons/logo.png
+          href: https://vukilis.com
 
 - Social:
-    - Website:
-        - abbr: WS
-          href: https://vukilis.com
     - Steam:
-        - abbr: SM
+        - icon: steam.png
           href: https://steamcommunity.com/id/vuk1lis/
     - Instagram:
-        - abbr: IG
+        - icon: instagram.png
           href: https://www.instagram.com/vukilis97/
-
-- Entertainment:
     - YouTube:
-        - abbr: YT
+        - icon: youtube.png
           href: https://youtube.com/vukilis
+
+- Cloud Services:
+    - Zoho Mail:
+        - icon: si-zoho-#E42527
+          href: https://mail.vukilis.com
+    - Cloudflare:
+        - icon: cloudflare.png
+          href: https://dash.cloudflare.com/
+    - WakaTime:
+        - icon: wakatime.png
+          href: https://wakatime.com/
+    - Google Analytics:
+        - icon: google-analytics.png
+          href: https://analytics.google.com/
+    - Yandex:
+        - icon: yandex.png
+          href: https://metrica.yandex.com/
