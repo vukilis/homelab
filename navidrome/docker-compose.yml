@@ -16,11 +16,10 @@ services:
           memory: 1024M
       restart_policy:
         condition: unless-stopped
-        delay: 5sb/docker/volumes:/var/lib/docker/volumes
+        delay: 5s
         window: 120s
   navidrome:
     image: deluan/navidrome:latest
-    user: 0:0
     ports:
       - "80:4533"
     restart: unless-stopped
