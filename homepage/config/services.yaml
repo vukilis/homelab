@@ -89,3 +89,8 @@
             url: http://192.168.0.202
             username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
+    - Vaultwarden:
+        href: https://vaultwarden.vukilis.com
+        icon: si-vaultwarden
+        description: Password Manager
+        siteMonitor: http://192.168.0.207
