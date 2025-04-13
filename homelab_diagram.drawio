@@ -1015,9 +1015,6 @@
         <mxCell id="8a2aPskXrjCOrKV2TgSk-274" value="backup" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;spacing=2;fontColor=light-dark(#000000,#FF8000);" parent="1" vertex="1">
           <mxGeometry x="190" y="450.89" width="60" height="19.11" as="geometry" />
         </mxCell>
-        <mxCell id="_oA67788_0Lzef8N4Rz6-1" value="TEST" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=72;" vertex="1" parent="1">
-          <mxGeometry x="1280.09" y="1740.28" width="203.91" height="150" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
