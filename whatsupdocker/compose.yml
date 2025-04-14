@@ -1,0 +1,18 @@
+services:
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./whatsupdocker:/store
+    ports:
+      - 8085:3000
+    restart: unless-stopped
+    networks: {}
+networks: {}
+
+
+#.env
+#WUD_AUTH_BASIC_USER=
+#WUD_AUTH_BASIC_HASH=
+#TZ=Europe/Belgrade

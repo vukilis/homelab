@@ -1,6 +1,6 @@
 ---
-title: World Of Vukilis
-startUrl: http://vukilis.url
+title: Homelab Dashboard
+startUrl: https://vukilis.com
 headerStyle: boxed
 hideVersion: true
 
@@ -26,23 +26,71 @@ providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
 layout:
+# HOMELAB TAB
   Networking:
+    tab: HOMELAB
     icon: mdi-network-#FFFFFF
   Infrastructure and Data:
+    tab: HOMELAB
     icon: mdi-server-#FFFFFF
   Management:
+    tab: HOMELAB
     icon: mdi-auto-fix-#FFFFFF
   Monitoring:
+    tab: HOMELAB
     icon: mdi-list-status-#FFFFFF
   Media & Entertainment:
+    tab: HOMELAB
+    icon: mdi-multimedia-#FFFFFF
+  Utilities:
+    tab: HOMELAB
     icon: mdi-multimedia-#FFFFFF
   Automation:
+    tab: HOMELAB
     icon: mdi-cog-play-#FFFFFF
   IoT and Smarthome:
     icon: mdi-home-#FFFFFF
   Security and Identity:
+    tab: HOMELAB
     icon: mdi-shield-lock-#FFFFFF
+
+# INTERNET TAB
+  Search Engine:
+    tab: INTERNET
+    icon: mdi-web-#FFFFFF
+    #columns: 4
+    #style: row
+    #header: false
+  Online Entertainment:
+    tab: INTERNET
+    icon: mdi-video-#FFFFFF
+  Social Network:
+    tab: INTERNET
+    icon: mdi-message-#FFFFFF
+  Sports:
+    tab: INTERNET
+    icon: mdi-trophy-#FFFFFF
+  Shop:
+    tab: INTERNET
+    icon: mdi-trophy-#FFFFFF
+  Torrents:
+    tab: INTERNET
+    icon: mdi-tray-arrow-down-#FFFFFF
+  Gaming & Tech News:
+    tab: INTERNET
+    icon: mdi-alpha-n-#FFFFFF
+  Gaming Clients:
+    tab: INTERNET
+    icon: mdi-gamepad-#FFFFFF
+  FileSharing:
+    tab: INTERNET
+    icon: mdi-file-swap-#FFFFFF
+  Tools:
+    tab: INTERNET
+    icon: mdi-tools-#FFFFFF
 
 showStats: true
 statusStyle: "dot"
 instanceName: public
+hideErrors: true
+useEqualHeights: true

@@ -9,8 +9,6 @@
     - Website:
         - icon: /icons/logo.png
           href: https://vukilis.com
-
-- Social:
     - Steam:
         - icon: steam.png
           href: https://steamcommunity.com/id/vuk1lis/
@@ -20,6 +18,23 @@
     - YouTube:
         - icon: youtube.png
           href: https://youtube.com/vukilis
+    - Homelab Diagram:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/draw-io.png
+          href: https://vukilis.com/homelab_diagram
+
+- Social:
+    - r/selfhosted:
+        - icon: https://styles.redditmedia.com/t5_32hch/styles/communityIcon_b2t5inv46z331.png
+          href: https://www.reddit.com/r/selfhosted/
+    - r/homelab:
+        - icon: https://b.thumbs.redditmedia.com/Flac-ySmslzY0SE583PNA42rFbcYxLt7hqgCeUrC11s.png
+          href: https://www.reddit.com/r/homelab/
+    - r/unixporn:
+        - icon: https://styles.redditmedia.com/t5_2sx2i/styles/communityIcon_7fixeonxbxd41.png
+          href: https://www.reddit.com/r/unixporn/
+    - Homepage:
+        - icon: homepage
+          href: https://gethomepage.dev
 
 - Cloud Services:
     - Zoho Mail:
