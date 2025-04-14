@@ -217,8 +217,8 @@
         description: VPN
         widget:
             type: tailscale
-            deviceid: n3e8N7XLW811CNTRL
-            key: "tskey-api-k1y3vFB7JL11CNTRL-PWeCbxVBFNAYcSMvAdJ9MAmwCgM1iBBw"
+            deviceid: deviceid
+            key: key
     - Authentik:
         id: col-small
         href: https://auth.vukilis.com/
