@@ -168,6 +168,12 @@
             username: {{HOMEPAGE_VAR_WUD_USERNAME}}
             password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
 - Utilities:
+    - HomeLab Diagram:
+        id: col-small
+        icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/draw-io.png
+        href: https://vukilis.com/homelab_diagram
+        description: My HomeLab Diagram
+        siteMonitor: https://vukilis.com/homelab_diagram
     - Usememos:
         id: col-small
         href: https://notepad.vukilis.com/
@@ -180,24 +186,36 @@
         icon: wikidocs
         description: Wiki Engine for documentation
         siteMonitor: http://wikidocs.local:8084
-    - Hoarder:
-        id: col-small
-        href: https://bookmark.vukilis.com/
-        icon: hoarder
-        description: Bookmark App
-        siteMonitor: https://bookmark.vukilis.com/
     - Flatnotes:
         id: col-small
         href: https://note.vukilis.com
         icon: flatnotes
         description: Notepad Server
         siteMonitor: http://192.168.0.51:8081
+    - Hoarder:
+        id: col-small
+        href: https://bookmark.vukilis.com/
+        icon: hoarder
+        description: Bookmark App
+        siteMonitor: https://bookmark.vukilis.com/
     - Wallos:
         id: col-small
         href: https://wallos.vukilis.com
         icon: wallos
         description: Personal Subscription Tracker
         siteMonitor: http://wallos.local
+    - Alpine-IT-Tools:
+        id: col-small
+        href: https://tools.vukilis.com
+        icon: it-tools
+        description: Various IT Tasks & Tools For Admins
+        siteMonitor: http://tools.local
+    - Jetlog:
+        id: col-small
+        href: http://jetlog.local
+        icon: https://raw.githubusercontent.com/pbogre/jetlog/refs/heads/main/client/public/favicon.png
+        description: Personal Flight Tracker
+        siteMonitor: http://jetlog.local
 - Security and Identity:
     - AdGuard Home:
         id: col-small
@@ -237,7 +255,7 @@
         siteMonitor: http://192.168.0.207
 
 #INTERNET TAB
-- Search Engine:
+- Search Engine & AI:
     - Google:
         id: col-small
         href: https://www.google.rs
@@ -254,6 +272,14 @@
         id: col-small
         href: https://duckduckgo.com/
         icon: duckduckgo
+    - ChatGPT:
+        id: col-small
+        href: https://chatgpt.com/
+        icon: chatgpt
+    - Deepseek:
+        id: col-small
+        href: https://deepseek.com/
+        icon: deepseek
 - Online Entertainment:
     - Youtube:
         id: col-small
@@ -428,6 +454,10 @@
         id: col-small
         href: https://www.theverge.com/
         icon: https://cdn.vox-cdn.com/verge/favicon.ico
+    - HackerNews:
+        id: col-small
+        href: https://news.ycombinator.com/
+        icon: https://news.ycombinator.com/favicon.ico
 - Gaming Clients:
     - Steam:
         id: col-small
@@ -471,3 +501,23 @@
         id: col-small
         href: https://www.webpagetest.org/
         icon: https://cdn.prod.website-files.com/61027bb0bc31fc6cafefbc0c/65c6757401e600138a7a44e3_home-globe-bg.avif
+    - Proxmox VE Helper-Scripts:
+        id: col-small
+        href: https://community-scripts.github.io/ProxmoxVE/
+        icon: https://community-scripts.github.io/ProxmoxVE/logo.png
+    - Check My DNS:
+        id: col-small
+        href: https://cmdns.dev.dns-oarc.net/
+        icon: https://cmdns.dev.dns-oarc.net/favicon.ico
+    - whatsmydns:
+        id: col-small
+        href: https://www.whatsmydns.net/
+        icon: https://www.whatsmydns.net/favicon.ico
+    - check-host:
+        id: col-small
+        href: https://check-host.net/
+        icon: https://check-host.net/favicon.ico
+    - Asciiflow:
+        id: col-small
+        href: https://asciiflow.com
+        icon: https://raw.githubusercontent.com/lewish/asciiflow/refs/heads/main/client/public/favicon.png

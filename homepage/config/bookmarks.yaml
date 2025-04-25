@@ -3,24 +3,24 @@
 # https://gethomepage.dev/latest/configs/bookmarks
 
 - Developer:
-    - Github:
-        - icon: github.png
-          href: https://github.com/vukilis
     - Website:
         - icon: /icons/logo.png
           href: https://vukilis.com
+    - Github:
+        - icon: github.png
+          href: https://github.com/vukilis
+    - LinkedIn:
+        - icon: linkedin
+          href: https://www.linkedin.com/in/vuk-lekic
     - Steam:
         - icon: steam.png
           href: https://steamcommunity.com/id/vuk1lis/
-    - Instagram:
-        - icon: instagram.png
-          href: https://www.instagram.com/vukilis97/
+#    - Instagram:
+#        - icon: instagram.png
+#          href: https://www.instagram.com/vukilis97/
     - YouTube:
         - icon: youtube.png
           href: https://youtube.com/vukilis
-    - Homelab Diagram:
-        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/draw-io.png
-          href: https://vukilis.com/homelab_diagram
 
 - Social:
     - r/selfhosted:

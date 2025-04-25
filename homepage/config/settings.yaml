@@ -55,7 +55,7 @@ layout:
     icon: mdi-shield-lock-#FFFFFF
 
 # INTERNET TAB
-  Search Engine:
+  Search Engine & AI:
     tab: INTERNET
     icon: mdi-web-#FFFFFF
     #columns: 4
@@ -94,3 +94,4 @@ statusStyle: "dot"
 instanceName: public
 hideErrors: true
 useEqualHeights: true
+target: _self
