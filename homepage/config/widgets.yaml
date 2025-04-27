@@ -26,4 +26,4 @@
     units: metric
     cache: 5 # Time in minutes to cache API responses, to stay within limits
     format:
-        maximumFractionDigits: 1
+      maximumFractionDigits: 1

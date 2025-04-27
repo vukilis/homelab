@@ -57,19 +57,19 @@
         description: Torrent Manager
         siteMonitor: http://192.168.0.204
         widget:
-            type: qbittorrent
-            url: http://192.168.0.204
-            username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
-            password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
+          type: qbittorrent
+          url: http://192.168.0.204
+          username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
+          password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
     - Medusa:
         href: http://medusa.local
         icon: medusa
         description: Manager for TV Shows
         siteMonitor: http://192.168.0.210
         widget:
-            type: medusa
-            url: http://192.168.0.210
-            key: {{HOMEPAGE_VAR_MEDUSA_API}}
+          type: medusa
+          url: http://192.168.0.210
+          key: {{HOMEPAGE_VAR_MEDUSA_API}}
     - Navidrome:
         id: col-small
         href: http://navidrome.local
@@ -77,17 +77,18 @@
         description: Music Server
         siteMonitor: http://192.168.0.205
         widget:
-            type: navidrome
-            url: http://192.168.0.205
-            user: {{HOMEPAGE_VAR_NAVIDROME_USERNAME}}
-            token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}} #md5(password + salt)
-            salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
+          type: navidrome
+          url: http://192.168.0.205
+          user: {{HOMEPAGE_VAR_NAVIDROME_USERNAME}}
+          token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}} #md5(password + salt)
+          salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
     - FileBrowser:
         id: col-small
         href: http://filebrowser.local:8080
         icon: filebrowser.png
         description: File Server
         siteMonitor: http://192.168.0.206:8080
+
 - Management:
     - Portainer:
         href: https://portainer.vukilis.com/
@@ -111,7 +112,7 @@
             password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
     - Dockge:
         id: col-small
-        href: http://dockge.local:5001
+        href: http://dockge.vukilis.com
         icon: si-docker-#2496ED
         description: Docker Compose Stack-Oriented Manager
         siteMonitor: http://192.168.0.51:5001
@@ -121,10 +122,11 @@
         icon: cloudflare-zero-trust
         description: Cloudflare Tunnels Manager
         widget:
-            type: cloudflared
-            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}}
-            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNELID}}
-            key: {{HOMEPAGE_VAR_CLOUDFLARE_TOKKEN}}
+          type: cloudflared
+          accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}}
+          tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNELID}}
+          key: {{HOMEPAGE_VAR_CLOUDFLARE_TOKKEN}}
+
 - Monitoring:
     - UptimeKuma:
         id: col-small
@@ -163,10 +165,11 @@
         icon: whats-up-docker-light
         description: Keep containers up-to-date!
         widget:
-            type: whatsupdocker
-            url: http://192.168.0.51:8085
-            username: {{HOMEPAGE_VAR_WUD_USERNAME}}
-            password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
+          type: whatsupdocker
+          url: http://192.168.0.51:8085
+          username: {{HOMEPAGE_VAR_WUD_USERNAME}}
+          password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
+
 - Utilities:
     - HomeLab Diagram:
         id: col-small
@@ -216,6 +219,7 @@
         icon: https://raw.githubusercontent.com/pbogre/jetlog/refs/heads/main/client/public/favicon.png
         description: Personal Flight Tracker
         siteMonitor: http://jetlog.local
+
 - Security and Identity:
     - AdGuard Home:
         id: col-small
@@ -235,8 +239,8 @@
         description: VPN
         widget:
             type: tailscale
-            deviceid: deviceid
-            key: key
+            deviceid: n3e8N7XLW811CNTRL
+            key: {{HOMEPAGE_VAR_TAILSCALE}}
     - Authentik:
         id: col-small
         href: https://auth.vukilis.com/
@@ -392,7 +396,7 @@
     - TorrentGalaxy:
         id: col-small
         href: https://torrentgalaxy.one/
-        icon: https://d4.alternativeto.net/vi3mqXneYDJNe3MnGet3m8fkLunRG86iC07IjAB9qzo/rs:fit:280:280:0/g:ce:0:0/exar:1/YWJzOi8vZGlzdC9pY29ucy90b3JyZW50LWdhbGF>
+        icon: https://d4.alternativeto.net/vi3mqXneYDJNe3MnGet3m8fkLunRG86iC07IjAB9qzo/rs:fit:280:280:0/g:ce:0:0/exar:1/YWJzOi8vZGlzdC9pY29ucy90b3JyZW50LWdhbGF4eV8yMTgwMjIucG5n.png
     - YIFI:
         id: col-small
         href: https://yts.mx/
@@ -413,6 +417,10 @@
         id: col-small
         href: https://dodi-repacks.site/
         icon: https://styles.redditmedia.com/t5_ab6jz1/styles/communityIcon_fv793fnur75c1.png
+    - Fitgirl:
+        id: col-small
+        href: https://fitgirl-repacks.site/
+        icon: https://fitgirl-repacks.site/wp-content/uploads/2016/08/cropped-icon-32x32.jpg
     - Online-fix:
         id: col-small
         href: https://online-fix.me/
