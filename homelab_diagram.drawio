@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0" version="27.0.2">
   <diagram name="Page-1" id="Wwqm8vyQxhQhFInDNfWW">
-    <mxGraphModel dx="4098" dy="2160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1950" pageHeight="3500" math="0" shadow="0">
+    <mxGraphModel dx="2732" dy="1440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1950" pageHeight="3500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -302,7 +302,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8a2aPskXrjCOrKV2TgSk-101" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;" parent="1" vertex="1">
-          <mxGeometry x="126.13" y="3247.61" width="129.37" height="81.5" as="geometry" />
+          <mxGeometry x="126.11999999999999" y="3194.25" width="129.37" height="81.5" as="geometry" />
         </mxCell>
         <mxCell id="8a2aPskXrjCOrKV2TgSk-102" value="" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=auto;fillColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="461.42" y="3110" width="560" height="250" as="geometry" />
@@ -338,7 +338,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8a2aPskXrjCOrKV2TgSk-111" value="&lt;font color=&quot;#ffffff&quot;&gt;INTERNET&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="143.66" y="3281.7" width="100" height="13.32" as="geometry" />
+          <mxGeometry x="143.65" y="3228.3399999999997" width="100" height="13.32" as="geometry" />
         </mxCell>
         <mxCell id="8a2aPskXrjCOrKV2TgSk-112" value="cloudflare&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;tunneling&lt;/span&gt;" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;spacing=2;fontColor=light-dark(#000000,#996500);" parent="1" vertex="1">
           <mxGeometry x="245.71000000000004" y="208.83999999999992" width="152.77" height="21.17" as="geometry" />
