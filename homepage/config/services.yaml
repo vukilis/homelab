@@ -3,18 +3,18 @@
 - Networking:
     - Huawei:
         id: col-small
-        href: http://192.168.100.1/
+        href: http://huawei.local
         icon: huawei.png
         description: ISP Router
         siteMonitor: http://192.168.100.1/
     - Archer C6:
         id: col-small
-        href: http://192.168.0.1
+        href: http://archer.local
         icon: tp-link.png
         description: Home Router
-        siteMonitor: http://192.168.0.1
+        siteMonitor: http://192.168.0.1/
     - Horaco:
-        href: http://192.168.0.2/
+        href: http://horaco.local
         icon: mdi-switch
         description: Switch
         siteMonitor: http://192.168.0.2/
@@ -49,6 +49,10 @@
             url: https://192.168.0.208:8007
             username: {{HOMEPAGE_VAR_PBS_USERNAME}}
             password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
+    - BlackBox:
+        icon: windows-11
+        description: Windows 11 Operating System
+        ping: 192.168.0.152
 
 - Media & Entertainment:
     - qBittorrent:
@@ -162,7 +166,7 @@
     - What's Up Docker:
         id: col-small
         href: https://wud.vukilis.com
-        icon: whats-up-docker-light
+        icon: whats-up-docker
         description: Keep containers up-to-date!
         widget:
           type: whatsupdocker
@@ -232,15 +236,21 @@
             url: http://192.168.0.202
             username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
-    - Tailscale:
+ #   - Tailscale:
+ #       id: col-small
+ #       href: https://login.tailscale.com/admin/machines
+ #       icon: tailscale
+ #       description: VPN
+ #       widget:
+ #           type: tailscale
+ #           deviceid: n3e8N7XLW811CNTRL
+ #           key: {{HOMEPAGE_VAR_TAILSCALE}}
+    - Twingate:
         id: col-small
-        href: https://login.tailscale.com/admin/machines
-        icon: tailscale
+        href: https://vukilis.twingate.com/
+        icon: twingate
         description: VPN
-        widget:
-            type: tailscale
-            deviceid: n3e8N7XLW811CNTRL
-            key: {{HOMEPAGE_VAR_TAILSCALE}}
+        ping: 192.168.0.222
     - Authentik:
         id: col-small
         href: https://auth.vukilis.com/
@@ -466,6 +476,10 @@
         id: col-small
         href: https://news.ycombinator.com/
         icon: https://news.ycombinator.com/favicon.ico
+    - Hacktricks:
+        id: col-small
+        href: https://book.hacktricks.wiki/
+        icon: https://book.hacktricks.wiki/favicon.png
 - Gaming Clients:
     - Steam:
         id: col-small
@@ -529,3 +543,7 @@
         id: col-small
         href: https://asciiflow.com
         icon: https://raw.githubusercontent.com/lewish/asciiflow/refs/heads/main/client/public/favicon.png
+    - Fetchrss:
+        id: col-small
+        href: https://fetchrss.com/
+        icon: https://fetchrss.com/favicon.ico

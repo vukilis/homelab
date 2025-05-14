@@ -29,6 +29,9 @@
     - r/homelab:
         - icon: https://b.thumbs.redditmedia.com/Flac-ySmslzY0SE583PNA42rFbcYxLt7hqgCeUrC11s.png
           href: https://www.reddit.com/r/homelab/
+    - r/proxmox:
+        - icon: https://styles.redditmedia.com/t5_2w0wn/styles/communityIcon_l9fx4v8n3cw71.png
+          href: https://www.reddit.com/r/proxmox/
     - r/unixporn:
         - icon: https://styles.redditmedia.com/t5_2sx2i/styles/communityIcon_7fixeonxbxd41.png
           href: https://www.reddit.com/r/unixporn/
