@@ -204,7 +204,13 @@
         href: https://bookmark.vukilis.com/
         icon: hoarder
         description: Bookmark App
-        siteMonitor: https://bookmark.vukilis.com/
+        siteMonitor: http://hoarder.local:3000
+    - Planka:
+        id: col-small
+        href: https://planka.vukilis.com/
+        icon: planka
+        description: To-Do Project Manager
+        siteMonitor: http://planka.local:8083
     - Wallos:
         id: col-small
         href: https://wallos.vukilis.com
@@ -242,21 +248,6 @@
             url: http://192.168.0.202
             username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
-#   - Tailscale:
- #       id: col-small
- #       href: https://login.tailscale.com/admin/machines
- #       icon: tailscale
- #       description: VPN
- #       widget:
- #           type: tailscale
- #           deviceid: n3e8N7XLW811CNTRL
- #           key: {{HOMEPAGE_VAR_TAILSCALE}}
-    - Twingate:
-        id: col-small
-        href: https://vukilis.twingate.com/
-        icon: twingate
-        description: VPN
-        ping: 192.168.0.222
     - Authentik:
         id: col-small
         href: https://auth.vukilis.com/
@@ -273,6 +264,12 @@
         icon: si-vaultwarden
         description: Password Manager
         siteMonitor: http://192.168.0.207
+    - Twingate:
+        id: col-small
+        href: https://vukilis.twingate.com/
+        icon: twingate
+        description: VPN
+        ping: 192.168.0.222
 
 #INTERNET TAB
 - Search Engine & AI:
