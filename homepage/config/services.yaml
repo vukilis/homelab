@@ -168,12 +168,12 @@
         href: https://wud.vukilis.com
         icon: whats-up-docker
         description: Keep containers up-to-date!
+        siteMonitor: http://wud.local:8085
         widget:
           type: whatsupdocker
           url: http://192.168.0.51:8085
           username: {{HOMEPAGE_VAR_WUD_USERNAME}}
           password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
-
 - Utilities:
     - HomeLab Diagram:
         id: col-small
@@ -223,6 +223,12 @@
         icon: https://raw.githubusercontent.com/pbogre/jetlog/refs/heads/main/client/public/favicon.png
         description: Personal Flight Tracker
         siteMonitor: http://jetlog.local
+    - Traccar:
+        id: col-small
+        href: http://gps.vukilis.com
+        icon: traccar
+        description: GPS Tracking Software
+        siteMonitor: http://traccar.local
 
 - Security and Identity:
     - AdGuard Home:
@@ -236,7 +242,7 @@
             url: http://192.168.0.202
             username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
- #   - Tailscale:
+#   - Tailscale:
  #       id: col-small
  #       href: https://login.tailscale.com/admin/machines
  #       icon: tailscale

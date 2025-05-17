@@ -20,7 +20,7 @@ services:
         delay: 5s
         window: 120s
   homepage:
-    image: ghcr.io/gethomepage/homepage:v0.8.12
+    image: ghcr.io/gethomepage/homepage:v1.2.0
     container_name: homepage
     ports:
       - 80:3000
@@ -29,6 +29,7 @@ services:
       - ./images:/app/public/images
       - ./icons:/app/public/icons
     environment:
+      - HOMEPAGE_ALLOWED_HOSTS=${HOMEPAGE_ALLOWED_HOSTS}
       - LOG_LEVEL=debug
       - HOMEPAGE_VAR_PROXMOX_USERNAME=${HOMEPAGE_VAR_PROXMOX_USERNAME}
       - HOMEPAGE_VAR_PROXMOX_PASSWORD=${HOMEPAGE_VAR_PROXMOX_PASSWORD}
