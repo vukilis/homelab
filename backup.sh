@@ -24,10 +24,12 @@ declare -A server_names=(
     # ["192.168.0.214"]="wallos"
     # ["192.168.0.215"]="watchyourlan"
     # ["192.168.0.216"]="hoarder"
-    # ["192.168.0.217"]="tailscale"
+    ["192.168.0.217"]="traccar"
     # ["192.168.0.218"]="pocketid"
     # ["192.168.0.219"]="jetlog"
     # ["192.168.0.220"]="alpine-it-tools"
+    ["192.168.0.221"]="home-assistant"
+    ["192.168.0.222"]="twingate"
 )
 
 servers=(
@@ -35,6 +37,7 @@ servers=(
     "192.168.0.206" "192.168.0.207" "192.168.0.208" "192.168.0.209" "192.168.0.210"
     "192.168.0.211" "192.168.0.212" "192.168.0.213" "192.168.0.214" "192.168.0.215"
     "192.168.0.216" "192.168.0.217" "192.168.0.218" "192.168.0.219" "192.168.0.220"
+    "192.168.0.221" "192.168.0.222"
 )
 
 columns=4
@@ -57,6 +60,9 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 remote_config_paths_201="/etc"
 remote_config_paths_202="/home /etc/ssh"
 remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/docker-compose.yaml /root/homepage/icons"
+remote_config_paths_217="/home/homelab/traccar/compose.yaml /home/homelab/traccar/traccar.xml"
+remote_config_paths_221="/home/homelab/home-assistant/compose.yml"
+remote_config_paths_222="/home/homelab/twingate/compose.yml"
 
 # Loop through servers
 for server_ip in "${!server_names[@]}"; do
@@ -75,24 +81,30 @@ for server_ip in "${!server_names[@]}"; do
     for path in $remote_paths; do
         echo "    📂 Copying from $path..."
 
-        # Check if path exists on remote
-        if ssh -i ~/.ssh/vuk.lekic "root@$server_ip" "[ -e '$path' ]"; then
-            echo "    ✅ Path $path found on $server_ip"
+        # Check if path exists on remote for both root and homelab users
+        for user in root homelab; do
+            if ssh -i ~/.ssh/vuk.lekic "$user@$server_ip" "[ -e '$path' ]"; then
+                echo "    ✅ Path $path found for $user on $server_ip"
 
-            # Calculate relative path
-            rel_path=$(echo "$path" | sed -E 's|^/root/[^/]+/||')
+                # Calculate relative path
+                # rel_path=$(echo "$path" | sed -E 's|^/root/[^/]+/||')
 
-            # Create destination directory
-            dest_dir="$SCRIPT_DIR/$server_name/$(dirname "$rel_path")"
-            mkdir -p "$dest_dir"
+                # Calculate relative path for both /root and /home/homelab
+                rel_path=$(echo "$path" | sed -E 's|^/root/[^/]+/||; s|^/home/homelab/[^/]+/||')
 
-            # Copy the file or folder
-            scp -i ~/.ssh/vuk.lekic -r "root@$server_ip:$path" "$dest_dir/"
+                # Create destination directory
+                dest_dir="$SCRIPT_DIR/$server_name/$(dirname "$rel_path")"
+                mkdir -p "$dest_dir"
 
-            echo "    ✅ Copied: $dest_dir/$(basename "$path")"
-        else
-            echo "    ❌ Path $path not found on $server_ip"
-        fi
+                # Copy the file or folder
+                scp -i ~/.ssh/vuk.lekic -r "$user@$server_ip:$path" "$dest_dir/"
+                
+                echo "    ✅ Copied: $dest_dir/$(basename "$path")"
+                break
+            else
+                echo "    ❌ Path $path not found for $user on $server_ip"
+            fi
+        done
     done
 done
 
