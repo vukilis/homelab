@@ -33,5 +33,16 @@ services:
     entrypoint: ["java", "-Xms200M", "-Xmx1g", "-Djava.net.preferIPv4Stack=true"]
     command: ["-jar", "tracker-server.jar", "conf/traccar.xml"]
     mem_limit: 200M
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
 volumes:
   mysql_data:

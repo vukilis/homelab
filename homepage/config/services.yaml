@@ -50,12 +50,54 @@
             username: {{HOMEPAGE_VAR_PBS_USERNAME}}
             password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
     - BlackBox:
+        id: col-small
         icon: windows-11
         description: Windows 11 Operating System
         ping: 192.168.0.152
+    - HomePC:
+        id: col-small
+        icon: windows-10
+        description: Windows 10 Operating System
+        ping: 192.168.0.110
+
+- Security and Identity:
+    - AdGuard Home:
+        id: col-small
+        href: http://adblock.local
+        icon: adguard-home
+        description: Ad Blocking
+        siteMonitor: http://192.168.0.202
+        widget:
+            type: adguard
+            url: http://192.168.0.202
+            username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
+            password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
+    - Authentik:
+        id: col-small
+        href: https://auth.vukilis.com/
+        icon: authentik
+        description: Authentication Provider
+        siteMonitor: https://auth.vukilis.com/
+        widget:
+            type: authentik
+            url: https://auth.vukilis.com/
+            key: {{HOMEPAGE_VAR_AUTHENTIC_API}}
+    - Vaultwarden:
+        id: col-small
+        href: https://vaultwarden.vukilis.com/
+        icon: si-vaultwarden
+        description: Password Manager
+        siteMonitor: http://192.168.0.207
+    - Twingate:
+        id: col-small
+        href: https://vukilis.twingate.com/
+        icon: twingate
+        description: VPN
+        ping: 192.168.0.222
 
 - Media & Entertainment:
     - qBittorrent:
+        id: col-small
         href: http://qbittorrent.local
         icon: qbittorrent  #si-qbittorrent
         description: Torrent Manager
@@ -66,6 +108,7 @@
           username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
           password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
     - Medusa:
+        id: col-small
         href: http://medusa.local
         icon: medusa
         description: Manager for TV Shows
@@ -95,6 +138,7 @@
 
 - Management:
     - Portainer:
+        id: col-small
         href: https://portainer.vukilis.com/
         icon: portainer.png
         description: Docker Manager
@@ -105,6 +149,7 @@
             env: 2
             key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
     - Nginx Proxy Manager:
+        id: col-small
         href: https://npm.vukilis.com
         icon: nginx-proxy-manager
         description: Reverse Proxy Manager
@@ -151,18 +196,17 @@
         widget:
             type: netdata
             url: http://192.168.0.200:19999
-    - WatchYourLan:
+    - Grafana:
         id: col-small
-        href: http://watchyourlan.local:8840
-        description: Network IP Scanner
-        icon: watchyourlan
-        siteMonitor: http://192.168.0.215:8840
-    - Dozzle:
-        id: col-small
-        href: http://dozzle.local:8082
-        description: Docker Logs Monitor
-        icon: dozzle
-        siteMonitor: http://192.168.0.51:8082
+        href: http://grafana.local:3000
+        description: Grafana Dashboard
+        icon: grafana
+        siteMonitor: http://192.168.0.223:3000
+        widget:
+          type: grafana
+          url: http://grafana.local:3000
+          username: {{HOMEPAGE_VAR_GRAFANA_USERNAME}}
+          password: {{HOMEPAGE_VAR_GRAFANA_PASSWORD}}
     - What's Up Docker:
         id: col-small
         href: https://wud.vukilis.com
@@ -174,6 +218,30 @@
           url: http://192.168.0.51:8085
           username: {{HOMEPAGE_VAR_WUD_USERNAME}}
           password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
+    - Beszel:
+        id: col-small
+        href: http://beszel.local:8090
+        description: Docker Resource Monitoring
+        icon: beszel
+        siteMonitor: http://192.168.0.224:8090
+        widget:
+          type: beszel
+          url: http://beszel.local:8090
+          username: {{HOMEPAGE_VAR_BESZEL_USERNAME}}
+          password: {{HOMEPAGE_VAR_BESZEL_PASSWORD}}
+          version: 2
+    - Dozzle:
+        id: col-small
+        href: http://dozzle.local:8082
+        description: Docker Logs Monitor
+        icon: dozzle
+        siteMonitor: http://192.168.0.51:8082
+    - WatchYourLan:
+        id: col-small
+        href: http://watchyourlan.local:8840
+        description: Network IP Scanner
+        icon: watchyourlan
+        siteMonitor: http://192.168.0.215:8840
 - Utilities:
     - HomeLab Diagram:
         id: col-small
@@ -231,45 +299,18 @@
         siteMonitor: http://jetlog.local
     - Traccar:
         id: col-small
-        href: http://gps.vukilis.com
+        href: https://gps.vukilis.com
         icon: traccar
         description: GPS Tracking Software
         siteMonitor: http://traccar.local
 
-- Security and Identity:
-    - AdGuard Home:
+- IoT and Smarthome:
+    - Home Assistant:
         id: col-small
-        href: http://adblock.local
-        icon: adguard-home
-        description: Ad Blocking
-        siteMonitor: http://192.168.0.202
-        widget:
-            type: adguard
-            url: http://192.168.0.202
-            username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
-            password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
-    - Authentik:
-        id: col-small
-        href: https://auth.vukilis.com/
-        icon: authentik
-        description: Authentication Provider
-        siteMonitor: https://auth.vukilis.com/
-        widget:
-            type: authentik
-            url: https://auth.vukilis.com/
-            key: {{HOMEPAGE_VAR_AUTHENTIC_API}}
-    - Vaultwarden:
-        id: col-small
-        href: https://vaultwarden.vukilis.com/
-        icon: si-vaultwarden
-        description: Password Manager
-        siteMonitor: http://192.168.0.207
-    - Twingate:
-        id: col-small
-        href: https://vukilis.twingate.com/
-        icon: twingate
-        description: VPN
-        ping: 192.168.0.222
+        href: http://homeassistant.local:8123
+        icon: home-assistant
+        description: Smart Home Management
+        siteMonitor: http://192.168.0.221:8123
 
 #INTERNET TAB
 - Search Engine & AI:
@@ -533,7 +574,7 @@
     - Check My DNS:
         id: col-small
         href: https://cmdns.dev.dns-oarc.net/
-        icon: https://cmdns.dev.dns-oarc.net/favicon.ico
+        icon: https://dev.dns-oarc.net/favicon.ico
     - whatsmydns:
         id: col-small
         href: https://www.whatsmydns.net/
@@ -550,3 +591,7 @@
         id: col-small
         href: https://fetchrss.com/
         icon: https://fetchrss.com/favicon.ico
+    - Excalidraw:
+        id: col-small
+        href: https://excalidraw.com/
+        icon: https://excalidraw.com/favicon.ico

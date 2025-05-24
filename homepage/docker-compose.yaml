@@ -50,9 +50,21 @@ services:
       - HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID=${HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}
       - HOMEPAGE_VAR_CLOUDFLARE_TUNNELID=${HOMEPAGE_VAR_CLOUDFLARE_TUNNELID}
       - HOMEPAGE_VAR_CLOUDFLARE_TOKKEN=${HOMEPAGE_VAR_CLOUDFLARE_TOKKEN}
-      - HOMEPAGE_VAR_WUD_USERNAME={{HOMEPAGE_VAR_WUD_USERNAME}}
-      - HOMEPAGE_VAR_WUD_PASSWORD={{HOMEPAGE_VAR_WUD_PASSWORD}}
-      - HOMEPAGE_VAR_TAILSCALE={{HOMEPAGE_VAR_TAILSCALE}}
+      - HOMEPAGE_VAR_WUD_USERNAME=${HOMEPAGE_VAR_WUD_USERNAME}
+      - HOMEPAGE_VAR_WUD_PASSWORD=${HOMEPAGE_VAR_WUD_PASSWORD}
+      - HOMEPAGE_VAR_BESZEL_USERNAME=${HOMEPAGE_VAR_BESZEL_USERNAME}
+      - HOMEPAGE_VAR_BESZEL_PASSWORD=${HOMEPAGE_VAR_BESZEL_PASSWORD}
+      - HOMEPAGE_VAR_GRAFANA_USERNAME=${HOMEPAGE_VAR_GRAFANA_USERNAME}
+      - HOMEPAGE_VAR_GRAFANA_PASSWORD=${HOMEPAGE_VAR_GRAFANA_PASSWORD}
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://${HOMEPAGE_VAR_LOKI_USERNAME}:${HOMEPAGE_VAR_LOKI_PASSWORD}@192.168.0.223:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     restart: unless-stopped
 
   dockerproxy:
@@ -68,3 +80,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'

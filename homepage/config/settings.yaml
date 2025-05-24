@@ -39,20 +39,21 @@ layout:
   Monitoring:
     tab: HOMELAB
     icon: mdi-list-status-#FFFFFF
-  Media & Entertainment:
-    tab: HOMELAB
-    icon: mdi-multimedia-#FFFFFF
   Utilities:
+    tab: HOMELAB
+    icon: mdi-tools-#FFFFFF
+  Security and Identity:
+    tab: HOMELAB
+    icon: mdi-shield-lock-#FFFFFF
+  Media & Entertainment:
     tab: HOMELAB
     icon: mdi-multimedia-#FFFFFF
   Automation:
     tab: HOMELAB
     icon: mdi-cog-play-#FFFFFF
   IoT and Smarthome:
-    icon: mdi-home-#FFFFFF
-  Security and Identity:
     tab: HOMELAB
-    icon: mdi-shield-lock-#FFFFFF
+    icon: mdi-home-#FFFFFF
 
 # INTERNET TAB
   Search Engine & AI:
@@ -95,3 +96,5 @@ instanceName: public
 hideErrors: true
 useEqualHeights: true
 target: _self
+#fullWidth: true
+maxGroupColumns: 3
