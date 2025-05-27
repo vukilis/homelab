@@ -407,7 +407,7 @@
         icon: https://uzivo.utakmica.rs/favicon.svg?v=1.0.0
     - Messitv:
         id: col-small
-        href: https://v1.messitv.net/
+        href: https://v1.messitv.net/2025/03/all-arena-sport-channels-full-hd.html
         icon: https://1.bp.blogspot.com/--rZOb4HNm34/YcSjeaN290I/AAAAAAAAAAM/PuBLLKsDccIlfwU7NVyDGEWb6NxHYNvPgCNcBGAsYHQ/s268/messi-tv.png
 - Shop:
     - Wolt:
@@ -524,6 +524,10 @@
         id: col-small
         href: https://book.hacktricks.wiki/
         icon: https://book.hacktricks.wiki/favicon.png
+    - Survey Stackoverflow:
+        id: col-small
+        href: https://survey.stackoverflow.co/
+        icon: https://survey.stackoverflow.co/legacy-assets/Sites/stackoverflow/Img/favicon3804.ico?v=ec617d715196
 - Gaming Clients:
     - Steam:
         id: col-small
