@@ -8,27 +8,27 @@ ssh-add ~/.ssh/vuk.lekic
 
 # List of servers
 declare -A server_names=(
-    # ["192.168.0.201"]="uptime-kuma"
-    # ["192.168.0.202"]="adguard"
+    ["192.168.0.201"]="uptime-kuma"
+    # ["192.168.0.202"]="adguard"                   # Proxmox VE Helper-Scripts
     ["192.168.0.203"]="homepage"
-    # ["192.168.0.204"]="qbittorrent"
-    # ["192.168.0.205"]="navidrome"
-    # ["192.168.0.206"]="filebrowser"
-    # ["192.168.0.207"]="vaultwarden"
-    # ["192.168.0.208"]="proxmox-backup-server"
-    # ["192.168.0.209"]="nginxproxymanager"
-    # ["192.168.0.210"]="medusa"
-    # ["192.168.0.211"]="authentik"
-    # ["192.168.0.212"]="usememos"
-    # ["192.168.0.213"]="cloudflared"
-    # ["192.168.0.214"]="wallos"
-    # ["192.168.0.215"]="watchyourlan"
-    # ["192.168.0.216"]="hoarder"
+    # ["192.168.0.204"]="qbittorrent"               # Proxmox VE Helper-Scripts
+    ["192.168.0.205"]="navidrome"
+    ["192.168.0.206"]="filebrowser"
+    ["192.168.0.207"]="vaultwarden"
+    # ["192.168.0.208"]="proxmox-backup-server"     # Proxmox VE Helper-Scripts
+    # ["192.168.0.209"]="nginxproxymanager"         # Proxmox VE Helper-Scripts
+    ["192.168.0.210"]="medusa"
+    # ["192.168.0.211"]="authentik"                 # Proxmox VE Helper-Scripts
+    ["192.168.0.212"]="usememos"
+    # ["192.168.0.213"]="cloudflared"               # Proxmox VE Helper-Scripts
+    # ["192.168.0.214"]="wallos"                    # Proxmox VE Helper-Scripts
+    # ["192.168.0.215"]="watchyourlan"              # Proxmox VE Helper-Scripts
+    ["192.168.0.216"]="hoarder"
     ["192.168.0.217"]="traccar"
-    # ["192.168.0.218"]="pocketid"
-    # ["192.168.0.219"]="jetlog"
-    # ["192.168.0.220"]="alpine-it-tools"
-    ["192.168.0.221"]="home-assistant"
+    # ["192.168.0.218"]="pocketid"                  # Proxmox VE Helper-Scripts
+    ["192.168.0.219"]="jetlog"
+    # ["192.168.0.220"]="alpine-it-tools"           # Proxmox VE Helper-Scripts
+    # ["192.168.0.221"]="home-assistant"            # offline
     ["192.168.0.222"]="twingate"
     ["192.168.0.223"]="grafana"
     ["192.168.0.224"]="beszel"
@@ -59,10 +59,16 @@ done
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Path for backup on remote servers
-remote_config_paths_201="/etc"
-remote_config_paths_202="/home /etc/ssh"
-remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/docker-compose.yaml /root/homepage/icons"
-remote_config_paths_217="/home/homelab/traccar/compose.yaml /home/homelab/traccar/traccar.xml"
+remote_config_paths_201="/root/uptime-kuma/compose.yml"
+remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/compose.yml /root/homepage/icons"
+remote_config_paths_205="/root/navidrome/compose.yml"
+remote_config_paths_206="/root/filebrowser/compose.yml /root/filebrowser/settings.json"
+remote_config_paths_207="/root/vaultwarden/compose.yml"
+remote_config_paths_210="/home/homelab/medusa/compose.yml"
+remote_config_paths_212="/root/usememos/compose.yml"
+remote_config_paths_216="/root/hoarder/compose.yml"
+remote_config_paths_217="/home/homelab/traccar/compose.yml /home/homelab/traccar/traccar.xml"
+remote_config_paths_219="/root/jetlog/compose.yml "
 remote_config_paths_221="/home/homelab/home-assistant/compose.yml"
 remote_config_paths_222="/home/homelab/twingate/compose.yml"
 remote_config_paths_223="/home/homelab/grafana/compose.yml /home/homelab/grafana/config"

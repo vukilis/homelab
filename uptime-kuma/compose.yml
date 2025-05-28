@@ -1,3 +1,4 @@
+---
 services:
   portainer-agent:
     container_name: portainer-agent
@@ -8,7 +9,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
     depends_on:
-      - beszel
+      - uptimekuma
     deploy:
       resources:
         limits:
@@ -18,24 +19,25 @@ services:
         condition: unless-stopped
         delay: 5s
         window: 120s
-  beszel:
-    image: henrygd/beszel:latest
-    container_name: beszel
-    restart: unless-stopped
-    ports:
-      - 8090:8090
+  uptimekuma:
+    image: louislam/uptime-kuma
+    container_name: uptimekuma
     volumes:
-      - ./beszel_data:/beszel_data
-      - ./beszel_socket:/beszel_socket
-
+       - ./uptimekuma-data:/app/data
+    ports:
+       - 80:3001
+    dns:
+      - 192.168.0.202
+      - 1.1.1.1
+      - 8.8.8.8
+    restart: unless-stopped
   beszel-agent:
-    image: henrygd/beszel-agent:latest
-    container_name: beszel-agent
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ./beszel_socket:/beszel_socket
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      LISTEN: /beszel_socket/beszel.sock
-      KEY: '${KEY}'
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
