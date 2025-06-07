@@ -204,7 +204,7 @@
         siteMonitor: http://192.168.0.223:3000
         widget:
           type: grafana
-          url: http://grafana.local:3000
+          url: http://192.168.0.223:3000
           username: {{HOMEPAGE_VAR_GRAFANA_USERNAME}}
           password: {{HOMEPAGE_VAR_GRAFANA_PASSWORD}}
     - What's Up Docker:
@@ -226,7 +226,7 @@
         siteMonitor: http://192.168.0.224:8090
         widget:
           type: beszel
-          url: http://beszel.local:8090
+          url: http://192.168.0.224:8090
           username: {{HOMEPAGE_VAR_BESZEL_USERNAME}}
           password: {{HOMEPAGE_VAR_BESZEL_PASSWORD}}
           version: 2
