@@ -55,40 +55,43 @@ layout:
     tab: HOMELAB
     icon: mdi-home-#FFFFFF
 
-# INTERNET TAB
+# BOOKMARKS TAB
   Search Engine & AI:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-web-#FFFFFF
     #columns: 4
     #style: row
     #header: false
   Online Entertainment:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-video-#FFFFFF
   Social Network:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-message-#FFFFFF
   Sports:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-trophy-#FFFFFF
   Shop:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-trophy-#FFFFFF
   Torrents:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-tray-arrow-down-#FFFFFF
   Gaming & Tech News:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-alpha-n-#FFFFFF
   Gaming Clients:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-gamepad-#FFFFFF
   FileSharing:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-file-swap-#FFFFFF
   Tools:
-    tab: INTERNET
+    tab: BOOKMARKS
     icon: mdi-tools-#FFFFFF
+  Travel:
+    tab: BOOKMARKS
+    icon: mdi-airplane-#FFFFFF
 
 showStats: true
 statusStyle: "dot"

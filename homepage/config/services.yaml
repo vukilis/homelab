@@ -312,7 +312,7 @@
         description: Smart Home Management
         siteMonitor: http://192.168.0.221:8123
 
-#INTERNET TAB
+#BOOKMARKS TAB
 - Search Engine & AI:
     - Google:
         id: col-small
@@ -359,6 +359,10 @@
         id: col-small
         href: https://subtitletools.com/merge-subtitles-online
         icon: https://subtitletools.com/favicon.png
+    - Pionex:
+        id: col-small
+        href: https://www.pionex.com/en/
+        icon: https://pbs.twimg.com/media/GQbu0yFaIAYeJGa.png
 - Social Network:
     - Instagram:
         id: col-small
@@ -447,42 +451,57 @@
         id: col-small
         href: https://fmhy.pages.dev/
         icon: https://fmhy.pages.dev/fmhy.ico
+        description: Torrent Collection
     - TorrentGalaxy:
         id: col-small
         href: https://torrentgalaxy.one/
         icon: https://d4.alternativeto.net/vi3mqXneYDJNe3MnGet3m8fkLunRG86iC07IjAB9qzo/rs:fit:280:280:0/g:ce:0:0/exar:1/YWJzOi8vZGlzdC9pY29ucy90b3JyZW50LWdhbGF4eV8yMTgwMjIucG5n.png
+        description: Torrent
     - YIFI:
         id: col-small
         href: https://yts.mx/
         icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo-YTS.svg/2560px-Logo-YTS.svg.png
+        description: Movies & Series
     - Arcadepunks:
         id: col-small
         href: https://www.arcadepunks.com/
         icon: https://pbs.twimg.com/profile_images/1839651897503801344/iykEsMYJ_400x400.jpg
+        description: Retro Gaming
     - CS.RIN.RU ETS2:
         id: col-small
         href: https://cs.rin.ru/forum/viewtopic.php?f=10&t=63279&hilit=euro+truck
         icon: https://i0.wp.com/cs.rin.ru/forum/styles/rinDark/imageset/site_logo-2.png
+        description: Forum For ETS2 Cracks
     - CS.RIN.RU:
         id: col-small
         href: https://cs.rin.ru/forum/viewtopic.php?f=10&t=95461
         icon: https://i0.wp.com/cs.rin.ru/forum/styles/rinDark/imageset/site_logo-2.png
+        description: Forum For Cracks
     - Dodi:
         id: col-small
         href: https://dodi-repacks.site/
         icon: https://styles.redditmedia.com/t5_ab6jz1/styles/communityIcon_fv793fnur75c1.png
+        description: Repacks
     - Fitgirl:
         id: col-small
         href: https://fitgirl-repacks.site/
         icon: https://fitgirl-repacks.site/wp-content/uploads/2016/08/cropped-icon-32x32.jpg
+        description: Repacks
     - Online-fix:
         id: col-small
         href: https://online-fix.me/
         icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgve7LDrfkGC31pGhpmcZIT5ZdXVrT3ZZhtg&s
+        description: Online Crack
     - Flingtrainer:
         id: col-small
         href: https://flingtrainer.com/
         icon: https://cdn-b.saashub.com/images/app/service_logos/188/1pp5meaqd72y/large.png?1630233633
+        description: Cheats and Mods
+    - Monkrus:
+        id: col-small
+        href: https://w16.monkrus.ws/
+        icon: https://w16.monkrus.ws/favicon.ico
+        description: Adobe Cracks
 - Gaming & Tech News:
     - Svet Kompjutera:
         id: col-small
@@ -554,6 +573,10 @@
         href: https://pathofexile2.com/
         icon: https://web.poecdn.com/protected/image/favicon/poe2/favicon.ico?key=z1ntMm_mlpgr2cNrStO09g
 - FileSharing:
+    - Google Drive:
+        id: col-small
+        href: https://drive.google.com/drive
+        icon: https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png
     - Pixeldrain:
         id: col-small
         href: https://pixeldrain.com
@@ -599,3 +622,24 @@
         id: col-small
         href: https://excalidraw.com/
         icon: https://excalidraw.com/favicon.ico
+- Travel:
+    - Booking:
+        id: col-small
+        href: https://www.booking.com/
+        icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVqpq-6zK3cs6d6dFWCxF4QXs1AjqVuKwsmQ&s
+        description: Travel Services
+    - Flightradar24:
+        id: col-small
+        href: https://my.flightradar24.com/
+        icon: https://my.flightradar24.com/favicon.ico
+        description: Flight Logbook
+    - Lufthansa:
+        id: col-small
+        href: https://www.lufthansa.com/gb/en/homepage
+        icon: https://www.lufthansa.com/favicon.ico
+        description: Airlines
+    - Saily:
+        id: col-small
+        href: https://saily.com/
+        icon: https://saily.com/favicon-32x32.png
+        description: eSIM
