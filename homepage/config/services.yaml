@@ -497,6 +497,11 @@
         href: https://flingtrainer.com/
         icon: https://cdn-b.saashub.com/images/app/service_logos/188/1pp5meaqd72y/large.png?1630233633
         description: Cheats and Mods
+    - GameDrive:
+        id: col-small
+        href: https://gamedrive.org/
+        icon: https://gamedrive.org/favicon.ico
+        description: Adobe Cracks
     - Monkrus:
         id: col-small
         href: https://w16.monkrus.ws/
