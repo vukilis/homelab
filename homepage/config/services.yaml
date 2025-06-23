@@ -500,7 +500,7 @@
     - GameDrive:
         id: col-small
         href: https://gamedrive.org/
-        icon: https://gamedrive.org/favicon.ico
+        icon: https://gamedrive.org/wp-content/uploads/2023/06/logo.png
         description: Adobe Cracks
     - Monkrus:
         id: col-small
@@ -524,6 +524,10 @@
         id: col-small
         href: https://gamerant.com/gaming/
         icon: https://gamerant.com/public/build/images/favicon-192x192.67e9c250.png
+    - steamdb.info:
+        id: col-small
+        href: https://steamdb.info/sales/history/
+        icon: https://steamdb.info/favicon.ico
     - Bleepingcomputer:
         id: col-small
         href: https://www.bleepingcomputer.com/
@@ -552,6 +556,10 @@
         id: col-small
         href: https://survey.stackoverflow.co/
         icon: https://survey.stackoverflow.co/legacy-assets/Sites/stackoverflow/Img/favicon3804.ico?v=ec617d715196
+    - Idiokratija:
+        id: col-small
+        href: https://idiokratija.com/
+        icon: https://idiokratija.com/favicon.ico
 - Gaming Clients:
     - Steam:
         id: col-small
