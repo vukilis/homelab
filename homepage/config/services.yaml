@@ -338,6 +338,10 @@
         id: col-small
         href: https://deepseek.com/
         icon: deepseek
+    - Copilot:
+        id: col-small
+        href: https://copilot.microsoft.com/
+        icon: microsoft-copilot
 - Online Entertainment:
     - Youtube:
         id: col-small
@@ -635,6 +639,17 @@
         id: col-small
         href: https://excalidraw.com/
         icon: https://excalidraw.com/favicon.ico
+- Dev Tools:
+    - Trello:
+        id: col-small
+        href: https://trello.com/
+        icon: atlassian-trello
+        description: Project Manager
+    - Figma:
+        id: col-small
+        href: https://figma.com/
+        icon: https://static.figma.com/app/icon/1/favicon.ico
+        description: Project Manager
 - Travel:
     - Booking:
         id: col-small

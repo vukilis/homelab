@@ -89,6 +89,9 @@ layout:
   Tools:
     tab: BOOKMARKS
     icon: mdi-tools-#FFFFFF
+  Dev Tools:
+    tab: BOOKMARKS
+    icon: mdi-dev-to-#FFFFFF
   Travel:
     tab: BOOKMARKS
     icon: mdi-airplane-#FFFFFF
