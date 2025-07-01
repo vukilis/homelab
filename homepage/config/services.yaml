@@ -606,6 +606,10 @@
         id: col-small
         href: https://paster.so/
         icon: https://paster.so/brand/assets/icon/standard.svg
+    - Streamable:
+        id: col-small
+        href: https://streamable.com/
+        icon: https://streamable.com/favicon.ico
 - Tools:
     - Webpagetest:
         id: col-small
