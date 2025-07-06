@@ -417,6 +417,14 @@
         id: col-small
         href: https://v1.messitv.net/2025/03/all-arena-sport-channels-full-hd.html
         icon: https://1.bp.blogspot.com/--rZOb4HNm34/YcSjeaN290I/AAAAAAAAAAM/PuBLLKsDccIlfwU7NVyDGEWb6NxHYNvPgCNcBGAsYHQ/s268/messi-tv.png
+    - DAZN:
+        id: col-small
+        href: https://www.dazn.com/es-RS/welcome
+        icon: https://www.dazn.com/favicon.ico
+    - Vipleague:
+        id: col-small
+        href: https://www.vipleague.pm/
+        icon: https://www.vipleague.pm/favicon.ico
 - Shop:
     - Wolt:
         id: col-small
