@@ -3,6 +3,8 @@ services:
     image: getwud/wud
     container_name: wud
     environment:
+      - WUD_AUTH_BASIC_VUKILIS_USER=${WUD_AUTH_BASIC_VUKILIS_USER}
+      - WUD_AUTH_BASIC_VUKILIS_HASH=${WUD_AUTH_BASIC_VUKILIS_HASH}
       - TZ=Europe/Belgrade
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -12,8 +14,3 @@ services:
     restart: unless-stopped
     networks: {}
 networks: {}
-
-
-#.env
-#WUD_AUTH_BASIC_USER=
-#WUD_AUTH_BASIC_HASH=
