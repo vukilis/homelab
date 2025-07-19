@@ -597,6 +597,10 @@
         id: col-small
         href: https://pathofexile2.com/
         icon: https://web.poecdn.com/protected/image/favicon/poe2/favicon.ico?key=z1ntMm_mlpgr2cNrStO09g
+    - NexusMods:
+        id: col-small
+        href: https://www.nexusmods.com/
+        icon: https://www.nexusmods.com/favicon.ico
 - FileSharing:
     - Google Drive:
         id: col-small
