@@ -687,3 +687,13 @@
         href: https://saily.com/
         icon: https://saily.com/favicon-32x32.png
         description: eSIM
+    - Kiwi:
+        id: col-small
+        href: https://www.kiwi.com/us/
+        icon: https://images.kiwi.com/common/kiwicom-logo-mobile-no-whitespace.svg
+        description: Travel Agency
+    - Momodo:
+        id: col-small
+        href: https://www.momondo.com/
+        icon: https://www.momondo.com/favicon.ico
+        description: Travel Deals
