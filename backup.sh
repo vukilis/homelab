@@ -32,6 +32,8 @@ declare -A server_names=(
     ["192.168.0.222"]="twingate"
     ["192.168.0.223"]="grafana"
     ["192.168.0.224"]="beszel"
+    ["192.168.0.225"]="stash"
+    ["192.168.0.226"]="mealie"
 )
 
 servers=(
@@ -39,7 +41,8 @@ servers=(
     "192.168.0.206" "192.168.0.207" "192.168.0.208" "192.168.0.209" "192.168.0.210"
     "192.168.0.211" "192.168.0.212" "192.168.0.213" "192.168.0.214" "192.168.0.215"
     "192.168.0.216" "192.168.0.217" "192.168.0.218" "192.168.0.219" "192.168.0.220"
-    "192.168.0.221" "192.168.0.222" "192.168.0.223" "192.168.0.224"
+    "192.168.0.221" "192.168.0.222" "192.168.0.223" "192.168.0.224" "192.168.0.225"
+    "192.168.0.226"
 )
 
 columns=4
@@ -73,6 +76,8 @@ remote_config_paths_221="/home/homelab/home-assistant/compose.yml"
 remote_config_paths_222="/home/homelab/twingate/compose.yml"
 remote_config_paths_223="/home/homelab/grafana/compose.yml /home/homelab/grafana/config"
 remote_config_paths_224="/home/homelab/beszel/compose.yml"
+remote_config_paths_225="/home/homelab/stash/compose.yml"
+remote_config_paths_226="/home/homelab/mealie/compose.yml"
 
 # Loop through servers
 for server_ip in "${!server_names[@]}"; do
