@@ -82,6 +82,7 @@
             type: authentik
             url: https://auth.vukilis.com/
             key: {{HOMEPAGE_VAR_AUTHENTIC_API}}
+            version: 2
     - Vaultwarden:
         id: col-small
         href: https://vaultwarden.vukilis.com/
@@ -303,6 +304,12 @@
         icon: traccar
         description: GPS Tracking Software
         siteMonitor: http://traccar.local
+    - Mealie:
+        id: col-small
+        href: https://recipe.vukilis.com
+        icon: mealie
+        description: Recipe Manager
+        siteMonitor: http://recipe.local
 
 - IoT and Smarthome:
     - Home Assistant:
@@ -342,11 +349,23 @@
         id: col-small
         href: https://copilot.microsoft.com/
         icon: microsoft-copilot
+    - Google AI Studio:
+        id: col-small
+        href: https://aistudio.google.com/prompts/new_chat
+        icon: https://www.gstatic.com/aistudio/ai_studio_favicon_2_32x32.png
 - Online Entertainment:
     - Youtube:
         id: col-small
         href: https://www.youtube.com
         icon: youtube
+    - Twitch:
+        id: col-small
+        href: https://www.twitch.tv
+        icon: twitch
+    - Kick:
+        id: col-small
+        href: https://www.kick.com
+        icon: kick
     - IMDB:
         id: col-small
         href: https://www.imdb.com
@@ -376,6 +395,10 @@
         id: col-small
         href: https://www.facebook.com
         icon: facebook
+    - TikTok:
+        id: col-small
+        href: https://www.tiktok.com/@vukilis
+        icon: tiktok
     - Reddit:
         id: col-small
         href: https://www.reddit.com
@@ -388,7 +411,7 @@
     - Euroleague:
         id: col-small
         href: https://www.euroleaguebasketball.net/euroleague/
-        icon: https://www.thesportsdb.com/images/media/league/badge/7xjtuy1554397263.png
+        icon: https://www.euroleaguebasketball.net/favicon.ico
     - ABA League:
         id: col-small
         href: https://www.aba-liga.com
@@ -516,8 +539,8 @@
         description: Adobe Cracks
     - Monkrus:
         id: col-small
-        href: https://w16.monkrus.ws/
-        icon: https://w16.monkrus.ws/favicon.ico
+        href: https://w17.monkrus.ws/
+        icon: https://w17.monkrus.ws/favicon.ico
         description: Adobe Cracks
 - Gaming & Tech News:
     - Svet Kompjutera:
@@ -623,6 +646,10 @@
         href: https://streamable.com/
         icon: https://streamable.com/favicon.ico
 - Tools:
+    - Mchose:
+        id: col-small
+        href: https://www.mchose.com.cn/
+        icon: https://www.mchose.com.cn/mchose.ico
     - Webpagetest:
         id: col-small
         href: https://www.webpagetest.org/
@@ -696,4 +723,9 @@
         id: col-small
         href: https://www.momondo.com/
         icon: https://www.momondo.com/favicon.ico
+        description: Travel Deals
+    - iatatravelcentre:
+        id: col-small
+        href: https://www.iatatravelcentre.com/
+        icon: https://www.iata.org/favicon-32x32.png
         description: Travel Deals

@@ -9,6 +9,9 @@
     - Github:
         - icon: github.png
           href: https://github.com/vukilis
+    - Instagram:
+        - icon: instagram.png
+          href: https://instagram.com/only_vukilis
     - LinkedIn:
         - icon: linkedin
           href: https://www.linkedin.com/in/vuk-lekic
@@ -18,9 +21,12 @@
 #    - Instagram:
 #        - icon: instagram.png
 #          href: https://www.instagram.com/vukilis97/
-    - YouTube:
+    - YouTube Private:
         - icon: youtube.png
           href: https://youtube.com/vukilis
+    - YouTube Hasta La Hista:
+        - icon: youtube.png
+          href: https://youtube.com/@HastaLaHista
 
 - Social:
     - r/selfhosted:

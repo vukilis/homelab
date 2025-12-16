@@ -6,34 +6,34 @@ eval "$(ssh-agent -s)"
 # Add SSH key to the agent
 ssh-add ~/.ssh/vuk.lekic
 
-# List of servers
+# List of servers                                   # Unncoment to include in backup
 declare -A server_names=(
-    ["192.168.0.201"]="uptime-kuma"
+    # ["192.168.0.201"]="uptime-kuma"               # Manual installation
     # ["192.168.0.202"]="adguard"                   # Proxmox VE Helper-Scripts
-    ["192.168.0.203"]="homepage"
+    # ["192.168.0.203"]="homepage"                  # Manual installation   
     # ["192.168.0.204"]="qbittorrent"               # Proxmox VE Helper-Scripts
-    ["192.168.0.205"]="navidrome"
-    ["192.168.0.206"]="filebrowser"
-    ["192.168.0.207"]="vaultwarden"
+    # ["192.168.0.205"]="navidrome"                 # Manual installation
+    # ["192.168.0.206"]="fileBrowser-quantum"       # Manual installation
+    # ["192.168.0.207"]="vaultwarden"               # Manual installation
     # ["192.168.0.208"]="proxmox-backup-server"     # Proxmox VE Helper-Scripts
     # ["192.168.0.209"]="nginxproxymanager"         # Proxmox VE Helper-Scripts
-    ["192.168.0.210"]="medusa"
+    # ["192.168.0.210"]="medusa"                    # Manual installation
     # ["192.168.0.211"]="authentik"                 # Proxmox VE Helper-Scripts
-    ["192.168.0.212"]="usememos"
+    # ["192.168.0.212"]="usememos"                  # Manual installation
     # ["192.168.0.213"]="cloudflared"               # Proxmox VE Helper-Scripts
     # ["192.168.0.214"]="wallos"                    # Proxmox VE Helper-Scripts
     # ["192.168.0.215"]="watchyourlan"              # Proxmox VE Helper-Scripts
-    ["192.168.0.216"]="hoarder"
-    ["192.168.0.217"]="traccar"
+    # ["192.168.0.216"]="hoarder"                   # Proxmox VE Helper-Scripts   
+    # ["192.168.0.217"]="traccar"                   # Manual installation
     # ["192.168.0.218"]="pocketid"                  # Proxmox VE Helper-Scripts
-    ["192.168.0.219"]="jetlog"
+    # ["192.168.0.219"]="jetlog"                    # Manual installation
     # ["192.168.0.220"]="alpine-it-tools"           # Proxmox VE Helper-Scripts
-    # ["192.168.0.221"]="home-assistant"            # offline
-    ["192.168.0.222"]="twingate"
-    ["192.168.0.223"]="grafana"
-    ["192.168.0.224"]="beszel"
-    ["192.168.0.225"]="stash"
-    ["192.168.0.226"]="mealie"
+    # ["192.168.0.221"]="home-assistant"            # Manual installation
+    # ["192.168.0.222"]="twingate"                  # Manual installation
+    # ["192.168.0.223"]="grafana"                   # Manual installation
+    # ["192.168.0.224"]="beszel"                    # Manual installation
+    # ["192.168.0.225"]="stash"                     # Manual installation
+    # ["192.168.0.226"]="mealie"                    # Manual installation
 )
 
 servers=(
@@ -65,7 +65,7 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 remote_config_paths_201="/root/uptime-kuma/compose.yml"
 remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/compose.yml /root/homepage/icons"
 remote_config_paths_205="/root/navidrome/compose.yml"
-remote_config_paths_206="/root/filebrowser/compose.yml /root/filebrowser/settings.json"
+remote_config_paths_206="/home/homelab/filebrowser/compose.yml /home/homelab/filebrowser/data"
 remote_config_paths_207="/root/vaultwarden/compose.yml"
 remote_config_paths_210="/home/homelab/medusa/compose.yml"
 remote_config_paths_212="/root/usememos/compose.yml"
