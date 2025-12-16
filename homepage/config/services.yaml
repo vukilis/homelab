@@ -407,6 +407,10 @@
         id: col-small
         href: https://forum.benchmark.rs/
         icon: https://forum.benchmark.rs/data/avatars/s/13/13530.jpg?1675890762
+    - Bandcamp:
+        id: col-small
+        href: https://www.vukilis.bandcamp.com
+        icon: bandcamp
 - Sports:
     - Euroleague:
         id: col-small
@@ -440,10 +444,10 @@
         id: col-small
         href: https://v1.messitv.net/2025/03/all-arena-sport-channels-full-hd.html
         icon: https://1.bp.blogspot.com/--rZOb4HNm34/YcSjeaN290I/AAAAAAAAAAM/PuBLLKsDccIlfwU7NVyDGEWb6NxHYNvPgCNcBGAsYHQ/s268/messi-tv.png
-    - DAZN:
+    - Rojadirectatv:
         id: col-small
-        href: https://www.dazn.com/es-RS/welcome
-        icon: https://www.dazn.com/favicon.ico
+        href: https://www.rojadirectatv.cv
+        icon: https://www.rojadirectatv.cv/favicon.ico
     - Vipleague:
         id: col-small
         href: https://www.vipleague.pm/
@@ -481,6 +485,22 @@
         id: col-small
         href: https://mi-srbija.rs/
         icon: https://mi-srbija.rs/images/logo/xiaomi-global-logo.png
+    - track24:
+        id: col-small
+        href: https://track24.net/
+        icon: https://track24.net/favicon.ico
+    - Global Cainiao :
+        id: col-small
+        href: https://global.cainiao.com/
+        icon: https://img.alicdn.com/tfs/TB1CZ0ARpXXXXX7XXXXXXXXXXXX-32-32.png
+    - Parcelsapp:
+        id: col-small
+        href: https://parcelsapp.com
+        icon: https://parcelsapp.com/favicon.ico
+    - Magyar Posta:
+        id: col-small
+        href: https://www.posta.hu/
+        icon: https://www.posta.hu/favicon.ico
 - Torrents:
     - Fmhy:
         id: col-small
@@ -645,6 +665,10 @@
         id: col-small
         href: https://streamable.com/
         icon: https://streamable.com/favicon.ico
+    - Dropbox:
+        id: col-small
+        href: https://dropbox.com/
+        icon: dropbox
 - Tools:
     - Mchose:
         id: col-small
@@ -682,6 +706,10 @@
         id: col-small
         href: https://excalidraw.com/
         icon: https://excalidraw.com/favicon.ico
+    - Eloshapes:
+        id: col-small
+        href: https://www.eloshapes.com/
+        icon: https://www.eloshapes.com/logo/eloshapes_circle.svg
 - Dev Tools:
     - Trello:
         id: col-small
@@ -692,6 +720,11 @@
         id: col-small
         href: https://figma.com/
         icon: https://static.figma.com/app/icon/1/favicon.ico
+        description: Project Manager
+    - Suno:
+        id: col-small
+        href: https://suno.com/
+        icon: https://cdn-o.suno.com/favicon-192x192.png
         description: Project Manager
 - Travel:
     - Booking:
