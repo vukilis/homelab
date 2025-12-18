@@ -310,6 +310,12 @@
         icon: mealie
         description: Recipe Manager
         siteMonitor: http://recipe.local
+    - Linkstack:
+        id: col-small
+        href: https://links.vukilis.com
+        icon: linkstack
+        description: Link Sharing Platform
+        siteMonitor: http://links.local:8080
 
 - IoT and Smarthome:
     - Home Assistant:
@@ -353,6 +359,14 @@
         id: col-small
         href: https://aistudio.google.com/prompts/new_chat
         icon: https://www.gstatic.com/aistudio/ai_studio_favicon_2_32x32.png
+    - Gemini:
+        id: col-small
+        href: https://gemini.google.com/
+        icon: google-gemini
+    - Grok:
+        id: col-small
+        href: https://grok.com/
+        icon: grok
 - Online Entertainment:
     - Youtube:
         id: col-small
@@ -507,9 +521,9 @@
         href: https://fmhy.pages.dev/
         icon: https://fmhy.pages.dev/fmhy.ico
         description: Torrent Collection
-    - TorrentGalaxy:
+    - Damag:
         id: col-small
-        href: https://torrentgalaxy.one/
+        href: https://damag.net/
         icon: https://d4.alternativeto.net/vi3mqXneYDJNe3MnGet3m8fkLunRG86iC07IjAB9qzo/rs:fit:280:280:0/g:ce:0:0/exar:1/YWJzOi8vZGlzdC9pY29ucy90b3JyZW50LWdhbGF4eV8yMTgwMjIucG5n.png
         description: Torrent
     - YIFI:
@@ -709,7 +723,7 @@
     - Eloshapes:
         id: col-small
         href: https://www.eloshapes.com/
-        icon: https://www.eloshapes.com/logo/eloshapes_circle.svg
+        icon: https://www.eloshapes.com/logo/white.svg
 - Dev Tools:
     - Trello:
         id: col-small
