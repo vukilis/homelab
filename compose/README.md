@@ -3,8 +3,9 @@
 Below is the detailed directory layout:
 
 ```text
-├── backup.sh                # Script to fetch compose/config files from remote servers
 ├── compose/                 # Backup of all server-side configurations
+│   ├── home-assistant/      # Tool
+│   ├── backup.sh            # Script to fetch compose/config files from remote servers
 ```
 
 ## Backup & Configuration Management
