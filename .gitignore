@@ -2,5 +2,44 @@
 !.git
 !.gitignore
 *.pub
+
+# --- Ansible Specifics ---
+ansible/.vault
+ansible/roles/**/files/secrets/
+ansible/roles/**/vars/*.yml
 ansible/
-terraform/
+
+# --- Terraform Specifics ---
+# Local plugin directory (where terraform init downloads providers)
+**/.terraform/*
+
+# State files (Highly sensitive! Contains passwords in plain text)
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Plan files (Output from 'terraform plan -out=...')
+# These also contain secrets in plain text!
+*.tfplan
+
+# --- Variable Files (The Secrets) ---
+# Ignore all .tfvars files as they usually contain API tokens/passwords
+*.tfvars
+*.tfvars.json
+
+# If you use specific naming for auto-loading variables
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Ignore local override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
