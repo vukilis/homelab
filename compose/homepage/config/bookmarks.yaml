@@ -1,0 +1,63 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+- Developer:
+    - Website:
+        - icon: /icons/logo.png
+          href: https://vukilis.com
+    - Github:
+        - icon: github.png
+          href: https://github.com/vukilis
+    - Instagram:
+        - icon: instagram.png
+          href: https://instagram.com/only_vukilis
+    - LinkedIn:
+        - icon: linkedin
+          href: https://www.linkedin.com/in/vuk-lekic
+    - Steam:
+        - icon: steam.png
+          href: https://steamcommunity.com/id/vuk1lis/
+#    - Instagram:
+#        - icon: instagram.png
+#          href: https://www.instagram.com/vukilis97/
+    - YouTube Private:
+        - icon: youtube.png
+          href: https://youtube.com/vukilis
+    - YouTube Hasta La Hista:
+        - icon: youtube.png
+          href: https://youtube.com/@HastaLaHista
+
+- Social:
+    - r/selfhosted:
+        - icon: https://styles.redditmedia.com/t5_32hch/styles/communityIcon_b2t5inv46z331.png
+          href: https://www.reddit.com/r/selfhosted/
+    - r/homelab:
+        - icon: https://b.thumbs.redditmedia.com/Flac-ySmslzY0SE583PNA42rFbcYxLt7hqgCeUrC11s.png
+          href: https://www.reddit.com/r/homelab/
+    - r/proxmox:
+        - icon: https://styles.redditmedia.com/t5_2w0wn/styles/communityIcon_l9fx4v8n3cw71.png
+          href: https://www.reddit.com/r/proxmox/
+    - r/unixporn:
+        - icon: https://styles.redditmedia.com/t5_2sx2i/styles/communityIcon_7fixeonxbxd41.png
+          href: https://www.reddit.com/r/unixporn/
+    - Homepage:
+        - icon: homepage
+          href: https://gethomepage.dev
+
+- Cloud Services:
+    - Zoho Mail:
+        - icon: si-zoho-#E42527
+          href: https://mail.vukilis.com
+    - Cloudflare:
+        - icon: cloudflare.png
+          href: https://dash.cloudflare.com/
+    - WakaTime:
+        - icon: wakatime.png
+          href: https://wakatime.com/
+    - Google Analytics:
+        - icon: google-analytics.png
+          href: https://analytics.google.com/
+    - Yandex:
+        - icon: yandex.png
+          href: https://metrica.yandex.com/

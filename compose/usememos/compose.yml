@@ -1,0 +1,21 @@
+services:
+  memos:
+    container_name: memos
+    ports:
+      - 80:5230
+    volumes:
+      - .memos/:/var/opt/memos
+    image: neosmemo/memos:stable
+    restart: unless-stopped
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+networks: {}

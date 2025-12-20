@@ -1,0 +1,110 @@
+---
+services:
+  grafana:
+    image: docker.io/grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    user: '1000'
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    user: '1000'
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    user: '1000'
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - 9090:9090
+
+  loki:
+    container_name: loki
+    image: docker.io/grafana/loki:latest
+    command: "-config.file=/etc/loki/config.yaml"
+    ports:
+      - 3100:3100
+    volumes:
+      - ./config/config.yaml:/etc/loki/config.yaml:ro
+      - data-loki:/loki:rw
+    user: '1000'
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+    restart: unless-stopped
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /run:/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    privileged: true
+    restart: unless-stopped
+
+  promtail:
+    image: docker.io/grafana/promtail:3.5.0
+    command: "-config.file=/mnt/config/promtail.yaml"
+    volumes:
+      - ./config/promtail.yaml:/mnt/config/promtail.yaml:ro
+      - /var/log:/var/log:ro
+    environment:
+      - LOKI_URL=http://loki:3100/loki/api/v1/push 
+      - VAR_LOKI_USERNAME=${VAR_LOKI_USERNAME}
+      - VAR_LOKI_PASSWORD=${VAR_LOKI_PASSWORD}
+    restart: unless-stopped
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+
+volumes:
+  grafana-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  data-loki:
+    driver: local

@@ -1,0 +1,106 @@
+---
+title: Homelab Dashboard
+startUrl: https://vukilis.com
+headerStyle: boxed
+hideVersion: true
+
+background:
+  image:  https://r4.wallpaperflare.com/wallpaper/16/879/786/abstract-simple-background-simple-digital-art-wallpaper-59d0c8ed918a9d3b96d7784fe061e66d.jpg
+  blur: xl
+  brightness: 90
+  opacity: 60
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
+
+cardBlur: sm
+
+favicon: https://raw.githubusercontent.com/vukilis/website/main/static/images/favicon.png
+theme: dark
+color: slate
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+layout:
+# HOMELAB TAB
+  Networking:
+    tab: HOMELAB
+    icon: mdi-network-#FFFFFF
+  Infrastructure and Data:
+    tab: HOMELAB
+    icon: mdi-server-#FFFFFF
+  Management:
+    tab: HOMELAB
+    icon: mdi-auto-fix-#FFFFFF
+  Monitoring:
+    tab: HOMELAB
+    icon: mdi-list-status-#FFFFFF
+  Utilities:
+    tab: HOMELAB
+    icon: mdi-tools-#FFFFFF
+  Security and Identity:
+    tab: HOMELAB
+    icon: mdi-shield-lock-#FFFFFF
+  Media & Entertainment:
+    tab: HOMELAB
+    icon: mdi-multimedia-#FFFFFF
+  Automation:
+    tab: HOMELAB
+    icon: mdi-cog-play-#FFFFFF
+  IoT and Smarthome:
+    tab: HOMELAB
+    icon: mdi-home-#FFFFFF
+
+# BOOKMARKS TAB
+  Search Engine & AI:
+    tab: BOOKMARKS
+    icon: mdi-web-#FFFFFF
+    #columns: 4
+    #style: row
+    #header: false
+  Online Entertainment:
+    tab: BOOKMARKS
+    icon: mdi-video-#FFFFFF
+  Social Network:
+    tab: BOOKMARKS
+    icon: mdi-message-#FFFFFF
+  Sports:
+    tab: BOOKMARKS
+    icon: mdi-trophy-#FFFFFF
+  Shop:
+    tab: BOOKMARKS
+    icon: mdi-trophy-#FFFFFF
+  Torrents:
+    tab: BOOKMARKS
+    icon: mdi-tray-arrow-down-#FFFFFF
+  Gaming & Tech News:
+    tab: BOOKMARKS
+    icon: mdi-alpha-n-#FFFFFF
+  Gaming Clients:
+    tab: BOOKMARKS
+    icon: mdi-gamepad-#FFFFFF
+  FileSharing:
+    tab: BOOKMARKS
+    icon: mdi-file-swap-#FFFFFF
+  Tools:
+    tab: BOOKMARKS
+    icon: mdi-tools-#FFFFFF
+  Dev Tools:
+    tab: BOOKMARKS
+    icon: mdi-dev-to-#FFFFFF
+  Travel:
+    tab: BOOKMARKS
+    icon: mdi-airplane-#FFFFFF
+
+showStats: true
+statusStyle: "dot"
+instanceName: public
+hideErrors: true
+useEqualHeights: true
+target: _self
+#fullWidth: true
+maxGroupColumns: 3

@@ -1,0 +1,49 @@
+services:
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    depends_on:
+      - linkstack
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
+      restart_policy:
+        condition: unless-stopped
+        delay: 5s
+        window: 120s
+  linkstack:
+    hostname: 'linkstack'
+    image: 'linkstackorg/linkstack:latest'
+    environment:
+      TZ: 'Europe/Belgrade'
+      SERVER_ADMIN: '${VAR_SERVER_ADMIN}'
+      HTTP_SERVER_NAME: 'links.vukilis.com'
+      HTTPS_SERVER_NAME: 'links.vukilis.com'
+      LOG_LEVEL: 'info'
+      PHP_MEMORY_LIMIT: '256M'
+      UPLOAD_MAX_FILESIZE: '8M'
+    volumes:
+      - 'linkstack_data:/htdocs'
+    ports:
+      - '8080:443'
+    restart: unless-stopped
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+
+volumes:
+  linkstack_data:

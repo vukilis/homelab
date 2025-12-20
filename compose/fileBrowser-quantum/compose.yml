@@ -1,0 +1,44 @@
+services:
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    depends_on:
+      - filebrowser
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
+      restart_policy:
+        condition: unless-stopped
+        delay: 5s
+        window: 120s
+  filebrowser:
+    image: gtstef/filebrowser:beta
+    environment:
+      FILEBROWSER_CONFIG: "data/config.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_ADMIN_PASSWORD: ${PASSWORD}
+      TZ: "Europe/Belgrade"
+    #user: 0:0
+    user: filebrowser
+    volumes:
+      - /mnt:/files
+      - ./data:/home/filebrowser/data
+    ports:
+      - 8080:80
+    restart: unless-stopped
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: '${VAR_BESZEL_KEY}'
