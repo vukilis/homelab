@@ -1,7 +1,0 @@
----
-localdocker-proxy:
-    host: dockerproxy
-    port: 2375
-
-localdocker:
-    socket: /var/run/docker.sock

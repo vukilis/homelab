@@ -1,7 +1,0 @@
-server:
-  sources:
-    - path: /files
-      config:
-        defaultEnabled: true
-auth:
-  adminUsername: {username}
