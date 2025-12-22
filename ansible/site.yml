@@ -1,0 +1,13 @@
+---
+
+- hosts: "{{ hosts }}"
+  vars_files:
+    - users.yml
+    - packages.yml
+  remote_user: "{{ remote_user }}"
+  become: true
+  gather_facts: yes
+  roles:
+    # - containers                    # Role to prepare container template
+    # - install-docker                # Role to install Docker Engine and related components
+    # - update-docker-app             # Role to deploy and update Dockerized applications

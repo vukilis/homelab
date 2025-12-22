@@ -1,0 +1,90 @@
+# roles/containers/task/main.yml  
+# Role to prepare container template  
+  
+  - name: Update and upgrade apt packages
+    ansible.builtin.apt:
+      update_cache: yes
+      upgrade: dist
+      autoremove: yes
+      purge: yes
+
+  - name: Install common utilities
+    ansible.builtin.apt:
+      name: "{{ pkgs }}"
+      state: present
+      update_cache: yes
+
+  - name: Set nano as the default system editor
+    community.general.alternatives:
+      name: editor
+      path: /bin/nano
+
+  - name: Ensure the EDITOR environment variable is set globally
+    ansible.builtin.lineinfile:
+      path: /etc/environment
+      line: 'EDITOR="nano"'
+      state: present
+      
+  - name: Create the admin user
+    ansible.builtin.user:
+      name: "{{ item }}"
+      group: users            
+      groups: sudo            
+      append: yes            
+      shell: /bin/bash        
+      create_home: yes 
+      password: "{{ user_password_hash }}"
+    loop: "{{ users }}"
+
+  - name: Delete unwanted users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: absent
+      remove: yes
+    loop: "{{ delete_users | default([]) }}"
+    tags: [ cleanup, never ]
+  
+  - name: Deploy SSH Public Key for admin user
+    ansible.posix.authorized_key:
+      user: "{{ item }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/vuk.lekic.pub') }}"
+    loop: "{{ users }}"
+
+  - name: Allow 'sudo' group to use sudo without a password (Optional but recommended for templates)
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^%sudo'
+      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
+  - name: Reboot the server
+    ansible.builtin.reboot:
+    remote_user: "{{ item }}" 
+    become: yes
+    loop: "{{ users }}"
+
+  - name: Secure SSH Configuration
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      state: present
+    loop:
+      - { regexp: '^#?PermitRootLogin', line: 'PermitRootLogin no' }
+      - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
+    notify: Restart Services
+    
+  - name: Disable Root logins via shell
+    ansible.builtin.user:
+      name: root
+      shell: /usr/sbin/nologin
+      password_lock: yes
+    remote_user: "{{ item }}"
+    become: yes
+    loop: "{{ users }}"
+
+  - name: Script finished successfully
+    ansible.builtin.debug:
+      msg: "System secured. Root shell disabled. Use homelab for future access."

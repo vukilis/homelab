@@ -1,0 +1,40 @@
+# ansible/packages.yml
+# This file contains lists of packages to be installed via Ansible.
+pkgs:
+  - acpid
+  - atop
+  - bash-completion
+  - bind9-dnsutils
+  - curl
+  - dos2unix
+  - elinks
+  - ethtool
+  - git
+  - htop
+  - iperf3
+  - iotop
+  - iptraf
+  - lsof
+  - lshw
+  - ltrace
+  - molly-guard
+  - nano
+  - ncdu
+  - net-tools
+  - netcat-traditional
+  - pciutils
+  - plocate
+  - pydf
+  - rsync
+  - strace
+  - sudo
+  - sysstat
+  - tcpdump
+  - telnet
+  - tmux
+  - traceroute
+  - unzip
+  - vim
+  - wget
+  - zip
+  - zstd

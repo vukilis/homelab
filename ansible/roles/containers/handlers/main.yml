@@ -1,0 +1,11 @@
+# roles/containers/handlers/main.yml
+# Handlers for the containers role
+
+  - name: Restart Services
+    systemd:
+      name: '{{ item }}'
+      state: restarted
+    loop:
+      - ssh
+    async: 1
+    poll: 0

@@ -2,12 +2,15 @@
 !.git
 !.gitignore
 *.pub
+*.log
 
 # --- Ansible Specifics ---
 ansible/.vault
 ansible/roles/**/files/secrets/
 ansible/roles/**/vars/*.yml
-ansible/
+ansible/roles/update-docker-app
+ansible/roles/ct-from-template
+# ansible/
 
 # --- Terraform Specifics ---
 # Local plugin directory (where terraform init downloads providers)

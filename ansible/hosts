@@ -1,0 +1,32 @@
+[update-docker-app]
+uptime-kuma ansible_host=192.168.0.201 compose_dir=/root/medusa
+homepage ansible_host=192.168.0.203 compose_dir=/root/homepage
+navidrome ansible_host=192.168.0.205 compose_dir=/root/navidrome
+filebrowser ansible_host=192.168.0.206 compose_dir=/root/filebrowser
+vaultwarden ansible_host=192.168.0.207 compose_dir=/root/vaultwarden
+medusa ansible_host=192.168.0.210 compose_dir=/home/homelab/medusa
+authentik ansible_host=192.168.0.211 compose_dir=/home/homelab/authentik
+usememos ansible_host=192.168.0.212 compose_dir=/root/usememos
+hoarder ansible_host=192.168.0.216 compose_dir=/root/hoarder
+jetlog ansible_host=192.168.0.219 compose_dir=/root/jetlog
+
+[community-script]
+adguard ansible_host=192.168.0.202
+qbittorrent ansible_host=192.168.0.204
+nginxproxymanager ansible_host=192.168.0.209
+cloudflared ansible_host=192.168.0.213
+wallos ansible_host=192.168.0.214
+watchyourlan ansible_host=192.168.0.215
+pocketid ansible_host=192.168.0.218
+alpine-it-tools ansible_host=192.168.0.220
+
+[package-manager]
+tailscale ansible_host=192.168.0.217
+
+[containers]
+test-container-0 ansible_host=192.168.0.229
+test-container-1 ansible_host=192.168.0.230
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+

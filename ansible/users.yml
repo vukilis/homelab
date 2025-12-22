@@ -1,0 +1,13 @@
+---
+# Uncomment or add user in order to run playbook
+
+test:
+  # - test
+users:
+  # - root
+  - homelab
+delete_users:
+  # - root
+  # - homelab
+  # - test
+  # - None

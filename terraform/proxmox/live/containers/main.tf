@@ -51,11 +51,11 @@ module "test-container-1" {
     unprivileged  = "true"
 
     # Resource Allocation
-    cores     = 2
+    cores     = 4
     cpu_limit = 0
     cpu_units = 100
-    memory    = 512
-    swap      = 512
+    memory    = 1024
+    swap      = 0
     disk_size = "10G"
     storage   = "local-lvm"
 
