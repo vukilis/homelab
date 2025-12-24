@@ -18,6 +18,9 @@ services:
         condition: unless-stopped
         delay: 5s
         window: 120s
+    labels:
+      wud.trigger.include: docker.linkstack
+
   linkstack:
     hostname: 'linkstack'
     image: 'linkstackorg/linkstack:latest'
@@ -34,6 +37,9 @@ services:
     ports:
       - '8080:443'
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.linkstack
+
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
@@ -44,6 +50,25 @@ services:
     environment:
       LISTEN: 45876
       KEY: '${VAR_BESZEL_KEY}'
+    labels:
+      wud.trigger.include: docker.linkstack
 
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - SERVICES=1
+      - TASKS=1
+      - INFO=1
+      - POST=1
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.linkstack
 volumes:
   linkstack_data:

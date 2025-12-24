@@ -10,7 +10,7 @@ ssh-add ~/.ssh/vuk.lekic
 declare -A server_names=(
     # ["192.168.0.201"]="uptime-kuma"               # Manual installation
     # ["192.168.0.202"]="adguard"                   # Proxmox VE Helper-Scripts
-    ["192.168.0.203"]="homepage"                  # Manual installation   
+    # ["192.168.0.203"]="homepage"                  # Manual installation   
     # ["192.168.0.204"]="qbittorrent"               # Proxmox VE Helper-Scripts
     # ["192.168.0.205"]="navidrome"                 # Manual installation
     # ["192.168.0.206"]="fileBrowser-quantum"       # Manual installation

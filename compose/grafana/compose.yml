@@ -8,10 +8,9 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     user: '1000'
-#    environment:
-#      - PUID=1000
-#      - PGID=1000
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.grafana
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -29,6 +28,8 @@ services:
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - 9100:9100
+    labels:
+      wud.trigger.include: docker.grafana
 
   prometheus:
     image: prom/prometheus:latest
@@ -46,6 +47,8 @@ services:
       - '--web.enable-lifecycle'
     ports:
       - 9090:9090
+    labels:
+      wud.trigger.include: docker.grafana
 
   loki:
     container_name: loki
@@ -57,10 +60,9 @@ services:
       - ./config/config.yaml:/etc/loki/config.yaml:ro
       - data-loki:/loki:rw
     user: '1000'
-#    environment:
-#      - PUID=1000
-#      - PGID=1000
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.grafana
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -77,6 +79,8 @@ services:
       - /dev/kmsg
     privileged: true
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.grafana
 
   promtail:
     image: docker.io/grafana/promtail:3.5.0
@@ -89,6 +93,8 @@ services:
       - VAR_LOKI_USERNAME=${VAR_LOKI_USERNAME}
       - VAR_LOKI_PASSWORD=${VAR_LOKI_PASSWORD}
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.grafana
 
   beszel-agent:
     image: "henrygd/beszel-agent"
@@ -100,7 +106,26 @@ services:
     environment:
       LISTEN: 45876
       KEY: '${VAR_BESZEL_KEY}'
+    labels:
+      wud.trigger.include: docker.grafana
 
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - SERVICES=1
+      - TASKS=1
+      - INFO=1
+      - POST=1
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.grafana
 volumes:
   grafana-data:
     driver: local

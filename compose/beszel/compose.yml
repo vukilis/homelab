@@ -18,6 +18,9 @@ services:
         condition: unless-stopped
         delay: 5s
         window: 120s
+    labels:
+      wud.trigger.include: docker.beszel
+
   beszel:
     image: henrygd/beszel:latest
     container_name: beszel
@@ -27,6 +30,8 @@ services:
     volumes:
       - ./beszel_data:/beszel_data
       - ./beszel_socket:/beszel_socket
+    labels:
+      wud.trigger.include: docker.beszel
 
   beszel-agent:
     image: henrygd/beszel-agent:latest
@@ -39,3 +44,23 @@ services:
     environment:
       LISTEN: /beszel_socket/beszel.sock
       KEY: '${KEY}'
+    labels:
+      wud.trigger.include: docker.beszel
+
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - SERVICES=1
+      - TASKS=1
+      - INFO=1
+      - POST=1
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.beszel

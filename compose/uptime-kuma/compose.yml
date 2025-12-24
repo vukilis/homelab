@@ -19,6 +19,9 @@ services:
         condition: unless-stopped
         delay: 5s
         window: 120s
+    labels:
+      wud.trigger.include: docker.uptimekuma
+
   uptimekuma:
     image: louislam/uptime-kuma
     container_name: uptimekuma
@@ -31,6 +34,9 @@ services:
       - 1.1.1.1
       - 8.8.8.8
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.uptimekuma
+
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
@@ -41,3 +47,21 @@ services:
     environment:
       LISTEN: 45876
       KEY: '${VAR_BESZEL_KEY}'
+    labels:
+      wud.trigger.include: docker.uptimekuma
+
+  wud-proxy:
+    image: tecnativa/docker-socket-proxy
+    container_name: wud-proxy
+    restart: always
+    environment:
+      - CONTAINERS=1   # Allow WUD to see container list
+      - IMAGES=1       # Allow WUD to see image versions
+      - INFO=1         # Allow WUD to see Docker host info
+      - POST=1         # Disables all "Write" commands
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 2375:2375
+    labels:
+      wud.trigger.include: docker.uptimekuma
