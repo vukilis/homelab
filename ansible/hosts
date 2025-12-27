@@ -26,6 +26,7 @@ tailscale ansible_host=192.168.0.217
 [containers]
 test-container-0 ansible_host=192.168.0.229
 test-container-1 ansible_host=192.168.0.230
+stremio ansible_host=192.168.0.229
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
