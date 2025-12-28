@@ -6,7 +6,7 @@
     - packages.yml
   remote_user: "{{ remote_user }}"
   become: true
-  gather_facts: no                    # no/yes for Alpine Linux compatibility
+  gather_facts: yes                    # no/yes for Alpine Linux compatibility
   roles:
     # - containers                    # Role to prepare container template
     # - install-docker                # Role to install Docker Engine and related components
