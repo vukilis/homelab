@@ -1,0 +1,37 @@
+# roles/install-docker-alpine/tasks/main.yml
+# Role to install Docker Engine on Alpine Linux
+
+    - name: Install Python3 via raw command
+      ansible.builtin.raw: apk add --no-cache python3
+      changed_when: true
+      
+    - name: Update apk cache
+      community.general.apk:
+        update_cache: yes
+
+    - name: Install Docker and Compose plugin
+      community.general.apk:
+        name: 
+          - docker
+          - docker-cli-compose
+        state: present
+
+    - name: Add Docker to boot runlevel
+      ansible.builtin.command: rc-update add docker boot
+      register: rc_result
+      changed_when: "'already added' not in rc_result.stdout"
+
+    - name: Start Docker service
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+    - name: Ensure the current user is in the docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Script finished successfully
+      ansible.builtin.debug:
+        msg: "Docker installation completed successfully."

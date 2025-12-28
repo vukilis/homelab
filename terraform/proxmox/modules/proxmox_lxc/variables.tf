@@ -146,3 +146,20 @@ variable "pve_connection" {
     description = "Connection details for remote-exec provisioner."
     default     = null
 }
+
+variable "tags" {
+    type        = list(string)
+    description = "A list of tags to apply to the container"
+    default     = []
+}
+
+# --- Provisioners ---
+
+variable "enable_ssh_hardening" {
+    type    = bool
+    default = false
+}
+variable "alpine_ssh_hardening" {
+    type    = bool
+    default = false
+}

@@ -1,6 +1,53 @@
+# Production containers for homelab-vukilis node
+
+module "alpine-it-tools" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = false
+    alpine_ssh_hardening = true
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/alpine-3.21-default_20241217_amd64.tar.xz"
+    start_at_boot   = true
+
+    vmid          = 220
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 256
+    swap      = 0
+    disk_size = "1G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.220/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "alpine-it-tools"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "utilities"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+
 module "test-container-0" {
     source = "../../modules/proxmox_lxc"
 
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
     ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
     target_node     = "pve"
     ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
@@ -29,18 +76,19 @@ module "test-container-0" {
     hostname     = "test-container-0"
     searchdomain = "adguard.vukilis.com"
     nameserver   = "192.168.0.202"
+    tags         = ["ct", "test"]
 
     # Other Settings
     onboot  = true
     nesting = true
     keyctl  = false
-
-    # Remote Exec Provisioner to enable root SSH login
-    pve_connection = var.pve_connection
 }
 module "test-container-1" {
     source = "../../modules/proxmox_lxc"
 
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
     ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
     target_node     = "pve"
     ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
@@ -69,19 +117,22 @@ module "test-container-1" {
     hostname     = "test-container-1"
     searchdomain = "adguard.vukilis.com"
     nameserver   = "192.168.0.202"
+    tags         = ["ct", "test"]
 
     # Other Settings
     onboot  = true
     nesting = true
     keyctl  = false
-
-    # Remote Exec Provisioner to enable root SSH login
-    pve_connection = var.pve_connection
 }
+
+# Test containers for homelab-vukilis node
 
 module "stremio" {
     source = "../../modules/proxmox_lxc"
 
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
     ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
     target_node     = "homelab-vukilis"
     ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
@@ -110,12 +161,10 @@ module "stremio" {
     hostname     = "stremio"
     searchdomain = "adguard.vukilis.com"
     nameserver   = "192.168.0.202"
+    tags         = ["ct", "media"]
 
     # Other Settings
     onboot  = true
     nesting = true
     keyctl  = false
-
-    # Remote Exec Provisioner to enable root SSH login
-    pve_connection = var.pve_connection
 }

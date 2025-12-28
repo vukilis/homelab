@@ -26,6 +26,8 @@ tailscale ansible_host=192.168.0.217
 [containers]
 test-container-0 ansible_host=192.168.0.229
 test-container-1 ansible_host=192.168.0.230
+homepage ansible_host=192.168.0.203
+alpine-it-tools ansible_host=192.168.0.220
 stremio ansible_host=192.168.0.229
 
 [all:vars]

@@ -1,0 +1,10 @@
+# roles/cleanup-docker-resources/tasks/main.yml
+# Cleanup unused Docker resources: images, containers, volumes, and networks
+
+  - name: prune unused Docker data
+    shell: docker system prune -a --volumes -f
+    register: prune_result
+
+  - name: display prune results
+    debug:
+      msg: "{{ prune_result.stdout_lines }}"
