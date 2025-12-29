@@ -176,6 +176,12 @@
           accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}}
           tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNELID}}
           key: {{HOMEPAGE_VAR_CLOUDFLARE_TOKKEN}}
+    - n8n:
+        id: col-small
+        href: https://n8n.vukilis.com
+        icon: n8n
+        description: Workflow Automation Platform
+        siteMonitor: http://n8n.local:5678
 
 - Monitoring:
     - UptimeKuma:
@@ -316,6 +322,12 @@
         icon: linkstack
         description: Link Sharing Platform
         siteMonitor: http://links.local:8080
+    - Yaade:
+        id: col-small
+        href: http://192.168.0.51:8086
+        icon: yaade
+        description: API Collections
+        siteMonitor: http://yaade.local:8086
 
 - IoT and Smarthome:
     - Home Assistant:
