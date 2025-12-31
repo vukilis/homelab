@@ -3,7 +3,7 @@
 
 # Test VM for experimenting
 module "test-vm-0" {
-    source          = "../../modules/proxmox_vm"
+    source          = "../../modules/proxmox_vms"
 
     hostname            = "test-vm-0"
     target_node         = "homelab-vukilis"

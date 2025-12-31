@@ -6,15 +6,23 @@ Below is the detailed directory layout and the responsibility of each file:
 terraform/
 └── proxmox/
     ├── live/                    # Implementation Layer (Environments)
-    │   └── containers/
-    │       ├── main.tf          # Calls the module and defines specific container instances
-    │       ├── outputs.tf       # Displays final container IDs and IPs after deployment
-    │       ├── provider.tf      # Proxmox API connection settings
-    │       └── variables.tf     # Environment-specific variable definitions
-    │
-    └── modules/                 # Blueprint Layer (Reusable Code)
+        └── containers/
+            ├── main.tf          # Calls the module and defines specific container instances
+            ├── outputs.tf       # Displays final container IDs and IPs after deployment
+            ├── provider.tf      # Proxmox API connection settings
+            └── variables.tf     # Environment-specific variable definitions
+        └── vms/
+            ├── main.tf          # Calls the module and defines specific VM instances
+            ├── outputs.tf       # Displays final VM IDs and IPs after deployment
+            ├── provider.tf      # Proxmox API connection settings
+            └── variables.tf     # Environment-specific variable definitions
+    ├── modules/                     # Blueprint Layer (Reusable Code)
         └── proxmox_lxc/
             ├── main.tf          # The core resource logic for "proxmox_lxc"
+            ├── outputs.tf       # Attributes exported from the module to the live layer
+            └── variables.tf     # The required inputs (RAM, CPU, Disk) for the module
+        └── proxmox_vms/
+            ├── main.tf          # The core resource logic for "proxmox_vms"
             ├── outputs.tf       # Attributes exported from the module to the live layer
             └── variables.tf     # The required inputs (RAM, CPU, Disk) for the module
 ```
