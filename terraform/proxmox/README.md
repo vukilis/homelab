@@ -16,7 +16,7 @@ terraform/
             ├── outputs.tf       # Displays final VM IDs and IPs after deployment
             ├── provider.tf      # Proxmox API connection settings
             └── variables.tf     # Environment-specific variable definitions
-    ├── modules/                     # Blueprint Layer (Reusable Code)
+    ├── modules/                 # Blueprint Layer (Reusable Code)
         └── proxmox_lxc/
             ├── main.tf          # The core resource logic for "proxmox_lxc"
             ├── outputs.tf       # Attributes exported from the module to the live layer
