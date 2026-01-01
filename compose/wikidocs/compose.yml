@@ -9,4 +9,6 @@ services:
       - ./wikidocs/custom/template.inc.php:/var/www/localhost/htdocs/template.inc.php
       - ./wikidocs/custom/Document.class.php:/var/www/localhost/htdocs/classes/Document.class.php
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.local
 networks: {}

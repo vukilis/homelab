@@ -30,6 +30,10 @@ homepage ansible_host=192.168.0.203
 alpine-it-tools ansible_host=192.168.0.220
 n8n ansible_host=192.168.0.229
 stremio ansible_host=192.168.0.229
+dockge ansible_host=192.168.0.230
+
+[vms]
+test-vm-0 ansible_host=192.168.0.252
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

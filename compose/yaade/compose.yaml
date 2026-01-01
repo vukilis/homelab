@@ -1,0 +1,14 @@
+services:
+  yaade:
+    image: esperotech/yaade:latest
+    container_name: yaade
+    restart: unless-stopped
+    ports:
+      - 8086:9339
+    environment:
+      - YAADE_ADMIN_USERNAME=${USERNAME}
+    volumes:
+      - yaade_data:/app/data
+volumes:
+  yaade_data: null
+networks: {}

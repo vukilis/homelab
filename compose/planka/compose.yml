@@ -29,6 +29,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    labels:
+      wud.trigger.include: docker.local
   postgres:
     image: postgres:16-alpine
     restart: on-failure
@@ -44,6 +46,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    labels:
+      wud.trigger.include: docker.local
 volumes:
   favicons: null
   user-avatars: null

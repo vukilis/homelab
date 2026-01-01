@@ -16,4 +16,6 @@ services:
     ports:
       - 8081:8080
     restart: unless-stopped
+    labels:
+      wud.trigger.include: docker.local
 networks: {}
