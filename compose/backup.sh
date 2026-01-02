@@ -36,7 +36,7 @@ declare -A server_names=(
     # ["192.168.0.226"]="mealie"                    # Manual installation
     # ["192.168.0.227"]="linkstack"                 # Manual installation
     # ["192.168.0.229"]="n8n"                       # Manual installation
-    ["192.168.0.230"]="dockge"                    # Manual installation
+    # ["192.168.0.230"]="dockge"                    # Manual installation
 )
 
 servers=(
