@@ -138,6 +138,19 @@
         siteMonitor: http://192.168.0.206:8080
 
 - Management:
+    - Komodo:
+        id: col-small
+        href: https://komodo.vukilis.com
+        icon: komodo
+        description: Docker Compose Stack-Oriented Manager
+        siteMonitor: http://komodo.local:9120
+        widget:
+            type: komodo
+            url: http://komodo.local:9120
+            key: ${KOMODO_KEY}
+            secret: ${KOMODO_SECRET}
+            showSummary: true
+            showStacks: true
     - Dockge:
         id: col-small
         href: https://dockge.vukilis.com
