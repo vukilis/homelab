@@ -19,13 +19,13 @@
         description: Switch
         siteMonitor: http://192.168.0.2/
     - Speedtest Tracker:
-        href: http://speedtest.local:8080
+        href: http://speedtest.local:8081
         description: Internet Speed Test
         icon: speedtest-tracker.png
-        siteMonitor: http://192.168.0.51:8080
+        siteMonitor: http://speedtest.local:8081
         widget:
             type: speedtest
-            url: http://192.168.0.51:8080
+            url: http://speedtest.local:8081
             bitratePrecision: 3 # optional, default is 0
 
 - Infrastructure and Data:
@@ -138,17 +138,12 @@
         siteMonitor: http://192.168.0.206:8080
 
 - Management:
-    - Portainer:
+    - Dockge:
         id: col-small
-        href: https://portainer.vukilis.com/
-        icon: portainer.png
-        description: Docker Manager
-        siteMonitor: http://192.168.0.51:9000
-        widget:
-            type: portainer
-            url: http://192.168.0.51:9000
-            env: 2
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
+        href: https://dockge.vukilis.com
+        icon: si-docker-#2496ED
+        description: Docker Compose Stack-Oriented Manager
+        siteMonitor: http://dockge.local:8080
     - Nginx Proxy Manager:
         id: col-small
         href: https://npm.vukilis.com
@@ -160,12 +155,6 @@
             url: http://192.168.0.209:81
             username: {{HOMEPAGE_VAR_NPM_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
-    - Dockge:
-        id: col-small
-        href: http://dockge.vukilis.com
-        icon: si-docker-#2496ED
-        description: Docker Compose Stack-Oriented Manager
-        siteMonitor: http://192.168.0.51:5001
     - Cloudflared:
         id: col-small
         href: https://one.dash.cloudflare.com/
@@ -222,7 +211,7 @@
         siteMonitor: http://wud.local:8085
         widget:
           type: whatsupdocker
-          url: http://192.168.0.51:8085
+          url: http://wud.local:8085
           username: {{HOMEPAGE_VAR_WUD_USERNAME}}
           password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
     - Beszel:
@@ -242,7 +231,7 @@
         href: http://dozzle.local:8082
         description: Docker Logs Monitor
         icon: dozzle
-        siteMonitor: http://192.168.0.51:8082
+        siteMonitor: http://dozzle.local:8082
     - WatchYourLan:
         id: col-small
         href: http://watchyourlan.local:8840
@@ -273,7 +262,7 @@
         href: https://note.vukilis.com
         icon: flatnotes
         description: Notepad Server
-        siteMonitor: http://192.168.0.51:8081
+        siteMonitor: http://flatnotes.local:8083
     - Hoarder:
         id: col-small
         href: https://bookmark.vukilis.com/
@@ -285,7 +274,7 @@
         href: https://planka.vukilis.com/
         icon: planka
         description: To-Do Project Manager
-        siteMonitor: http://planka.local:8083
+        siteMonitor: http://planka.local:8087
     - Wallos:
         id: col-small
         href: https://wallos.vukilis.com
@@ -324,7 +313,7 @@
         siteMonitor: http://links.local:8080
     - Yaade:
         id: col-small
-        href: http://192.168.0.51:8086
+        href: http://yaade.local:8086
         icon: yaade
         description: API Collections
         siteMonitor: http://yaade.local:8086
