@@ -11,7 +11,7 @@ services:
       PHP_MEMORY_LIMIT: '256M'
       UPLOAD_MAX_FILESIZE: '8M'
     volumes:
-      - ./data:/htdocs
+      - 'linkstack_data:/htdocs'
     ports:
       - '8080:443'
     restart: unless-stopped
@@ -48,3 +48,5 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.linkstack
+volumes:
+  linkstack_data:
