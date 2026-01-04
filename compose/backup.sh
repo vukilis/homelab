@@ -66,7 +66,7 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Path for backup on remote servers
 remote_config_paths_201="/root/uptime-kuma/compose.yml"
-remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/compose.yml /root/homepage/icons"
+remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/compose.yml"
 remote_config_paths_205="/root/navidrome/compose.yml"
 remote_config_paths_206="/home/homelab/filebrowser/compose.yml /home/homelab/filebrowser/data"
 remote_config_paths_207="/root/vaultwarden/compose.yml"

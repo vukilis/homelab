@@ -147,8 +147,8 @@
         widget:
             type: komodo
             url: http://komodo.local:9120
-            key: ${KOMODO_KEY}
-            secret: ${KOMODO_SECRET}
+            key: {{HOMEPAGE_VAR_KOMODO_KEY}}
+            secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
             showSummary: true
             showStacks: true
     - Dockge:
