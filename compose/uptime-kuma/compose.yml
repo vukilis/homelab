@@ -28,9 +28,9 @@ services:
     labels:
       wud.trigger.include: docker.uptimekuma
 
-  wud-proxy:
+  dockerproxy:
     image: tecnativa/docker-socket-proxy
-    container_name: wud-proxy
+    container_name: dockerproxy
     restart: always
     environment:
       - CONTAINERS=1   # Allow WUD to see container list
