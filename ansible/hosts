@@ -24,15 +24,29 @@ alpine-it-tools ansible_host=192.168.0.220
 tailscale ansible_host=192.168.0.217
 
 [containers]
-test-container-0 ansible_host=192.168.0.253
-test-container-1 ansible_host=192.168.0.252
+uptime-kuma ansible_host=192.168.0.201
 homepage ansible_host=192.168.0.203
-alpine-it-tools ansible_host=192.168.0.220
+navidrome ansible_host=192.168.0.205
+filebrowser ansible_host=192.168.0.206
+vaultwarden ansible_host=192.168.0.207
+medusa ansible_host=192.168.0.210
+usememos ansible_host=192.168.0.212
+it-tools ansible_host=192.168.0.220
+beszel ansible_host=192.168.0.224
+mealie ansible_host=192.168.0.226
+linkstack ansible_host=192.168.0.227
 n8n ansible_host=192.168.0.229
-stremio ansible_host=192.168.0.229
 dockge ansible_host=192.168.0.230
+komodo ansible_host=192.168.0.231
+
+[test-containers]
+stremio ansible_host=192.168.0.251
+test-container-1 ansible_host=192.168.0.252
+test-container-0 ansible_host=192.168.0.253
 
 [vms]
+
+[test-vms]
 test-vm-0 ansible_host=192.168.0.252
 
 [all:vars]

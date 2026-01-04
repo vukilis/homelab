@@ -9,7 +9,13 @@ output "all_containers" {
             "dockge"           = try(module.dockge, null)
             "n8n"              = try(module.n8n, null)
             "stremio"          = try(module.stremio, null)
-            "alpine-it-tools"  = try(module.alpine_it_tools, null)
+            "alpine-it-tools"  = try(module.alpine-it-tools, null)
+            "komodo"           = try(module.komodo, null)
+            "homepage"         = try(module.homepage, null)
+            "uptime-kuma"      = try(module.uptime-kuma, null)
+            "medusa"           = try(module.medusa, null)
+            "usememos"         = try(module.usememos, null)
+            
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)
         } : name => {

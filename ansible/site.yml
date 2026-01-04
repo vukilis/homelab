@@ -13,3 +13,4 @@
     # - install-docker-alpine         # Role to install Docker Engine on Alpine Linux
     # - cleanup-docker-resources      # Role to clean up unused Docker resources
     # - update-docker-app             # Role to deploy and update Dockerized applications
+    # - comodo-agent-docker             # Role to deploy Komodo Agent container    

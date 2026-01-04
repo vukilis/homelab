@@ -25,11 +25,19 @@
       line: 'EDITOR="nano"'
       state: present
       
+  - name: Ensure the private group exists for each user
+    ansible.builtin.group:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ users }}"
+
   - name: Create the admin user
     ansible.builtin.user:
       name: "{{ item }}"
-      group: users            
-      groups: sudo            
+      group: "{{ item }}"            
+      groups: 
+        - users
+        - sudo
       append: yes            
       shell: /bin/bash        
       create_home: yes 
