@@ -14,5 +14,5 @@ services:
       TRIM_HIST: "48"
       IFACES: eth0
       LOG_LEVEL: verbose
-      THEME: solar
+      THEME: sand
       TIMEOUT: 60
