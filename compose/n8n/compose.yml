@@ -7,6 +7,7 @@ services:
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+      - N8N_EDITOR_BASE_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
       - N8N_RUNNERS_ENABLED=true
