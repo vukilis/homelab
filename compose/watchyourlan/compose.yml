@@ -1,0 +1,18 @@
+services:
+  wyl:
+    image: ghcr.io/aceberg/watchyourlan
+    network_mode: "host"      
+    restart: unless-stopped
+    volumes:
+    - ./.dockerdata/wyl:/data/WatchYourLAN
+    environment:
+      TZ: Europe/Belgrade       
+      COLOR: dark
+      USE_DB: sqlite 
+      HOST: 0.0.0.0
+      PORT: "8840"
+      TRIM_HIST: "48"
+      IFACES: eth0
+      LOG_LEVEL: verbose
+      THEME: solar
+      TIMEOUT: 60
