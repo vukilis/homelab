@@ -15,4 +15,4 @@ services:
       IFACES: eth0
       LOG_LEVEL: verbose
       THEME: sand
-      TIMEOUT: 60
+      TIMEOUT: 120
