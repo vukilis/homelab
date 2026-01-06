@@ -15,6 +15,8 @@ output "all_containers" {
             "uptime-kuma"      = try(module.uptime-kuma, null)
             "medusa"           = try(module.medusa, null)
             "usememos"         = try(module.usememos, null)
+            "wallos"           = try(module.wallos, null)
+            "watchyourlan"     = try(module.watchyourlan, null)
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)
