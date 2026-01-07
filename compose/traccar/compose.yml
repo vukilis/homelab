@@ -28,10 +28,8 @@ services:
       - ./logs:/opt/traccar/logs:rw
       - ./traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - ./data:/opt/traccar/data:rw
-    #environment:
-      #- JAVA_OPTS=-Xmx500M
-    entrypoint: ["java", "-Xms200M", "-Xmx1g", "-Djava.net.preferIPv4Stack=true"]
-    command: ["-jar", "tracker-server.jar", "conf/traccar.xml"]
+    environment:
+      - JAVA_OPTS=-Xms200M -Xmx1g
     mem_limit: 200M
 
   beszel-agent:
