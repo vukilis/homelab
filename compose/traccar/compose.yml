@@ -12,7 +12,6 @@ services:
       - ./mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
-    mem_limit: 500M
 
   traccar:
     image: traccar/traccar:latest
@@ -28,10 +27,6 @@ services:
       - ./logs:/opt/traccar/logs:rw
       - ./traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - ./data:/opt/traccar/data:rw
-    environment:
-      - JAVA_OPTS=-Xms200M -Xmx1g
-    mem_limit: 1G
-
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
