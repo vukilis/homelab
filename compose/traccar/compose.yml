@@ -30,7 +30,7 @@ services:
       - ./data:/opt/traccar/data:rw
     environment:
       - JAVA_OPTS=-Xms200M -Xmx1g
-    mem_limit: 200M
+    mem_limit: 1G
 
   beszel-agent:
     image: "henrygd/beszel-agent"
