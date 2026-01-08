@@ -1,6 +1,6 @@
 # ansible/packages.yml
 # This file contains lists of packages to be installed via Ansible.
-pkgs:
+pkgs_debian:
   - acpid
   - atop
   - bash-completion
@@ -33,6 +33,39 @@ pkgs:
   - telnet
   - tmux
   - traceroute
+  - unzip
+  - vim
+  - wget
+  - zip
+  - zstd
+
+pkgs_alpine:
+  - acpid
+  - atop
+  - bash
+  - bash-completion
+  - bind-tools
+  - curl
+  - dos2unix
+  - elinks
+  - ethtool
+  - git
+  - htop
+  - iperf3
+  - iotop
+  - lsof
+  - ltrace
+  - nano
+  - ncdu
+  - net-tools
+  - pciutils
+  - rsync
+  - strace
+  - sudo
+  - sysstat
+  - tcpdump
+  - tmux
+  - util-linux
   - unzip
   - vim
   - wget

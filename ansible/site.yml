@@ -8,9 +8,13 @@
   become: true
   gather_facts: yes                    # no/yes for Alpine Linux compatibility
   roles:
-    # - containers                    # Role to prepare container template
-    # - install-docker                # Role to install Docker Engine and related components
-    # - install-docker-alpine         # Role to install Docker Engine on Alpine Linux
+    # - debian-containers             # Role to prepare container template
+    # - alpine-containers             # Role to prepare container template for Alpine Linux
+
+    - debian-install-docker         # Role to install Docker Engine and related components
+    # - alpine-install-docker         # Role to install Docker Engine on Alpine Linux
+
+    - debian-comodo-agent-docker    # Role to deploy Komodo Agent container    
+    # - alpine-comodo-agent-docker    # Role to deploy Komodo Agent container    
+
     # - cleanup-docker-resources      # Role to clean up unused Docker resources
-    # - update-docker-app             # Role to deploy and update Dockerized applications
-    # - comodo-agent-docker             # Role to deploy Komodo Agent container    

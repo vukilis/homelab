@@ -28,8 +28,6 @@ services:
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - 9100:9100
-    labels:
-      wud.trigger.include: docker.grafana
 
   prometheus:
     image: prom/prometheus:latest
@@ -83,7 +81,7 @@ services:
       wud.trigger.include: docker.grafana
 
   promtail:
-    image: docker.io/grafana/promtail:3.5.0
+    image: docker.io/grafana/promtail:latest
     command: "-config.file=/mnt/config/promtail.yaml"
     volumes:
       - ./config/promtail.yaml:/mnt/config/promtail.yaml:ro
@@ -106,8 +104,6 @@ services:
     environment:
       LISTEN: 45876
       KEY: '${VAR_BESZEL_KEY}'
-    labels:
-      wud.trigger.include: docker.grafana
 
   dockerproxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
@@ -124,8 +120,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
-    labels:
-      wud.trigger.include: docker.grafana
+
 volumes:
   grafana-data:
     driver: local

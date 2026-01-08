@@ -17,6 +17,11 @@ output "all_containers" {
             "usememos"         = try(module.usememos, null)
             "wallos"           = try(module.wallos, null)
             "watchyourlan"     = try(module.watchyourlan, null)
+            "traccar"          = try(module.traccar, null)
+            "jetlog"           = try(module.jetlog, null)
+            "twingate"         = try(module.twingate, null)
+            "grafana"          = try(module.grafana, null)  
+            "beszel"           = try(module.beszel, null)  
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)

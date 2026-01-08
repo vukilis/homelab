@@ -1,0 +1,82 @@
+# roles/containers-alpine/tasks/main.yml
+# Role to prepare container-alpine template
+  
+  - name: Install Python3 via raw command
+    ansible.builtin.raw: apk add --no-cache python3
+    changed_when: true
+    
+  - name: Update and upgrade apk packages
+    community.general.apk:
+      update_cache: yes
+      upgrade: yes
+
+  - name: Install common utilities
+    community.general.apk:
+      name: "{{ pkgs_alpine }}"
+      state: present
+      update_cache: yes
+
+  - name: Ensure the EDITOR environment variable is set globally
+    ansible.builtin.lineinfile:
+      path: /etc/profile.d/editor.sh
+      line: 'export EDITOR="nano"'
+      create: yes
+      mode: '0644'
+
+  - name: Ensure groups exist
+    ansible.builtin.group:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ users | flatten }}"
+
+  - name: Create the admin user
+    ansible.builtin.user:
+      name: "{{ item }}"
+      group: "{{ item }}"            
+      groups: wheel,users
+      append: yes            
+      shell: /bin/bash        
+      create_home: yes 
+      password: "{{ user_password_hash }}"
+    loop: "{{ users | flatten }}"
+
+  - name: Deploy SSH Public Key for admin user
+    ansible.posix.authorized_key:
+      user: "{{ item }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/vuk.lekic.pub') }}"
+    loop: "{{ users | flatten }}"
+
+  - name: Allow 'wheel' group to use sudo without a password
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^#\s*%wheel\s+ALL=\(ALL:ALL\)\s+NOPASSWD'
+      line: '%wheel ALL=(ALL:ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
+  - name: Reboot the server
+    ansible.builtin.reboot:
+    remote_user: "{{ item }}" 
+    become: yes
+    loop: "{{ users | flatten }}"
+
+  - name: Secure SSH Configuration
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      state: present
+    loop:
+      - { regexp: '^#?PermitRootLogin', line: 'PermitRootLogin no' }
+      - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
+
+  - name: Disable Root logins via shell
+    ansible.builtin.user:
+      name: root
+      shell: /sbin/nologin
+      password_lock: yes
+
+  - name: Script finished successfully
+    ansible.builtin.debug:
+      msg: "System secured. Root shell disabled. Use homelab for future access."

@@ -10,7 +10,7 @@
 
   - name: Install common utilities
     ansible.builtin.apt:
-      name: "{{ pkgs }}"
+      name: "{{ pkgs_debian }}"
       state: present
       update_cache: yes
 
@@ -59,7 +59,7 @@
       key: "{{ lookup('file', '~/.ssh/vuk.lekic.pub') }}"
     loop: "{{ users }}"
 
-  - name: Allow 'sudo' group to use sudo without a password (Optional but recommended for templates)
+  - name: Allow 'sudo' group to use sudo without a password
     ansible.builtin.lineinfile:
       path: /etc/sudoers
       state: present
