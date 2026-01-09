@@ -52,7 +52,7 @@ services:
       - ALL
     command:
       - '-loglevel=info'
-      - '-allowfrom=beszel-agent'
+      - '-allowfrom=beszel-agent,beszel'
       - '-listenip=0.0.0.0'
       - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
       - '-allowHEAD=/_ping'
