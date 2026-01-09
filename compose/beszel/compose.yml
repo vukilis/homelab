@@ -10,6 +10,12 @@ services:
       - ./beszel_socket:/beszel_socket
     labels:
       wud.trigger.include: docker.beszel
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8090/"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+      start_period: 1m
 
   beszel-agent:
     image: henrygd/beszel-agent:latest
@@ -24,6 +30,12 @@ services:
       KEY: '${KEY}'
     labels:
       wud.trigger.include: docker.beszel
+    healthcheck:
+      test: ["CMD-SHELL", "ps aux | grep beszel-agent || exit 1"]
+      interval: 2m
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
   dockerproxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
@@ -42,3 +54,8 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.beszel
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2375"]
+      interval: 2m
+      timeout: 5s
+      retries: 3
