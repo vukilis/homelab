@@ -27,6 +27,8 @@ services:
       - no-new-privileges
     depends_on:
       - dockerproxy
+    ports:
+      - 45876:45876
     environment:
       PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
