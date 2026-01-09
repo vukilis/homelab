@@ -1,11 +1,13 @@
 services:
   filebrowser:
     image: gtstef/filebrowser:beta
+    container_name: filebrowser
     environment:
-      FILEBROWSER_CONFIG: "data/config.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_CONFIG: "data/config.yaml"
       FILEBROWSER_ADMIN_PASSWORD: ${PASSWORD}
       TZ: "Europe/Belgrade"
-    #user: 0:0
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+
     user: filebrowser
     volumes:
       - /mnt:/files
@@ -15,34 +17,60 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.filebrowser
+    networks:
+      - docker-proxynet
+      - app-net
 
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
     restart: unless-stopped
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    user: 65534:65534
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
+    ports:
+      - 45876:45876
     environment:
-      LISTEN: 45876
+      PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
-    labels:
-      wud.trigger.include: docker.filebrowser
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
 
   dockerproxy:
-    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    image: wollomatic/socket-proxy:1
     container_name: dockerproxy
-    environment:
-      - CONTAINERS=1
-      - IMAGES=1
-      - SERVICES=1
-      - TASKS=1
-      - INFO=1
-      - POST=1
-    ports:
-      - 2375:2375
+    restart: unless-stopped
+    user: "65534:$(getent group docker | cut -d: -f3)"
+    read_only: true
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    command:
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent,container_name'
+      - '-listenip=0.0.0.0'
+      - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=300'
+      - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
-    labels:
-      wud.trigger.include: docker.filebrowser
+    networks:
+      - docker-proxynet
+      
+networks:
+  docker-proxynet:
+    internal: true
+    attachable: false
+  app-net:
+    driver: bridge
+    attachable: false
