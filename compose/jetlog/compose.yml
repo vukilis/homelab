@@ -21,17 +21,27 @@ services:
     environment:
       PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
-      DOCKER_HOST: "tcp://socket-proxy:2375"
+      DOCKER_HOST: "tcp://dockerproxy:2375"
     networks:
       - app-net
 
-  socket-proxy:
+  dockerproxy:
     image: wollomatic/socket-proxy:latest
-    container_name: socket-proxy
+    container_name: dockerproxy
     restart: unless-stopped
+    user: "65534:${DOCKER_GID}"
+    read_only: true
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
     command:
       - '-loglevel=debug'
+      - '-listenip=0.0.0.0'
+      - '-allowfrom=beszel'
       - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*)'
+      - '-watchdoginterval=3600'
+      - '-stoponwatchdog'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
