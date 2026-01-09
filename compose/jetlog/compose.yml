@@ -34,7 +34,7 @@ services:
       - docker-proxynet
 
   dockerproxy:
-    image: wollomatic/socket-proxy:latest
+    image: wollomatic/socket-proxy:1
     container_name: dockerproxy
     restart: unless-stopped
     user: "65534:${DOCKER_GID}"
