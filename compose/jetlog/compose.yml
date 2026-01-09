@@ -10,20 +10,28 @@ services:
     ports:
       - 80:80
     networks:
+      - docker-proxynet
       - app-net
       
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
     restart: unless-stopped
-    ports:
-      - 45876:45876 
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
     environment:
       PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
       DOCKER_HOST: "tcp://dockerproxy:2375"
     networks:
-      - app-net
+      - docker-proxynet
 
   dockerproxy:
     image: wollomatic/socket-proxy:latest
@@ -31,22 +39,29 @@ services:
     restart: unless-stopped
     user: "65534:${DOCKER_GID}"
     read_only: true
+    mem_limit: 64M
     security_opt:
       - no-new-privileges
     cap_drop:
       - ALL
     command:
-      - '-loglevel=debug'
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent'
       - '-listenip=0.0.0.0'
-      - '-allowfrom=beszel'
-      - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*)'
-      - '-watchdoginterval=3600'
+      - '-allowGET=/v1\..{2}/(containers/.*|events)|/_ping'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=300'
       - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - app-net
+      - docker-proxyne
       
 networks:
+  docker-proxynet:
+    internal: true
+    attachable: false
   app-net:
     driver: bridge
+    attachable: false
