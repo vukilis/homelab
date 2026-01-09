@@ -52,7 +52,7 @@ services:
     security_opt:
       - no-new-privileges
     volumes:
-      - dozzle_agent_tmp:/tmp
+      - ./tmp:/tmp
     depends_on:
       - dockerproxy
     environment:
@@ -96,6 +96,3 @@ networks:
   app-net:
     driver: bridge
     attachable: false
-  
-volumes:
-  dozzle_agent_tmp:
