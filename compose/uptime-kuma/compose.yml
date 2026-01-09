@@ -3,7 +3,6 @@ services:
   uptimekuma:
     image: louislam/uptime-kuma
     container_name: uptimekuma
-    user: 1000:1000
     volumes:
        - ./uptimekuma-data:/app/data
     ports:
@@ -15,8 +14,6 @@ services:
     restart: unless-stopped
     environment:
       DOCKER_HOST: "tcp://dockerproxy:2375"
-      PUID: 1000
-      PGID: 1000
     networks:
       - docker-proxynet
       - app-net
