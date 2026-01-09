@@ -20,7 +20,7 @@ services:
       - 45876:45876 
     environment:
       PORT: 45876
-      KEY: '${VAR_BES_KEY}'
+      KEY: '${VAR_BESZEL_KEY}'
       DOCKER_HOST: "tcp://socket-proxy:2375"
     networks:
       - app-net
