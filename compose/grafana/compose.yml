@@ -11,6 +11,16 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.grafana
+    environment:
+      - DOCKER_HOST=tcp://dockerproxy:2375
+    depends_on:
+      - node-exporter
+      - prometheus
+      - loki
+      - dockerproxy
+    networks:
+      - docker-proxynet
+      - app-net
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -28,6 +38,8 @@ services:
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - 9100:9100
+    networks:
+      - app-net
 
   prometheus:
     image: prom/prometheus:latest
@@ -47,6 +59,8 @@ services:
       - 9090:9090
     labels:
       wud.trigger.include: docker.grafana
+    networks:
+      - app-net
 
   loki:
     container_name: loki
@@ -61,6 +75,8 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.grafana
+    networks:
+      - app-net
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -69,16 +85,23 @@ services:
       - 8080:8080
     volumes:
       - /:/rootfs:ro
-      - /run:/run:ro
+      - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    command:
+      - "--housekeeping_interval=30s"
+      - "--docker_only=true"
+      - "--disable_metrics=percpu,sched,tcp,udp,disk,diskIO,hugetlb,referenced_memory,cpu_topology,resctrl"
+      - "--store_container_labels=false"
     devices:
       - /dev/kmsg
     privileged: true
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.grafana
+    networks:
+      - app-net
 
   promtail:
     image: docker.io/grafana/promtail:latest
@@ -93,33 +116,64 @@ services:
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.grafana
+    networks:
+      - app-net
 
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
     restart: unless-stopped
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
+    ports:
+      - 45876:45876
     environment:
-      LISTEN: 45876
+      PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
 
   dockerproxy:
-    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    image: wollomatic/socket-proxy:1
     container_name: dockerproxy
-    environment:
-      - CONTAINERS=1
-      - IMAGES=1
-      - SERVICES=1
-      - TASKS=1
-      - INFO=1
-      - POST=1
-    ports:
-      - 2375:2375
+    restart: unless-stopped
+    user: "65534:${DOCKER_GID}"
+    read_only: true
+    mem_limit: 64M
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    command:
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent,grafana'
+      - '-listenip=0.0.0.0'
+      - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=300'
+      - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
+    networks:
+      - docker-proxynet
+      
+networks:
+  docker-proxynet:
+    internal: true
+    attachable: false
+  app-net:
+    driver: bridge
+    attachable: false
 
 volumes:
   grafana-data:

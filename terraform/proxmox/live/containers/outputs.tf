@@ -22,6 +22,13 @@ output "all_containers" {
             "twingate"         = try(module.twingate, null)
             "grafana"          = try(module.grafana, null)  
             "beszel"           = try(module.beszel, null)  
+            "mealie"           = try(module.mealie, null)  
+            "linkstack"        = try(module.linkstack, null)  
+            "dozzle"           = try(module.dozzle, null)  
+            "speedtest"        = try(module.speedtest, null)  
+            "whatsupdocker"    = try(module.whatsupdocker, null)  
+            "wikidocs"         = try(module.wikidocs, null)  
+            "yaade"            = try(module.yaade, null)  
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)

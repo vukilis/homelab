@@ -8,17 +8,21 @@ medusa ansible_host=192.168.0.210
 usememos ansible_host=192.168.0.212
 wallos ansible_host=192.168.0.214
 watchyourlan ansible_host=192.168.0.215
+dozzle ansible_host=192.168.0.216
 traccar ansible_host=192.168.0.217
 jetlog ansible_host=192.168.0.219
 it-tools ansible_host=192.168.0.220
 twingate ansible_host=192.168.0.222
 grafana ansible_host=192.168.0.223
 beszel ansible_host=192.168.0.224
+speedtest ansible_host=192.168.0.225
 mealie ansible_host=192.168.0.226
 linkstack ansible_host=192.168.0.227
 n8n ansible_host=192.168.0.229
-dockge ansible_host=192.168.0.230
+whatsupdocker ansible_host=192.168.0.230
 komodo ansible_host=192.168.0.231
+wikidocs ansible_host=192.168.0.232
+yaade ansible_host=192.168.0.233
 
 [test-containers]
 stremio ansible_host=192.168.0.251

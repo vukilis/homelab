@@ -514,7 +514,7 @@ module "twingate" {
     cpu_units = 100
     memory    = 512
     swap      = 0
-    disk_size = "3G"
+    disk_size = "4G"
     storage   = "local-lvm"
 
     # Network Settings
@@ -575,6 +575,170 @@ module "grafana" {
     nesting = true
     keyctl  = false
 }
+module "mealie" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 226
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 776
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.226/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "mealie"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "utilities"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "linkstack" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 227
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 776
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.227/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "linkstack"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "utilities"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "dozzle" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 216
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 776
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.216/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "dozzle"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "monitoring"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "speedtest" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 225
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 1024
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.225/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "speedtest"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "monitoring"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
 module "beszel" {
     source = "../../modules/proxmox_lxc"
 
@@ -616,6 +780,131 @@ module "beszel" {
     nesting = true
     keyctl  = false
 }
+module "whatsupdocker" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 230
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 1024
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.230/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "whatsupdocker"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "monitoring"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "wikidocs" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 232
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 512
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.232/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "wikidocs"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "utilities", "documentation"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "yaade" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 233
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 512
+    swap      = 0
+    disk_size = "5G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.233/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "yaade"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202"
+    tags         = ["ct", "terraform", "utilities"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+
+
 module "stremio" {
     source = "../../modules/proxmox_lxc"
 
