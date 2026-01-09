@@ -7,8 +7,67 @@ services:
       - 8086:9339
     environment:
       - YAADE_ADMIN_USERNAME=${USERNAME}
+      - DOCKER_HOST=tcp://dockerproxy:2375
     volumes:
       - yaade_data:/app/data
+    networks:
+      - docker-proxynet
+      - app-net
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dockerproxy:
+    image: wollomatic/socket-proxy:1
+    container_name: dockerproxy
+    restart: unless-stopped
+    user: "65534:${DOCKER_GID}"
+    read_only: true
+    mem_limit: 64M
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    command:
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent,yaade'
+      - '-listenip=0.0.0.0'
+      - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=300'
+      - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - docker-proxynet
+      
+networks:
+  docker-proxynet:
+    internal: true
+    attachable: false
+  app-net:
+    driver: bridge
+    attachable: false
 volumes:
   yaade_data: null
-networks: {}
