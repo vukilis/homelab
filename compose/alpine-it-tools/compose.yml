@@ -20,7 +20,6 @@ services:
     restart: unless-stopped
     user: 65534:65534
     read_only: true
-    mem_limit: 256M
     cap_drop:
       - ALL
     security_opt:
@@ -43,7 +42,6 @@ services:
     restart: unless-stopped
     user: "65534:${DOCKER_GID}"
     read_only: true
-    mem_limit: 64M
     security_opt:
       - no-new-privileges
     cap_drop:
