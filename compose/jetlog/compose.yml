@@ -56,7 +56,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - docker-proxyne
+      - docker-proxynet
       
 networks:
   docker-proxynet:
