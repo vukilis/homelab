@@ -3,6 +3,7 @@ services:
   uptimekuma:
     image: louislam/uptime-kuma
     container_name: uptimekuma
+    user: 1000:1000
     volumes:
        - ./uptimekuma-data:/app/data
     ports:
