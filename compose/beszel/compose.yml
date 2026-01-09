@@ -55,6 +55,8 @@ services:
       - ./tmp:/tmp
     depends_on:
       - dockerproxy
+    ports:
+      - 7007:7007
     environment:
       - PORT=7007
       - BESZEL_HOSTNAME=224-beszel
