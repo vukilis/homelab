@@ -48,7 +48,7 @@ services:
       - '-loglevel=info'
       - '-allowfrom=beszel-agent'
       - '-listenip=0.0.0.0'
-      - '-allowGET=/v1\..{2}/(containers/.*|events)|/_ping'
+      - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
       - '-allowHEAD=/_ping'
       - '-watchdoginterval=300'
       - '-stoponwatchdog'
