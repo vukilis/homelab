@@ -51,14 +51,15 @@ services:
       - ALL
     security_opt:
       - no-new-privileges
-    tmpfs:
-      - /tmp:size=10M
+    volumes:
+      - dozzle_agent_tmp:/tmp
     depends_on:
       - dockerproxy
     environment:
       - PORT=7007
       - BESZEL_HOSTNAME=224-beszel
       - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
     networks:
       - docker-proxynet
       - app-net
@@ -95,3 +96,6 @@ networks:
   app-net:
     driver: bridge
     attachable: false
+  
+volumes:
+  dozzle_agent_tmp:
