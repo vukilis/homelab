@@ -33,6 +33,7 @@ services:
       DOCKER_HOST: "tcp://dockerproxy:2375"
     networks:
       - docker-proxynet
+      - app-net
 
   dockerproxy:
     image: wollomatic/socket-proxy:1
