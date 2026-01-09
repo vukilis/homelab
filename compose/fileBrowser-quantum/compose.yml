@@ -47,7 +47,7 @@ services:
     image: wollomatic/socket-proxy:1
     container_name: dockerproxy
     restart: unless-stopped
-    user: "65534:$(getent group docker | cut -d: -f3)"
+    user: "65534:$(DOCKER_GID)"
     read_only: true
     security_opt:
       - no-new-privileges
