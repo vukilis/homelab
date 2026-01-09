@@ -12,6 +12,11 @@ services:
       - 1.1.1.1
       - 8.8.8.8
     restart: unless-stopped
+    environment:
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
     labels:
       wud.trigger.include: docker.uptimekuma
 
@@ -19,27 +24,54 @@ services:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
     restart: unless-stopped
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
+    ports:
+      - 45876:45876
     environment:
-      LISTEN: 45876
+      PORT: 45876
       KEY: '${VAR_BESZEL_KEY}'
-    labels:
-      wud.trigger.include: docker.uptimekuma
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
 
   dockerproxy:
-    image: tecnativa/docker-socket-proxy
+    image: wollomatic/socket-proxy:1
     container_name: dockerproxy
-    restart: always
-    environment:
-      - CONTAINERS=1   # Allow WUD to see container list
-      - IMAGES=1       # Allow WUD to see image versions
-      - INFO=1         # Allow WUD to see Docker host info
-      - POST=1         # Disables all "Write" commands
+    restart: unless-stopped
+    user: "65534:${DOCKER_GID}"
+    read_only: true
+    mem_limit: 64M
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    command:
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent'
+      - '-listenip=0.0.0.0'
+      - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=300'
+      - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - 2375:2375
-    labels:
-      wud.trigger.include: docker.uptimekuma
+    networks:
+      - docker-proxynet
+      
+networks:
+  docker-proxynet:
+    internal: true
+    attachable: false
+  app-net:
+    driver: bridge
+    attachable: false
