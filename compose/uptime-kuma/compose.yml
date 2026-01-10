@@ -42,7 +42,33 @@ services:
     networks:
       - docker-proxynet
       - app-net
-
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    depends_on:
+      - dockerproxy
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME="201-uptimekuma"
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+      - DOZZLE_NO_STATS=true
+    networks:
+      - docker-proxynet
+      - app-net
   dockerproxy:
     image: wollomatic/socket-proxy:1
     container_name: dockerproxy
