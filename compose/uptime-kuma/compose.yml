@@ -83,9 +83,9 @@ services:
       - '-loglevel=info'
       - '-allowfrom=beszel-agent,dozzle-agent,uptimekuma'
       - '-listenip=0.0.0.0'
-      - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowGET=(/v1\..{1,2})?/(containers/json|containers/.*/stats.*|containers/.*/logs.*|events.*|info|version|volumes|networks)'
       - '-allowHEAD=/_ping'
-      - '-watchdoginterval=300'
+      - '-watchdoginterval=3600'
       - '-stoponwatchdog'
       - '-shutdowngracetime=10'
     volumes:
