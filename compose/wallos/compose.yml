@@ -38,6 +38,32 @@ services:
       - docker-proxynet
       - app-net
 
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    depends_on:
+      - dockerproxy
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=214-wallos
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+    networks:
+      - docker-proxynet
+      - app-net
   dockerproxy:
     image: wollomatic/socket-proxy:1
     container_name: dockerproxy
@@ -51,11 +77,11 @@ services:
       - ALL
     command:
       - '-loglevel=info'
-      - '-allowfrom=beszel-agent,wallos'
+      - '-allowfrom=beszel-agent,dozzle-agent,wallos'
       - '-listenip=0.0.0.0'
       - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
       - '-allowHEAD=/_ping'
-      - '-watchdoginterval=300'
+      - '-watchdoginterval=3600'
       - '-stoponwatchdog'
       - '-shutdowngracetime=10'
     volumes:

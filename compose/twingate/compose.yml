@@ -4,6 +4,12 @@ networks:
     external: true
   backend:
     external: true
+  docker-proxynet:
+    internal: true
+    attachable: false
+  app-net:
+    driver: bridge
+    attachable: false
 services:
   twingate:
     container_name: twingate-connector-1
@@ -18,6 +24,8 @@ services:
     networks:
       - frontend
       - backend
+      - docker-proxynet
+      - app-net
     restart: unless-stopped
     labels:
       wud.trigger.include: docker.twingate
@@ -26,9 +34,73 @@ services:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
     restart: unless-stopped
-    network_mode: host
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    depends_on:
+      - dockerproxy
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    depends_on:
+      - dockerproxy
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=222-twingate1
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dockerproxy:
+    image: wollomatic/socket-proxy:1
+    container_name: dockerproxy
+    restart: unless-stopped
+    user: "65534:${DOCKER_GID}"
+    read_only: true
+    mem_limit: 64M
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    command:
+      - '-loglevel=info'
+      - '-allowfrom=beszel-agent,dozzle-agent,twingate-connector-1'
+      - '-listenip=0.0.0.0'
+      - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
+      - '-allowHEAD=/_ping'
+      - '-watchdoginterval=3600'
+      - '-stoponwatchdog'
+      - '-shutdowngracetime=10'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      LISTEN: 45876
-      KEY: '${VAR_BESZEL_KEY}'
+    networks:
+      - docker-proxynet

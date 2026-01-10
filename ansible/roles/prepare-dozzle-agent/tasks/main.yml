@@ -1,0 +1,24 @@
+# roles/prepare-dozzle-agent/tasks/main.yml
+# Prepare /tmp directory for Dozzle logs
+
+  - name: Find repo matching current hostname
+    find:
+      paths: "/home/homelab/stack/repos/homelab/compose"
+      file_type: directory
+      recurse: no
+      patterns: "{{ ansible_facts['hostname'] }}"
+    register: host_folder
+  
+  - name: Create tmp directory
+    file:
+      path: "{{ item.path }}/tmp"
+      state: directory
+      owner: "65534"
+      group: "65534"
+      mode: '0755'
+    loop: "{{ host_folder.files }}"
+    when: host_folder.matched > 0
+
+  - name: Debug found path
+    debug:
+      msg: "Targeting folder: {{ host_folder.files[0].path if host_folder.matched > 0 else 'NOT FOUND' }}"
