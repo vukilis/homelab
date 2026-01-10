@@ -65,7 +65,6 @@ services:
       - BESZEL_HOSTNAME="201-uptimekuma"
       - DOCKER_HOST=tcp://dockerproxy:2375
       - HOME=/tmp
-      - DOZZLE_NO_STATS=true
     networks:
       - docker-proxynet
       - app-net
