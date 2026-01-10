@@ -60,6 +60,7 @@ services:
     environment:
       - PORT=7007
       - BESZEL_HOSTNAME=224-beszel
+      - UPTIMEKUMA_HOSTNAME=221-uptimekuma
       - DOCKER_HOST=tcp://dockerproxy:2375
       - HOME=/tmp
       - DOZZLE_NO_STATS=true
