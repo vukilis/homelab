@@ -7,7 +7,6 @@ services:
       - 80:8080
     environment:
       TZ: UTC
-      DOCKER_HOST: "tcp://dockerproxy:2375"
     labels:
       wud.trigger.include: docker.tools
     networks:
