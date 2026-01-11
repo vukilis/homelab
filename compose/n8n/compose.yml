@@ -30,29 +30,6 @@ services:
       - docker-proxynet
       - app-net
 
-  beszel-agent:
-    image: "henrygd/beszel-agent"
-    container_name: "beszel-agent"
-    restart: unless-stopped
-    user: 65534:65534
-    read_only: true
-    mem_limit: 256M
-    cap_drop:
-      - ALL
-    security_opt:
-      - no-new-privileges
-    depends_on:
-      - dockerproxy
-    ports:
-      - 45876:45876
-    environment:
-      PORT: 45876
-      KEY: '${VAR_BESZEL_KEY}'
-      DOCKER_HOST: "tcp://dockerproxy:2375"
-    networks:
-      - docker-proxynet
-      - app-net
-
   dozzle-agent:
     image: amir20/dozzle:latest
     command: agent
@@ -93,7 +70,7 @@ services:
       - ALL
     command:
       - '-loglevel=info'
-      - '-allowfrom=beszel-agent,dozzle-agent,n8n'
+      - '-allowfrom=dozzle-agent,n8n'
       - '-listenip=0.0.0.0'
       - '-allowGET=(/v1\..{1,2})?/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
       - '-allowHEAD=/_ping'
