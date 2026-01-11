@@ -1,0 +1,337 @@
+# roles/debian-containers-hardened/tasks/main.yml
+# Role to make container more secure 
+
+# roles/containers/task/main.yml  
+# Role to prepare container template  
+  
+  - name: Install and configure unattended-upgrades
+    ansible.builtin.apt:
+      name:
+        - unattended-upgrades
+        - apt-listchanges
+      state: present
+
+  - name: Enable unattended-upgrades service
+    ansible.builtin.systemd:
+      name: unattended-upgrades
+      enabled: yes
+      state: started
+
+  - name: Configure unattended-upgrades to install security updates
+    ansible.builtin.copy:
+      dest: /etc/apt/apt.conf.d/50unattended-upgrades
+      content: |
+        Unattended-Upgrade::Origins-Pattern {
+                "origin=Debian,codename=${distro_codename},label=Debian";
+                "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
+                "origin=Debian,codename=${distro_codename}-updates,label=Debian";
+                "origin=Docker,codename=${distro_codename},label=Docker CE"; # Add Docker
+                "origin=CISOfy,codename=stable,label=CISOfy";
+        };
+        Unattended-Upgrade::Package-Blacklist {
+        };
+        Unattended-Upgrade::AutoFixInterruptedDpkg "true";
+        Unattended-Upgrade::MinimalSteps "true";
+        Unattended-Upgrade::InstallOnShutdown "false";
+        Unattended-Upgrade::Remove-Unused-Dependencies "true";
+        Unattended-Upgrade::Automatic-Reboot "false";
+
+  - name: Set apt update intervals
+    ansible.builtin.copy:
+      dest: /etc/apt/apt.conf.d/20auto-upgrades
+      content: |
+        APT::Periodic::Update-Package-Lists "1";
+        APT::Periodic::Unattended-Upgrade "1";
+        APT::Periodic::AutocleanInterval "7";
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Download CISOfy GPG key
+    ansible.builtin.get_url:
+      url: https://packages.cisofy.com/keys/cisofy-software-public.key
+      dest: /tmp/cisofy-software-public.key
+      mode: '0644'
+
+  - name: De-armor GPG key and save to keyring
+    ansible.builtin.shell:
+      cmd: gpg --dearmor < /tmp/cisofy-software-public.key > /usr/share/keyrings/cisofy-archive-keyring.gpg
+      creates: /usr/share/keyrings/cisofy-archive-keyring.gpg
+
+  - name: Add CISOfy Lynis repository
+    ansible.builtin.apt_repository:
+      repo: "deb [signed-by=/usr/share/keyrings/cisofy-archive-keyring.gpg] https://packages.cisofy.com/community/lynis/deb/ stable main"
+      filename: cisofy-lynis
+      state: present
+      update_cache: yes
+
+  - name: Install lynis tool
+    ansible.builtin.apt:
+      name: lynis
+      state: present
+      update_cache: yes
+
+  - name: Set a longer sudo timeout (30 mins)
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      regexp: '^Defaults\s+timestamp_timeout'
+      line: 'Defaults timestamp_timeout=30'
+      validate: '/usr/sbin/visudo -cf %s'
+
+  - name: Set Password Hashing to Yescrypt in login.defs
+    ansible.builtin.lineinfile:
+      path: /etc/login.defs
+      regexp: '^{{ item.key }}'
+      line: "{{ item.key }} {{ item.value }}"
+    loop:
+      - { key: 'ENCRYPT_METHOD', value: 'YESCRYPT' }
+      - { key: 'YESCRYPT_COST_FACTOR', value: '9' }
+
+  - name: Configure Yescrypt cost factor in PAM
+    ansible.builtin.replace:
+      path: /etc/pam.d/common-password
+      regexp: '(pam_unix\.so\s+.*)(yescrypt|sha512)(.*)'
+      replace: '\1yescrypt rounds=9\3'
+
+  - name: Secure /etc/sudoers.d directory permissions
+    ansible.builtin.file:
+      path: /etc/sudoers.d
+      state: directory
+      owner: root
+      group: root
+      mode: '0750'
+
+  - name: Secure individual sudoers files
+    ansible.builtin.file:
+      path: "{{ item }}"
+      owner: root
+      group: root
+      mode: '0440'
+    with_fileglob:
+      - /etc/sudoers.d/*
+
+  - name: Blacklist Firewire drivers to prevent DMA attacks
+    ansible.builtin.copy:
+      dest: /etc/modprobe.d/firewire.conf
+      owner: root
+      group: root
+      mode: '0644'
+      content: |
+        blacklist firewire-ohci
+        blacklist firewire-core
+        blacklist ohci1394
+        install firewire-ohci /bin/true
+        install firewire-core /bin/true
+        install ohci1394 /bin/true
+    
+  - name: Disable IPv6 via sysctl
+    ansible.posix.sysctl:
+        name: "{{ item }}"
+        value: '1'
+        state: present
+        reload: yes
+    loop:
+      - net.ipv6.conf.all.disable_ipv6
+      - net.ipv6.conf.default.disable_ipv6
+      - net.ipv6.conf.lo.disable_ipv6
+
+  - name: Harden Postfix banner to prevent information disclosure
+    ansible.builtin.lineinfile:
+      path: /etc/postfix/main.cf
+      regexp: '^smtpd_banner'
+      line: 'smtpd_banner = $myhostname ESMTP'
+      state: present
+
+  - name: Apply advanced SSH hardening suggestions
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "^#?{{ item.key }}"
+      line: "{{ item.key }} {{ item.value }}"
+      state: present
+      # This is the critical line:
+      validate: '/usr/sbin/sshd -t -f %s'
+    loop:
+      - { key: 'AllowTcpForwarding', value: 'no' }
+      - { key: 'X11Forwarding', value: 'no' }
+      - { key: 'AllowAgentForwarding', value: 'no' }
+      - { key: 'MaxAuthTries', value: '3' }
+      - { key: 'MaxSessions', value: '2' }
+      - { key: 'ClientAliveCountMax', value: '2' }
+      - { key: 'LogLevel', value: 'VERBOSE' }
+      - { key: 'TCPKeepAlive', value: 'no' }
+      - { key: 'Port', value: '22' }    
+
+  - name: Set global shell timeout (600 seconds)
+    ansible.builtin.lineinfile:
+      path: /etc/profile
+      line: 'readonly TMOUT=600; export TMOUT'
+      state: present
+  
+  - name: Set hardened legal banners for Vukilis
+    ansible.builtin.copy:
+      dest: "{{ item }}"
+      content: |
+        "
+         _   _  ____  __  __  _____  _        _     ____  
+        | | | |/ __ \|  \/  ||  ___|| |      / \   | __ ) 
+        | |_| | |  | | |\/| || |__  | |     / _ \  |  _ \ 
+        |  _  | |__| | |  | ||  __| | | __ / ___ \ | |_) |
+        |_| |_|\____/|_|  |_||_____||____ /_/   \_\|____/ 
+
+        =======================================================
+        [ STATUS ]   SYSTEM ADMINISTRATOR: VUKILIS
+        [ WEB    ]   https://vukilis.com/
+        [ CONTACT]   vuk.lekic@vukilis.com
+        =======================================================
+        WARNING: All connections are logged and encrypted.
+        Unauthorized access attempts will be investigated.
+        "
+      owner: root
+      group: root
+      mode: '0644'
+    loop:
+      - /etc/issue
+      - /etc/issue.net
+      - /etc/motd
+
+  - name: Enable the banner in SSH configuration
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#?Banner'
+      line: 'Banner /etc/issue'
+      state: present
+      validate: '/usr/sbin/sshd -t -f %s' 
+
+  - name: Set Global Logrotate Defaults (Master File)
+    ansible.builtin.copy:
+      dest: /etc/logrotate.conf
+      content: |
+        weekly
+        rotate 4
+        create
+        dateext
+        compress
+        delaycompress
+        notifempty
+        include /etc/logrotate.d
+        
+        /var/log/wtmp {
+            missingok
+            monthly
+            create 0664 root utmp
+            rotate 1
+        }
+        /var/log/btmp {
+            missingok
+            monthly
+            create 0600 root utmp
+            rotate 1
+        }
+
+  - name: Overwrite default RSYSLOG rules with Hardened Rules
+    ansible.builtin.copy:
+      dest: /etc/logrotate.d/rsyslog
+      content: |
+        /var/log/syslog
+        /var/log/mail.info
+        /var/log/mail.warn
+        /var/log/mail.err
+        /var/log/mail.log
+        /var/log/daemon.log
+        /var/log/kern.log
+        /var/log/auth.log
+        /var/log/user.log
+        /var/log/lpr.log
+        {
+            rotate 7
+            daily
+            maxsize 100M
+            missingok
+            notifempty
+            delaycompress
+            compress
+            postrotate
+                /usr/lib/rsyslog/rsyslog-rotate
+            endscript
+        }
+
+  - name: Enable sysstat data collection
+    ansible.builtin.lineinfile:
+      path: /etc/default/sysstat
+      regexp: '^ENABLED='
+      line: 'ENABLED="true"'
+
+  - name: Set sysstat collection interval to 2 minutes
+    ansible.builtin.lineinfile:
+      path: /etc/cron.d/sysstat
+      regexp: 'debian-sa1 1 1'
+      line: '*/2 * * * * root /usr/lib/sysstat/debian-sa1 1 1'
+
+  - name: Ensure sysstat service is running
+    ansible.builtin.systemd:
+      name: sysstat
+      enabled: yes
+      state: started
+
+  - name: Install haveged to provide entropy for virtualized environment
+    ansible.builtin.apt:
+      name: haveged
+      state: present
+
+  - name: Ensure haveged service is active
+    ansible.builtin.systemd:
+      name: haveged
+      state: started
+      enabled: yes
+
+  - name: Harden kernel network stack (sysctl)
+    ansible.posix.sysctl:
+      name: "{{ item.name }}"
+      value: "{{ item.value }}"
+      state: present
+      sysctl_file: /etc/sysctl.d/99-fortress.conf
+    loop:
+      - { name: 'net.ipv4.ip_forward', value: '0' }
+      - { name: 'net.ipv4.conf.all.accept_redirects', value: '0' }
+      - { name: 'net.ipv4.conf.all.log_martians', value: '1' }
+      - { name: 'net.ipv4.tcp_syncookies', value: '1' }
+
+  - name: Harden SSH config (Only root/sudo can read)
+    ansible.builtin.file:
+      path: /etc/ssh/sshd_config
+      owner: root
+      group: root
+      mode: '0600'
+
+  - name: Harden System Cron (Only root/sudo can read)
+    ansible.builtin.file:
+      path: "{{ item }}"
+      owner: root
+      group: root
+      mode: '0600'
+    loop:
+      - /etc/crontab
+      - /etc/cron.d
+      - /etc/cron.daily
+      - /etc/cron.hourly
+      - /etc/cron.monthly
+      - /etc/cron.weekly
+
+  - name: "Security Hardening Summary"
+    ansible.builtin.debug:
+      msg:
+        - "============================================================"
+        - "        VUKILIS HOMELAB SECURITY HARDENING COMPLETE         "
+        - "============================================================"
+        - " AUDIT TOOL:      Lynis (CISOfy) Installed & Ready"
+        - " KERNEL:          Hardened (IPv6 Disabled, DMA Blocked)"
+        - " NETWORK:         Fortress sysctl rules applied"
+        - " AUTHENTICATION:  Yescrypt Hashing (Cost Factor 9) Active"
+        - " SSH POLICY:      MaxAuthTries=3, MaxSessions=2, Banner ON"
+        - " TIMEOUTS:        Shell (600s), Sudo (30m)"
+        - " LOGGING:         Sysstat (2m interval), Logrotate Hardened"
+        - " ENTROPY:         Haveged active for crypto-operations"
+        - "------------------------------------------------------------"
+        - " [!] ACTION REQUIRED: Run 'lynis audit system' to verify"
+        - " [!] ACCESS: Use '{{ users }}' - Root shell is LOCKED"
+        - "============================================================"

@@ -44,19 +44,14 @@
       password: "{{ user_password_hash }}"
     loop: "{{ users }}"
 
-  - name: Delete unwanted users
-    ansible.builtin.user:
-      name: "{{ item }}"
-      state: absent
-      remove: yes
-    loop: "{{ delete_users | default([]) }}"
-    tags: [ cleanup, never ]
-  
-  - name: Deploy SSH Public Key for admin user
-    ansible.posix.authorized_key:
-      user: "{{ item }}"
-      state: present
-      key: "{{ lookup('file', '~/.ssh/vuk.lekic.pub') }}"
+  - name: Create custom sudo rule for each user
+    ansible.builtin.copy:
+      content: "{{ item }} ALL=(ALL) NOPASSWD: /usr/bin/apt update"
+      dest: "/etc/sudoers.d/{{ item }}_apt"
+      owner: root
+      group: root
+      mode: '0440'
+      validate: '/usr/sbin/visudo -cf %s'
     loop: "{{ users }}"
 
   - name: Allow 'sudo' group to use sudo without a password
@@ -64,14 +59,26 @@
       path: /etc/sudoers
       state: present
       regexp: '^%sudo'
-      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+      line: '%sudo ALL=(ALL:ALL) ALL'
       validate: 'visudo -cf %s'
+
+  - name: Allow sudo to preserve TERMINFO for better terminal support
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      state: present
+      insertafter: '^Defaults'
+      line: 'Defaults env_keep += "TERMINFO TERMINFO_DIRS"'
+      validate: '/usr/sbin/visudo -cf %s'
+
+  - name: Deploy SSH Public Key for admin user
+    ansible.posix.authorized_key:
+      user: "{{ item }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/vuk.lekic.pub') }}"
+    loop: "{{ users }}"
 
   - name: Reboot the server
     ansible.builtin.reboot:
-    remote_user: "{{ item }}" 
-    become: yes
-    loop: "{{ users }}"
 
   - name: Secure SSH Configuration
     ansible.builtin.lineinfile:
@@ -89,10 +96,8 @@
       name: root
       shell: /usr/sbin/nologin
       password_lock: yes
-    remote_user: "{{ item }}"
-    become: yes
-    loop: "{{ users }}"
 
   - name: Script finished successfully
     ansible.builtin.debug:
       msg: "System secured. Root shell disabled. Use homelab for future access."
+    delegate_to: localhost

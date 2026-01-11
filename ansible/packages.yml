@@ -6,6 +6,7 @@ pkgs_debian:
   - bash-completion
   - bind9-dnsutils
   - curl
+  - gnupg
   - dos2unix
   - elinks
   - ethtool

@@ -997,11 +997,11 @@ module "test-container-0" {
     alpine_ssh_hardening = false
     pve_connection = var.pve_connection
     ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
-    target_node     = "pve"
+    target_node     = "homelab-vukilis"
     ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
     start_at_boot   = true
 
-    vmid          = 301
+    vmid          = 302
     root_password = var.root_password
     unprivileged  = "true"
 
@@ -1017,13 +1017,13 @@ module "test-container-0" {
     # Network Settings
     network_name   = "eth0"
     network_bridge = "vmbr0"
-    ip_address     = "192.168.0.253/24"
+    ip_address     = "192.168.0.252/24"
     gateway        = "192.168.0.1"
 
     # Identity & DNS
     hostname     = "test-container-0"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "test"]
 
     # Other Settings
@@ -1038,11 +1038,11 @@ module "test-container-1" {
     alpine_ssh_hardening = false
     pve_connection = var.pve_connection
     ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
-    target_node     = "pve"
+    target_node     = "homelab-vukilis"
     ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
     start_at_boot   = true
 
-    vmid          = 302
+    vmid          = 303
     root_password = var.root_password
     unprivileged  = "true"
 
@@ -1058,7 +1058,7 @@ module "test-container-1" {
     # Network Settings
     network_name   = "eth0"
     network_bridge = "vmbr0"
-    ip_address     = "192.168.0.252/24"
+    ip_address     = "192.168.0.251/24"
     gateway        = "192.168.0.1"
 
     # Identity & DNS

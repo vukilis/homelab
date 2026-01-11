@@ -11,6 +11,8 @@
     # - debian-containers             # Role to prepare container template
     # - alpine-containers             # Role to prepare container template for Alpine Linux
 
+    # - debian-containers-hardened    # Role to make container more secure 
+
     # - debian-install-docker         # Role to install Docker Engine and related components
     # - alpine-install-docker         # Role to install Docker Engine on Alpine Linux
 
