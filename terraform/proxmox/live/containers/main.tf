@@ -33,7 +33,7 @@ module "alpine-it-tools" {
     # Identity & DNS
     hostname     = "alpine-it-tools"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -41,7 +41,6 @@ module "alpine-it-tools" {
     nesting = true
     keyctl  = false
 }
-
 module "n8n" {
     source = "../../modules/proxmox_lxc"
 
@@ -75,7 +74,7 @@ module "n8n" {
     # Identity & DNS
     hostname     = "n8n"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "management"]
 
     # Other Settings
@@ -116,7 +115,7 @@ module "dockge" {
     # Identity & DNS
     hostname     = "dockge"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "management"]
 
     # Other Settings
@@ -157,7 +156,7 @@ module "komodo" {
     # Identity & DNS
     hostname     = "komodo"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "management"]
 
     # Other Settings
@@ -198,7 +197,7 @@ module "homepage" {
     # Identity & DNS
     hostname     = "homepage"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "dashboard"]
 
     # Other Settings
@@ -239,7 +238,7 @@ module "uptime-kuma" {
     # Identity & DNS
     hostname     = "uptime-kuma"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -280,7 +279,7 @@ module "medusa" {
     # Identity & DNS
     hostname     = "medusa"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "media"]
 
     # Other Settings
@@ -321,7 +320,7 @@ module "usememos" {
     # Identity & DNS
     hostname     = "usememos"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -362,7 +361,7 @@ module "wallos" {
     # Identity & DNS
     hostname     = "wallos"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -403,7 +402,7 @@ module "watchyourlan" {
     # Identity & DNS
     hostname     = "watchyourlan"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -444,7 +443,7 @@ module "traccar" {
     # Identity & DNS
     hostname     = "traccar"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -485,7 +484,7 @@ module "jetlog" {
     # Identity & DNS
     hostname     = "jetlog"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -526,7 +525,7 @@ module "twingate" {
     # Identity & DNS
     hostname     = "twingate"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "security"]
 
     # Other Settings
@@ -567,7 +566,7 @@ module "grafana" {
     # Identity & DNS
     hostname     = "grafana"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -608,7 +607,7 @@ module "mealie" {
     # Identity & DNS
     hostname     = "mealie"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -649,7 +648,7 @@ module "linkstack" {
     # Identity & DNS
     hostname     = "linkstack"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -690,7 +689,7 @@ module "dozzle" {
     # Identity & DNS
     hostname     = "dozzle"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -731,7 +730,7 @@ module "speedtest" {
     # Identity & DNS
     hostname     = "speedtest"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -772,7 +771,7 @@ module "beszel" {
     # Identity & DNS
     hostname     = "beszel"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -813,7 +812,7 @@ module "whatsupdocker" {
     # Identity & DNS
     hostname     = "whatsupdocker"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
 
     # Other Settings
@@ -854,7 +853,7 @@ module "wikidocs" {
     # Identity & DNS
     hostname     = "wikidocs"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities", "documentation"]
 
     # Other Settings
@@ -881,7 +880,7 @@ module "yaade" {
     cores     = 1
     cpu_limit = 0
     cpu_units = 100
-    memory    = 512
+    memory    = 776
     swap      = 0
     disk_size = "5G"
     storage   = "local-lvm"
@@ -895,7 +894,7 @@ module "yaade" {
     # Identity & DNS
     hostname     = "yaade"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "utilities"]
 
     # Other Settings
@@ -936,7 +935,7 @@ module "filebrowser" {
     # Identity & DNS
     hostname     = "filebrowser"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "media"]
 
     # Other Settings
@@ -979,8 +978,8 @@ module "stremio" {
     # Identity & DNS
     hostname     = "stremio"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
-    tags         = ["ct", "media"]
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
+    tags         = ["ct", "terraform", "media"]
 
     # Other Settings
     onboot  = true
@@ -1024,7 +1023,7 @@ module "test-container-0" {
     hostname     = "test-container-0"
     searchdomain = "adguard.vukilis.com"
     nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
-    tags         = ["ct", "test"]
+    tags         = ["ct", "terraform", "test"]
 
     # Other Settings
     onboot  = true
@@ -1064,8 +1063,8 @@ module "test-container-1" {
     # Identity & DNS
     hostname     = "test-container-1"
     searchdomain = "adguard.vukilis.com"
-    nameserver   = "192.168.0.202"
-    tags         = ["ct", "test"]
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
+    tags         = ["ct", "terraform", "test"]
 
     # Other Settings
     onboot  = true

@@ -54,7 +54,7 @@
       validate: '/usr/sbin/visudo -cf %s'
     loop: "{{ users }}"
 
-  - name: Allow 'sudo' group to use sudo without a password
+  - name: Require password for sudo group
     ansible.builtin.lineinfile:
       path: /etc/sudoers
       state: present

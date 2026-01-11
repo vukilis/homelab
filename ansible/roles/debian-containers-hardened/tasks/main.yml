@@ -291,7 +291,7 @@
       state: present
       sysctl_file: /etc/sysctl.d/99-fortress.conf
     loop:
-      - { name: 'net.ipv4.ip_forward', value: '0' }
+      - { name: 'net.ipv4.ip_forward', value: '1' } # Docker requires this to function as a gateway
       - { name: 'net.ipv4.conf.all.accept_redirects', value: '0' }
       - { name: 'net.ipv4.conf.all.log_martians', value: '1' }
       - { name: 'net.ipv4.tcp_syncookies', value: '1' }
