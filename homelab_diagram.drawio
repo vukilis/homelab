@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="29.3.0">
   <diagram name="Page-1" id="Wwqm8vyQxhQhFInDNfWW">
-    <mxGraphModel dx="5783" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="5500" math="0" shadow="0">
+    <mxGraphModel dx="8753" dy="2590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="5500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1377,7 +1377,7 @@
         <mxCell id="R-Yf4d6ab7t9Y9P3JOOh-187" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.kms;fillColor=light-dark(#759C3E, #ff6666);gradientColor=none;" value="" vertex="1">
           <mxGeometry height="93" width="76.5" x="-1261.57" y="440.51" as="geometry" />
         </mxCell>
-        <mxCell id="Wklv7gTB-Y0LlyPAQRO3-1" parent="1" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=top;whiteSpace=wrap;rounded=0;glass=0;shadow=0;fontSize=36;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 255, 255));&quot;&gt;Lynis Hardening index :&lt;/font&gt; &lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 255, 0));&quot;&gt;75 [###############&amp;nbsp; &amp;nbsp; &amp;nbsp;]&lt;/font&gt;" vertex="1">
+        <mxCell id="Wklv7gTB-Y0LlyPAQRO3-1" parent="1" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=top;whiteSpace=wrap;rounded=0;glass=0;shadow=0;fontSize=36;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 255, 255));&quot;&gt;Lynis Hardening index :&lt;/font&gt; &lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 255, 0));&quot;&gt;77 [###############&amp;nbsp; &amp;nbsp; &amp;nbsp;]&lt;/font&gt;" vertex="1">
           <mxGeometry height="50" width="812.21" x="-2004.55" y="935" as="geometry" />
         </mxCell>
       </root>
