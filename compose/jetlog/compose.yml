@@ -50,7 +50,7 @@ services:
     security_opt:
       - no-new-privileges
     volumes:
-      - ./tmp:/tmp
+      - dozzle-tmp:/tmp
     depends_on:
       - dockerproxy
     ports:
@@ -95,3 +95,6 @@ networks:
   app-net:
     driver: bridge
     attachable: false
+
+volumes:
+  dozzle-tmp:
