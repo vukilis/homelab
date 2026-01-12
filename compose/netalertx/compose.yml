@@ -2,7 +2,7 @@ services:
   netalertx:                                 
     container_name: netalertx                
     image: ghcr.io/jokob-sk/netalertx:latest      
-    network_mode: ${NETALERTX_NETWORK_MODE:-host}
+    network_mode: "host" 
     restart: unless-stopped
     read_only: true
     cap_drop:
@@ -22,7 +22,7 @@ services:
     tmpfs:
       - "/tmp:uid=${NETALERTX_UID:-20211},gid=${NETALERTX_GID:-20211},mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
     environment:
-        LISTEN_ADDR: ${LISTEN_ADDR:-0.0.0.0} 
+        LISTEN_ADDR: 0.0.0.0
         PORT: 20211                                 
         GRAPHQL_PORT: 20212
     logging:
