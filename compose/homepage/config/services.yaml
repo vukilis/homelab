@@ -3,50 +3,50 @@
 - Networking:
     - Huawei:
         id: col-small
-        href: http://huawei.local
+        href: http://huawei.lan
         icon: huawei.png
         description: ISP Router
-        siteMonitor: http://192.168.100.1/
+        siteMonitor: http://huawei.lan
     - Archer C6:
         id: col-small
-        href: http://archer.local
+        href: http://archer.lan
         icon: tp-link.png
         description: Home Router
-        siteMonitor: http://192.168.0.1/
+        siteMonitor: http://archer.lan
     - Horaco:
-        href: http://horaco.local
+        href: http://horaco.lan
         icon: mdi-switch
         description: Switch
-        siteMonitor: http://192.168.0.2/
+        siteMonitor: http://horaco.lan
     - Speedtest Tracker:
-        href: http://speedtest.local:8081
+        href: http://speedtest.lan:8081
         description: Internet Speed Test
         icon: speedtest-tracker.png
-        siteMonitor: http://speedtest.local:8081
+        siteMonitor: http://speedtest.lan:8081
         widget:
             type: speedtest
-            url: http://speedtest.local:8081
+            url: http://speedtest.lan:8081
             bitratePrecision: 3 # optional, default is 0
 
 - Infrastructure and Data:
     - Proxmox:
-        href: https://proxmox.local:8006
+        href: https://proxmox.lan:8006
         icon: proxmox.png
         description: Proxmox Virtual Environment
-        siteMonitor: https://192.168.0.200:8006
+        siteMonitor: https://proxmox.lan:8006
         widget:
             type: proxmox
-            url: https://192.168.0.200:8006
+            url: https://proxmox.lan:8006
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
     - Proxmox Backup Server:
-        href: https://pxm.backup.local:8007
+        href: https://pxm.backup.lan:8007
         icon: proxmox.png
         description: Proxmox Backup Server
-        siteMonitor: https://192.168.0.208:8007
+        siteMonitor: https://pxm.backup.lan:8007
         widget:
             type: proxmoxbackupserver
-            url: https://192.168.0.208:8007
+            url: https://pxm.backup.lan:8007
             method: GET
             username: {{HOMEPAGE_VAR_PBS_USERNAME}}
             password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
@@ -65,13 +65,13 @@
 - Security and Identity:
     - AdGuard Home:
         id: col-small
-        href: http://adblock.local
+        href: http://adblock.lan
         icon: adguard-home
         description: Ad Blocking
-        siteMonitor: http://192.168.0.202
+        siteMonitor: http://adblock.lan
         widget:
             type: adguard
-            url: http://192.168.0.202
+            url: http://adblock.lan
             username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
     - Authentik:
@@ -90,7 +90,7 @@
         href: https://vaultwarden.vukilis.com/
         icon: si-vaultwarden
         description: Password Manager
-        siteMonitor: http://192.168.0.207
+        siteMonitor: http://vaultwarden/lan
     - Twingate:
         id: col-small
         href: https://vukilis.twingate.com/
@@ -101,43 +101,43 @@
 - Media & Entertainment:
     - qBittorrent:
         id: col-small
-        href: http://qbittorrent.local
+        href: http://qbittorrent.lan
         icon: qbittorrent  #si-qbittorrent
         description: Torrent Manager
-        siteMonitor: http://192.168.0.204
+        siteMonitor: http://qbittorrent.lan
         widget:
           type: qbittorrent
-          url: http://192.168.0.204
+          url: http://qbittorrent.lan
           username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
           password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
     - Medusa:
         id: col-small
-        href: http://medusa.local
+        href: http://medusa.lan
         icon: medusa
         description: Manager for TV Shows
-        siteMonitor: http://192.168.0.210
+        siteMonitor: http://medusa.lan
         widget:
           type: medusa
-          url: http://192.168.0.210
+          url: http://medusa.lan
           key: {{HOMEPAGE_VAR_MEDUSA_API}}
     - Navidrome:
         id: col-small
-        href: http://navidrome.local
+        href: http://navidrome.lan
         icon: navidrome
         description: Music Server
-        siteMonitor: http://192.168.0.205
+        siteMonitor: http://navidrome.lan
         widget:
           type: navidrome
-          url: http://192.168.0.205
+          url: http://navidrome.lan
           user: {{HOMEPAGE_VAR_NAVIDROME_USERNAME}}
           token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}} #md5(password + salt)
           salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
     - FileBrowser:
         id: col-small
-        href: http://filebrowser.local:8080
+        href: http://filebrowser.lan:8080
         icon: filebrowser-quantum
         description: File Server
-        siteMonitor: http://192.168.0.206:8080
+        siteMonitor: http://filebrowser.lan:8080
 
 - Management:
     - Komodo:
@@ -145,10 +145,10 @@
         href: https://komodo.vukilis.com
         icon: komodo
         description: Docker Compose Stack-Oriented Manager
-        siteMonitor: http://komodo.local:9120
+        siteMonitor: http://komodo.lan:9120
         widget:
             type: komodo
-            url: http://komodo.local:9120
+            url: http://komodo.lan:9120
             method: GET
             key: {{HOMEPAGE_VAR_KOMODO_KEY}}
             secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
@@ -159,10 +159,10 @@
         href: https://npm.vukilis.com
         icon: nginx-proxy-manager
         description: Reverse Proxy Manager
-        siteMonitor: http://npm.local
+        siteMonitor: http://npm.lan
         widget:
             type: npm
-            url: http://192.168.0.209:81
+            url: http://npm.lan
             username: {{HOMEPAGE_VAR_NPM_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
     - Cloudflared:
@@ -180,7 +180,7 @@
         href: https://n8n.vukilis.com
         icon: n8n
         description: Workflow Automation Platform
-        siteMonitor: http://n8n.local:5678
+        siteMonitor: http://n8n.lan:5678
 
 - Monitoring:
     - UptimeKuma:
@@ -188,29 +188,29 @@
         href: https://status.vukilis.com/
         description: Downtime Monitoring
         icon: uptime-kuma.png
-        siteMonitor: https://status.vukilis.com/
+        siteMonitor: http://uptimekuma.lan
         widget:
             type: uptimekuma
-            url: http://192.168.0.201
+            url: http://uptimekuma.lan
             slug: services
     - Netdata:
         id: col-small
-        href: http://netdata.local:19999
+        href: http://netdata.lan:19999
         description: Resource Monitoring
         icon: netdata.png
-        siteMonitor: http://192.168.0.200:19999
+        siteMonitor: http://netdata.lan:19999
         widget:
             type: netdata
-            url: http://192.168.0.200:19999
+            url: http://netdata.lan:19999
     - Grafana:
         id: col-small
-        href: http://grafana.local:3000
+        href: http://grafana.lan:3000
         description: Grafana Dashboard
         icon: grafana
-        siteMonitor: http://192.168.0.223:3000
+        siteMonitor: http://grafana.lan:3000
         widget:
           type: grafana
-          url: http://192.168.0.223:3000
+          url: http://grafana.lan:3000
           username: {{HOMEPAGE_VAR_GRAFANA_USERNAME}}
           password: {{HOMEPAGE_VAR_GRAFANA_PASSWORD}}
     - What's Up Docker:
@@ -218,36 +218,36 @@
         href: https://wud.vukilis.com
         icon: whats-up-docker
         description: Keep containers up-to-date!
-        siteMonitor: http://wud.local:8085
+        siteMonitor: http://wud.lan:8085
         widget:
           type: whatsupdocker
-          url: http://wud.local:8085
+          url: http://wud.lan:8085
           username: {{HOMEPAGE_VAR_WUD_USERNAME}}
           password: {{HOMEPAGE_VAR_WUD_PASSWORD}}
     - Beszel:
         id: col-small
-        href: http://beszel.local:8090
+        href: http://beszel.lan:8090
         description: Docker Resource Monitoring
         icon: beszel
-        siteMonitor: http://192.168.0.224:8090
+        siteMonitor: http://beszel.lan:8090
         widget:
           type: beszel
-          url: http://192.168.0.224:8090
+          url: http://beszel.lan:8090
           username: {{HOMEPAGE_VAR_BESZEL_USERNAME}}
           password: {{HOMEPAGE_VAR_BESZEL_PASSWORD}}
           version: 2
     - Dozzle:
         id: col-small
-        href: http://dozzle.local:8082
+        href: http://dozzle.lan:8082
         description: Docker Logs Monitor
         icon: dozzle
-        siteMonitor: http://dozzle.local:8082
+        siteMonitor: http://dozzle.lan:8082
     - WatchYourLan:
         id: col-small
-        href: http://watchyourlan.local:8840
+        href: http://watchyourlan.lan:8840
         description: Network IP Scanner
         icon: watchyourlan
-        siteMonitor: http://192.168.0.215:8840
+        siteMonitor: http://watchyourlan.lan:8840
 - Utilities:
     - HomeLab Diagram:
         id: col-small
@@ -260,7 +260,7 @@
         href: https://notepad.vukilis.com/
         icon: https://raw.githubusercontent.com/usememos/memos/refs/heads/main/web/public/logo.webp
         description: Notepad Server
-        siteMonitor: http://usememos.local
+        siteMonitor: http://usememos.lan
     - Wikidocs:
         id: col-small
         href: http://wikidocs.lan:8084
@@ -272,51 +272,51 @@
         href: https://wallos.vukilis.com
         icon: wallos
         description: Personal Subscription Tracker
-        siteMonitor: http://wallos.local:8282
+        siteMonitor: http://wallos.lan:8282
     - Alpine-IT-Tools:
         id: col-small
         href: https://tools.vukilis.com
         icon: it-tools
         description: Various IT Tasks & Tools For Admins
-        siteMonitor: http://tools.local
+        siteMonitor: http://tools.lan
     - Jetlog:
         id: col-small
-        href: http://jetlog.local
+        href: http://jetlog.lan
         icon: https://raw.githubusercontent.com/pbogre/jetlog/refs/heads/main/client/public/favicon.png
         description: Personal Flight Tracker
-        siteMonitor: http://jetlog.local
+        siteMonitor: http://jetlog.lan
     - Traccar:
         id: col-small
         href: https://gps.vukilis.com
         icon: traccar
         description: GPS Tracking Software
-        siteMonitor: http://traccar.local
+        siteMonitor: http://traccar.lan
     - Mealie:
         id: col-small
         href: https://recipe.vukilis.com
         icon: mealie
         description: Recipe Manager
-        siteMonitor: http://recipe.local
+        siteMonitor: http://recipe.lan
     - Linkstack:
         id: col-small
         href: https://links.vukilis.com
         icon: linkstack
         description: Link Sharing Platform
-        siteMonitor: http://links.local:8080
+        siteMonitor: http://links.lan:8080
     - Yaade:
         id: col-small
         href: http://yaade.vukilis.com
         icon: yaade
         description: API Collections
-        siteMonitor: http://yaade.local:8086
+        siteMonitor: http://yaade.lan:8086
 
 - IoT and Smarthome:
     - Home Assistant:
         id: col-small
-        href: http://homeassistant.local:8123
+        href: http://homeassistant.lan:8123
         icon: home-assistant
         description: Smart Home Management
-        siteMonitor: http://192.168.0.221:8123
+        siteMonitor: http://homeassistant.lan:8123
 
 #BOOKMARKS TAB
 - Search Engine & AI:
