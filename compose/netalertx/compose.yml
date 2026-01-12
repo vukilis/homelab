@@ -4,6 +4,7 @@ services:
     image: ghcr.io/jokob-sk/netalertx:latest      
     network_mode: "host" 
     restart: unless-stopped
+    user: 65534:65534
     read_only: true
     cap_drop:
       - ALL
@@ -15,19 +16,16 @@ services:
       - ./config/app.conf:/data/config/app.conf 
       - ./db/app.db:/data/db/app.db             
       - ./logs:/tmp/log
+      - ./tmp:/tmp
       - type: bind                                  
         source: /etc/localtime
         target: /etc/localtime
         read_only: true
-      - type: tmpfs
-        target: /tmp
-        tmpfs:
-          size: 100M
-          mode: 1777
     environment:
         LISTEN_ADDR: 0.0.0.0
         PORT: 20211                                 
         GRAPHQL_PORT: 20212
+        HOME: /tmp
     logging:
       driver: "json-file"
       options:
