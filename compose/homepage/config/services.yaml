@@ -90,7 +90,7 @@
         href: https://vaultwarden.vukilis.com/
         icon: si-vaultwarden
         description: Password Manager
-        siteMonitor: http://vaultwarden/lan
+        siteMonitor: http://vaultwarden.lan
     - Twingate:
         id: col-small
         href: https://vukilis.twingate.com/
