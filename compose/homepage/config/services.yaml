@@ -47,8 +47,10 @@
         widget:
             type: proxmoxbackupserver
             url: https://192.168.0.208:8007
+            method: GET
             username: {{HOMEPAGE_VAR_PBS_USERNAME}}
             password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
+            allowSelfSigned: true
     - BlackBox:
         id: col-small
         icon: windows-11
@@ -147,16 +149,11 @@
         widget:
             type: komodo
             url: http://komodo.local:9120
+            method: GET
             key: {{HOMEPAGE_VAR_KOMODO_KEY}}
             secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
             showSummary: true
             showStacks: true
-    - Dockge:
-        id: col-small
-        href: https://dockge.vukilis.com
-        icon: si-docker-#2496ED
-        description: Docker Compose Stack-Oriented Manager
-        siteMonitor: http://dockge.local:8080
     - Nginx Proxy Manager:
         id: col-small
         href: https://npm.vukilis.com
@@ -266,34 +263,16 @@
         siteMonitor: http://usememos.local
     - Wikidocs:
         id: col-small
-        href: http://wikidocs.local:8084
+        href: http://wikidocs.lan:8084
         icon: wikidocs
         description: Wiki Engine for documentation
-        siteMonitor: http://wikidocs.local:8084
-    - Flatnotes:
-        id: col-small
-        href: https://note.vukilis.com
-        icon: flatnotes
-        description: Notepad Server
-        siteMonitor: http://flatnotes.local:8083
-    - Hoarder:
-        id: col-small
-        href: https://bookmark.vukilis.com/
-        icon: hoarder
-        description: Bookmark App
-        siteMonitor: http://hoarder.local:3000
-    - Planka:
-        id: col-small
-        href: https://planka.vukilis.com/
-        icon: planka
-        description: To-Do Project Manager
-        siteMonitor: http://planka.local:8087
+        siteMonitor: http://wikidocs.lan:8084
     - Wallos:
         id: col-small
         href: https://wallos.vukilis.com
         icon: wallos
         description: Personal Subscription Tracker
-        siteMonitor: http://wallos.local
+        siteMonitor: http://wallos.local:8282
     - Alpine-IT-Tools:
         id: col-small
         href: https://tools.vukilis.com
@@ -326,7 +305,7 @@
         siteMonitor: http://links.local:8080
     - Yaade:
         id: col-small
-        href: http://yaade.local:8086
+        href: http://yaade.vukilis.com
         icon: yaade
         description: API Collections
         siteMonitor: http://yaade.local:8086

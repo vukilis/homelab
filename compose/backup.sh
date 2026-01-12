@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Start the SSH agent
+# Start the SSH agent and add key
 eval "$(ssh-agent -s)"
-
-# Add SSH key to the agent
 ssh-add ~/.ssh/vuk.lekic
 
 # List of servers                                   # Unncoment to include in backup
@@ -13,7 +11,7 @@ declare -A server_names=(
     # ["192.168.0.203"]="homepage"                  # Manual installation   
     # ["192.168.0.204"]="qbittorrent"               # Proxmox VE Helper-Scripts
     # ["192.168.0.205"]="navidrome"                 # Manual installation
-    # ["192.168.0.206"]="fileBrowser-quantum"       # Manual installation
+    # ["192.168.0.206"]="filebrowser"               # Manual installation
     # ["192.168.0.207"]="vaultwarden"               # Manual installation
     # ["192.168.0.208"]="proxmox-backup-server"     # Proxmox VE Helper-Scripts
     # ["192.168.0.209"]="nginxproxymanager"         # Proxmox VE Helper-Scripts
@@ -21,9 +19,9 @@ declare -A server_names=(
     # ["192.168.0.211"]="authentik"                 # Proxmox VE Helper-Scripts
     # ["192.168.0.212"]="usememos"                  # Manual installation
     # ["192.168.0.213"]="cloudflared"               # Proxmox VE Helper-Scripts
-    # ["192.168.0.214"]="wallos"                    # Proxmox VE Helper-Scripts
-    # ["192.168.0.215"]="watchyourlan"              # Proxmox VE Helper-Scripts
-    # ["192.168.0.216"]="hoarder"                   # Proxmox VE Helper-Scripts   
+    # ["192.168.0.214"]="wallos"                    # Manual installation
+    # ["192.168.0.215"]="watchyourlan"              # Manual installation
+    # ["192.168.0.216"]="dozzle"                    # Manual installation 
     # ["192.168.0.217"]="traccar"                   # Manual installation
     # ["192.168.0.218"]="pocketid"                  # Proxmox VE Helper-Scripts
     # ["192.168.0.219"]="jetlog"                    # Manual installation
@@ -32,105 +30,56 @@ declare -A server_names=(
     # ["192.168.0.222"]="twingate"                  # Manual installation
     # ["192.168.0.223"]="grafana"                   # Manual installation
     # ["192.168.0.224"]="beszel"                    # Manual installation
-    # ["192.168.0.225"]="stash"                     # Manual installation
+    # ["192.168.0.225"]="speedtest"                 # Manual installation
     # ["192.168.0.226"]="mealie"                    # Manual installation
     # ["192.168.0.227"]="linkstack"                 # Manual installation
     # ["192.168.0.229"]="n8n"                       # Manual installation
-    # ["192.168.0.230"]="dockge"                    # Manual installation
+    # ["192.168.0.230"]="whatsupdocker"             # Manual installation
+    # ["192.168.0.231"]="komodo"                    # Manual installation
+    # ["192.168.0.232"]="wikidocs"                  # Manual installation
+    # ["192.168.0.233"]="yaade"                     # Manual installation
 )
 
-servers=(
-    "192.168.0.201" "192.168.0.202" "192.168.0.203" "192.168.0.204" "192.168.0.205"
-    "192.168.0.206" "192.168.0.207" "192.168.0.208" "192.168.0.209" "192.168.0.210"
-    "192.168.0.211" "192.168.0.212" "192.168.0.213" "192.168.0.214" "192.168.0.215"
-    "192.168.0.216" "192.168.0.217" "192.168.0.218" "192.168.0.219" "192.168.0.220"
-    "192.168.0.221" "192.168.0.222" "192.168.0.223" "192.168.0.224" "192.168.0.225"
-    "192.168.0.226" "192.168.0.227" "192.168.0.229" "192.168.0.230"
-)
-
+# Display Table of Servers
+keys=("${!server_names[@]}")
 columns=4
-rows=$(( (${#servers[@]} + columns - 1) / columns ))
+rows=$(( (${#keys[@]} + columns - 1) / columns ))
 
+echo "🖥️  Targeting servers:"
 for ((r=0; r<rows; r++)); do
     for ((c=0; c<columns; c++)); do
         idx=$(( r + c * rows ))
-        if [[ $idx -lt ${#servers[@]} ]]; then
-        printf "%-20s" "${servers[idx]}"
+        if [[ $idx -lt ${#keys[@]} ]]; then
+            printf "%-25s" "${server_names[${keys[idx]}]} (${keys[idx]})"
         fi
     done
-        echo
+    echo
 done
+echo "----------------------------------------------------"
 
-# Base destination folder
+# Configuration
+REMOTE_USER="homelab"
+REMOTE_BASE_PATH="/home/homelab/stack/repos/homelab/compose"
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-# Path for backup on remote servers
-remote_config_paths_201="/root/uptime-kuma/compose.yml"
-remote_config_paths_203="/root/homepage/config/bookmarks.yaml /root/homepage/config/docker.yaml /root/homepage/config/services.yaml /root/homepage/config/settings.yaml /root/homepage/config/widgets.yaml /root/homepage/config/custom.css /root/homepage/compose.yml"
-remote_config_paths_205="/root/navidrome/compose.yml"
-remote_config_paths_206="/home/homelab/filebrowser/compose.yml /home/homelab/filebrowser/data"
-remote_config_paths_207="/root/vaultwarden/compose.yml"
-remote_config_paths_210="/home/homelab/medusa/compose.yml"
-remote_config_paths_212="/root/usememos/compose.yml"
-remote_config_paths_216="/root/hoarder/compose.yml"
-remote_config_paths_217="/home/homelab/traccar/compose.yml /home/homelab/traccar/traccar.xml"
-remote_config_paths_219="/root/jetlog/compose.yml "
-remote_config_paths_220="/root/it-tools/compose.yml"
-remote_config_paths_221="/home/homelab/home-assistant/compose.yml"
-remote_config_paths_222="/home/homelab/twingate/compose.yml"
-remote_config_paths_223="/home/homelab/grafana/compose.yml /home/homelab/grafana/config"
-remote_config_paths_224="/home/homelab/beszel/compose.yml"
-remote_config_paths_225="/home/homelab/stash/compose.yml"
-remote_config_paths_226="/home/homelab/mealie/compose.yml"
-remote_config_paths_227="/home/homelab/linkstack/compose.yml"
-remote_config_paths_229="/home/homelab/n8n/compose.yml"
-remote_config_paths_230="/home/homelab/dockge/dockge/compose.yaml /home/homelab/dockge/stacks/dozzle_stack/compose.yaml /home/homelab/dockge/stacks/flatnotes/compose.yaml /home/homelab/dockge/stacks/planka/compose.yaml  /home/homelab/dockge/stacks/speedtest/compose.yaml /home/homelab/dockge/stacks/whatsupdocker/compose.yaml /home/homelab/dockge/stacks/wikidocs/compose.yaml /home/homelab/dockge/stacks/yaade/compose.yaml"
+SSH_OPTS="-q -o ControlMaster=auto -o ControlPath=/tmp/ssh-%r@%h:%p -o ControlPersist=10m"
 
-# Loop through servers
 for server_ip in "${!server_names[@]}"; do
     server_name="${server_names[$server_ip]}"
-    echo "🔵 Processing $server_name ($server_ip)..."
+    target_path="$REMOTE_BASE_PATH/$server_name"
     
-    # Get the paths for this server
-    paths_var="remote_config_paths_${server_ip##*.}"
-    remote_paths="${!paths_var}"
+    echo "🔵 Processing $server_name ($server_ip)..."
 
-    if [[ -z "$remote_paths" ]]; then
-        echo "  ⚠️  No paths defined for $server_name, skipping."
-        continue
+    if ssh $SSH_OPTS -i ~/.ssh/vuk.lekic "$REMOTE_USER@$server_ip" "[ -d '$target_path' ]"; then
+        echo "    ✅ Directory found. Syncing..."
+        dest_dir="$SCRIPT_DIR/$server_name"
+        mkdir -p "$dest_dir"
+        rsync -az -e "ssh $SSH_OPTS -i ~/.ssh/vuk.lekic" --exclude='tmp/' "$REMOTE_USER@$server_ip:$target_path/" "$dest_dir/"
+        echo "    ✨ Sync Complete: $dest_dir"
+    else
+        echo "    ❌ Error: Directory $target_path not found on $server_ip"
     fi
-
-    for path in $remote_paths; do
-        echo "    📂 Copying from $path..."
-
-        # Check if path exists on remote for both root and homelab users
-        for user in root homelab; do
-            if ssh -i ~/.ssh/vuk.lekic "$user@$server_ip" "[ -e '$path' ]"; then
-                echo "    ✅ Path $path found for $user on $server_ip"
-
-                # Calculate relative path
-                # rel_path=$(echo "$path" | sed -E 's|^/root/[^/]+/||')
-
-                # Calculate relative path for both /root and /home/homelab
-                rel_path=$(echo "$path" | sed -E 's|^/root/[^/]+/||; s|^/home/homelab/[^/]+/||')
-
-                # Create destination directory
-                dest_dir="$SCRIPT_DIR/$server_name/$(dirname "$rel_path")"
-                mkdir -p "$dest_dir"
-
-                # Copy the file or folder
-                scp -i ~/.ssh/vuk.lekic -r "$user@$server_ip:$path" "$dest_dir/"
-                
-                echo "    ✅ Copied: $dest_dir/$(basename "$path")"
-                break
-            else
-                echo "    ❌ Path $path not found for $user on $server_ip"
-            fi
-        done
-    done
 done
 
-echo "✅ All done!"
-
-# Stop the SSH agent
 ssh-agent -k
+echo "✅ All tasks complete!"

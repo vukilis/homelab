@@ -4,7 +4,7 @@
 
 - Developer:
     - Website:
-        - icon: /icons/logo.png
+        - icon: https://raw.githubusercontent.com/vukilis/website/main/static/images/favicon.png
           href: https://vukilis.com
     - Github:
         - icon: github.png
