@@ -4,7 +4,7 @@ services:
     image: ghcr.io/jokob-sk/netalertx:latest      
     network_mode: "host" 
     restart: unless-stopped
-    user: 65534:65534
+    user: 20211:20211
     read_only: true
     cap_drop:
       - ALL
