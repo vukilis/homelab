@@ -171,13 +171,6 @@
     ansible.builtin.copy:
       dest: "{{ item }}"
       content: |
-        "
-         _   _  ____  __  __  _____  _        _     ____  
-        | | | |/ __ \|  \/  ||  ___|| |      / \   | __ ) 
-        | |_| | |  | | |\/| || |__  | |     / _ \  |  _ \ 
-        |  _  | |__| | |  | ||  __| | | __ / ___ \ | |_) |
-        |_| |_|\____/|_|  |_||_____||____ /_/   \_\|____/ 
-
         =======================================================
         [ STATUS ]   SYSTEM ADMINISTRATOR: VUKILIS
         [ WEB    ]   https://vukilis.com/
@@ -185,7 +178,6 @@
         =======================================================
         WARNING: All connections are logged and encrypted.
         Unauthorized access attempts will be investigated.
-        "
       owner: root
       group: root
       mode: '0644'
