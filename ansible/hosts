@@ -23,6 +23,7 @@ whatsupdocker ansible_host=192.168.0.230
 komodo ansible_host=192.168.0.231
 wikidocs ansible_host=192.168.0.232
 yaade ansible_host=192.168.0.233
+smokeping ansible_host=192.168.0.234
 
 [test-containers]
 stremio ansible_host=192.168.0.251

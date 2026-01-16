@@ -31,6 +31,7 @@ output "all_containers" {
             "yaade"            = try(module.yaade, null)  
             "filebrowser"      = try(module.filebrowser, null)  
             "netalertx"        = try(module.netalertx, null)  
+            "smokeping"        = try(module.smokeping, null)  
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)
