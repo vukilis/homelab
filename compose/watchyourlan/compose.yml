@@ -16,3 +16,4 @@ services:
       LOG_LEVEL: verbose
       THEME: sand
       TIMEOUT: 120
+      SHOUTRRR_URL: ${VAR_WYL_SHOUTRRR_URL}
