@@ -49,6 +49,7 @@
   - name: Set Docker GID fact safely
     ansible.builtin.set_fact:
       docker_gid: "{{ ansible_facts.getent_group['docker'][1] }}"
+      docker_app: "{{ inventory_hostname }}"
 
   - name: Create compose.yml
     copy:
@@ -60,12 +61,12 @@
             container_name: komodo-periphery
             labels:
               komodo.skip: ""
-              wud.trigger.include: "docker.linkstack"
             restart: unless-stopped
             user: "1000:1000"
             group_add:
               - "{{ docker_gid }}"
             environment:
+              DOCKER_HOST: tcp://dockerproxy:2375
               HOME: /etc/komodo
               PERIPHERY_ROOT_DIRECTORY: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
               PERIPHERY_PASSKEYS: ${PASSKEY}
@@ -74,11 +75,48 @@
               PERIPHERY_INCLUDE_DISK_MOUNTS: "/etc/hostname"
               KOMODO_WEBHOOK_SECRET: "${KOMODO_WEBHOOK_SECRET}"
             volumes:
-              - /var/run/docker.sock:/var/run/docker.sock
               - /proc:/proc
               - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
             ports:
               - 8120:8120
+            networks:
+              - docker-proxynet
+              - app-net
+            
+          dockerproxy:
+            image: wollomatic/socket-proxy:1
+            container_name: dockerproxy
+            restart: unless-stopped
+            labels:
+              komodo.skip: ""
+            user: "65534:{{ docker_gid }}"
+            read_only: true
+            mem_limit: 64M
+            security_opt:
+              - no-new-privileges
+            cap_drop:
+              - ALL
+            command:
+              - '-loglevel=info'
+              - '-allowfrom=komodo-periphery,beszel-agent,dozzle-agent,{{ docker_app }}'
+              - '-listenip=0.0.0.0'
+              - '-allowHEAD=(/v1\..{1,2})?/_ping'
+              - '-allowGET=(/v1\..{1,2})?/(containers(/.*)?|images(/.*)?|volumes(/.*)?|networks(/.*)?|info|version|events.*|_ping|nodes.*|services.*|tasks.*|session|exec/.*)'
+              - '-allowPOST=(/v1\..{1,2})?/(containers(/.*)?|images(/.*)?|volumes(/.*)?|networks(/.*)?|build|auth|commit|prune|exec/.*|session)'
+              - '-allowDELETE=(/v1\..{1,2})?/(containers(/.*)?|images(/.*)?|volumes(/.*)?|networks(/.*)?)'
+              - '-watchdoginterval=300'
+              - '-shutdowngracetime=10'
+            volumes:
+              - /var/run/docker.sock:/var/run/docker.sock:ro
+            networks:
+              - docker-proxynet
+        networks:
+          docker-proxynet:
+            internal: true
+            attachable: false
+          app-net:
+            driver: bridge
+            attachable: false
       owner: "{{ item }}"
       group: "{{ item }}"
       mode: '0644'
