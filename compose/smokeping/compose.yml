@@ -57,7 +57,7 @@ services:
       - 7007:7007
     environment:
       - PORT=7007
-      - BESZEL_HOSTNAME=225-speedtest
+      - BESZEL_HOSTNAME=234-smokeping
       - DOCKER_HOST=tcp://dockerproxy:2375
       - HOME=/tmp
     networks:
