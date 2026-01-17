@@ -248,6 +248,22 @@
         description: Network IP Scanner
         icon: watchyourlan
         siteMonitor: http://watchyourlan.lan:8840
+    - SmokePing:
+        id: col-small
+        href: http://smokeping.lan
+        description: Latency Measurement Tool
+        icon: smokeping
+        siteMonitor: http://smokeping.lan
+    - Gotify:
+        id: col-small
+        href: https://notifications.vukilis.com
+        description: Latency Measurement Tool
+        icon: gotify
+        siteMonitor: http://gotify.lan:8080
+        widget:
+          type: gotify
+          url: https://notifications.vukilis.com
+          key: {{HOMEPAGE_VAR_GOTIFY_KEY}}
 - Utilities:
     - HomeLab Diagram:
         id: col-small
@@ -610,10 +626,22 @@
         id: col-small
         href: https://news.ycombinator.com/
         icon: https://news.ycombinator.com/favicon.ico
+    - TheHackerNews:
+        id: col-small
+        href: https://thehackernews.com/
+        icon: https://thehackernews.com/favicon.ico
     - Hacktricks:
         id: col-small
         href: https://book.hacktricks.wiki/
         icon: https://book.hacktricks.wiki/favicon.png
+    - Darkreading:
+        id: col-small
+        href: https://www.darkreading.com/
+        icon: https://www.darkreading.com/favicon.ico
+    - Cvemon:
+        id: col-small
+        href: https://cvemon.intruder.io/
+        icon: https://cvemon.intruder.io/favicon.ico
     - Survey Stackoverflow:
         id: col-small
         href: https://survey.stackoverflow.co/
