@@ -1,0 +1,68 @@
+services:
+  gotify:
+    image: gotify/server
+    container_name: gotify
+    ports:
+      - 8080:80
+    environment:
+      GOTIFY_DEFAULTUSER_PASS: '${GOTIFY_PASSWORD}'
+      TZ: 'Europe/Belgrade'
+    restart: unless-stopped
+    volumes:
+      - './gotify_data:/app/data'
+    networks:
+      - docker-proxynet
+      - app-net
+    
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=228-gotify
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+    networks:
+      - docker-proxynet
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+  docker-proxynet:
+    external: true
+    name: komodoagent_docker-proxynet
