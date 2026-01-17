@@ -29,8 +29,6 @@ services:
       - ALL
     security_opt:
       - no-new-privileges
-    depends_on:
-      - dockerproxy
     ports:
       - 45876:45876
     environment:
@@ -55,8 +53,6 @@ services:
       - no-new-privileges
     volumes:
       - ./tmp:/tmp
-    depends_on:
-      - dockerproxy
     ports:
       - 7007:7007
     environment:
