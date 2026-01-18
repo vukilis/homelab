@@ -18,6 +18,7 @@ beszel ansible_host=192.168.0.224
 speedtest ansible_host=192.168.0.225
 mealie ansible_host=192.168.0.226
 linkstack ansible_host=192.168.0.227
+gotify ansible_host=192.168.0.228
 n8n ansible_host=192.168.0.229
 whatsupdocker ansible_host=192.168.0.230
 komodo ansible_host=192.168.0.231
