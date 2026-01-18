@@ -38,6 +38,7 @@ declare -A server_names=(
     # ["192.168.0.231"]="komodo"                    # Manual installation
     # ["192.168.0.232"]="wikidocs"                  # Manual installation
     # ["192.168.0.233"]="yaade"                     # Manual installation
+    # ["192.168.0.234"]="smokeping"                 # Manual installation
 )
 
 # Display Table of Servers
