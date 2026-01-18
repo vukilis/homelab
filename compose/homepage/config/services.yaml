@@ -162,7 +162,7 @@
         siteMonitor: http://npm.lan
         widget:
             type: npm
-            url: http://npm.lan
+            url: http://npm.lan:81
             username: {{HOMEPAGE_VAR_NPM_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
     - Cloudflared:
