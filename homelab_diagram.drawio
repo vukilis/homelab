@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="29.3.1">
   <diagram name="Page-1" id="Wwqm8vyQxhQhFInDNfWW">
-    <mxGraphModel dx="11130" dy="3885" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="5500" math="0" shadow="0">
+    <mxGraphModel dx="9704" dy="3108" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="5500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1225,8 +1225,8 @@
         <mxCell id="R-Yf4d6ab7t9Y9P3JOOh-149" parent="1" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=38;fontColor=#FF66FF;fontStyle=1" value="&lt;font color=&quot;#cc0000&quot;&gt;Workflow Automation Platform&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="800" x="-3020" y="2901.47" as="geometry" />
         </mxCell>
-        <mxCell id="R-Yf4d6ab7t9Y9P3JOOh-150" parent="1" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=top;whiteSpace=wrap;rounded=0;glass=0;shadow=0;fontSize=24;" value="&lt;div&gt;It’s like the brain for my notifications. It connects to various services so whether a server goes down, a stack finishes updating, or a client is flagged for malware, the system automatically routes the exact warning or status directly to my phone via Gotify and to my email.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="180" width="610" x="-2850" y="3010" as="geometry" />
+        <mxCell id="R-Yf4d6ab7t9Y9P3JOOh-150" parent="1" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=top;whiteSpace=wrap;rounded=0;glass=0;shadow=0;fontSize=24;" value="&lt;div&gt;It’s like the brain for my notifications. It connects to various services so whether a server goes down, a stack finishes updating, or a client is flagged for malware, the system automatically routes the exact warning or status directly to my phone via Gotify and to my email.&lt;/div&gt;&lt;div&gt;Manages my &lt;span data-path-to-node=&quot;5&quot; data-index-in-node=&quot;40&quot;&gt;automated backup&lt;/span&gt;&lt;b data-path-to-node=&quot;5&quot; data-index-in-node=&quot;40&quot;&gt; &lt;/b&gt;and performs &lt;span data-path-to-node=&quot;5&quot; data-index-in-node=&quot;81&quot;&gt;network discovery&amp;nbsp;to instantly notify me if an unrecognized device connects to my network.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="244.84" width="610" x="-2850" y="2974.35" as="geometry" />
         </mxCell>
         <mxCell id="R-Yf4d6ab7t9Y9P3JOOh-154" parent="1" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" value="" vertex="1">
           <mxGeometry height="130.49" width="130.49" x="-3030" y="1750" as="geometry" />
@@ -1327,31 +1327,10 @@
         <mxCell id="bf2X5sM7qfKUwecei8Db-6" parent="1" style="shape=message;html=1;outlineConnect=0;strokeColor=#FF0000;" value="" vertex="1">
           <mxGeometry height="43.07" width="64" x="-2646.1000000000004" y="3675.28" as="geometry" />
         </mxCell>
-        <mxCell id="bf2X5sM7qfKUwecei8Db-10" edge="1" parent="1" source="8a2aPskXrjCOrKV2TgSk-218" style="endArrow=none;html=1;rounded=0;strokeColor=#FF0000;flowAnimation=1;strokeWidth=2;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startArrow=none;startFill=0;" target="bf2X5sM7qfKUwecei8Db-11" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="-2038" y="3734" />
-            </Array>
-            <mxPoint x="-1700" y="3500.13" as="sourcePoint" />
-            <mxPoint x="-2130" y="2983" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="bf2X5sM7qfKUwecei8Db-12" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#FF0000,#FF8000);flowAnimation=1;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=6;endFill=0;entryPerimeter=0;" target="8a2aPskXrjCOrKV2TgSk-227" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-1580" y="3240" as="sourcePoint" />
             <mxPoint x="-1635" y="3671" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="bf2X5sM7qfKUwecei8Db-11" parent="1" style="shape=message;html=1;outlineConnect=0;strokeColor=#FF0000;" value="" vertex="1">
-          <mxGeometry height="43.07" width="64" x="-2070" y="3357.5299999999997" as="geometry" />
-        </mxCell>
-        <mxCell id="bf2X5sM7qfKUwecei8Db-16" edge="1" parent="1" source="bf2X5sM7qfKUwecei8Db-11" style="endArrow=classic;html=1;rounded=0;strokeColor=#FF0000;flowAnimation=1;strokeWidth=2;endFill=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=none;startFill=0;" target="R-Yf4d6ab7t9Y9P3JOOh-148" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="-2040" y="3053" />
-            </Array>
-            <mxPoint x="-1889" y="3875" as="sourcePoint" />
-            <mxPoint x="-2120" y="3460" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="bf2X5sM7qfKUwecei8Db-18" parent="1" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=light-dark(#FF6A00, #ff00d0);strokeColor=none;shape=mxgraph.alibaba_cloud.multimediaai;" value="" vertex="1">
