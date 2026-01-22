@@ -943,7 +943,6 @@ module "filebrowser" {
     nesting = true
     keyctl  = false
 }
-
 module "smokeping" {
     source = "../../modules/proxmox_lxc"
 
@@ -985,7 +984,6 @@ module "smokeping" {
     nesting = true
     keyctl  = false
 }
-
 module "gotify" {
     source = "../../modules/proxmox_lxc"
 
@@ -1021,6 +1019,88 @@ module "gotify" {
     searchdomain = "adguard.vukilis.com"
     nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
     tags         = ["ct", "terraform", "monitoring"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "turnkey-fileserver" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = false
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-12-turnkey-fileserver_18.0-1_amd64.tar.gz"
+    start_at_boot   = true
+
+    vmid          = 236
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 2
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 512
+    swap      = 512
+    disk_size = "8G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.236/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "turnkey-fileserver"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
+    tags         = ["ct", "terraform", "infrastructure"]
+
+    # Other Settings
+    onboot  = true
+    nesting = true
+    keyctl  = false
+}
+module "navidrome" {
+    source = "../../modules/proxmox_lxc"
+
+    enable_ssh_hardening = true
+    alpine_ssh_hardening = false
+    pve_connection = var.pve_connection
+    ssh_public_keys = file(pathexpand("~/.ssh/vuk.lekic.pub"))
+    target_node     = "homelab-vukilis"
+    ostemplate      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    start_at_boot   = true
+
+    vmid          = 205
+    root_password = var.root_password
+    unprivileged  = "true"
+
+    # Resource Allocation
+    cores     = 1
+    cpu_limit = 0
+    cpu_units = 100
+    memory    = 1024
+    swap      = 0
+    disk_size = "8G"
+    storage   = "local-lvm"
+
+    # Network Settings
+    network_name   = "eth0"
+    network_bridge = "vmbr0"
+    ip_address     = "192.168.0.205/24"
+    gateway        = "192.168.0.1"
+
+    # Identity & DNS
+    hostname     = "navidrome"
+    searchdomain = "adguard.vukilis.com"
+    nameserver   = "192.168.0.202 1.1.1.1 9.9.9.9"
+    tags         = ["ct", "terraform", "media"]
 
     # Other Settings
     onboot  = true
