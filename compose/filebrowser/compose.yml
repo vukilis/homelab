@@ -10,7 +10,7 @@ services:
 
     user: filebrowser
     volumes:
-      - /mnt:/files
+      - /mnt/data:/files
       - ./data:/home/filebrowser/data
     ports:
       - 8080:80
