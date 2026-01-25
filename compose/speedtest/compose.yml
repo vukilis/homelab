@@ -20,6 +20,7 @@ services:
       - SPEEDTEST_SCHEDULE='0 */6 * * *'
       - DATETIME_FORMAT='j M Y, G:i:s'
       - DOCKER_HOST=tcp://dockerproxy:2375
+      - SPEEDTEST_SERVERS=${SPEEDTEST_SERVERS}
       #- PUBLIC_DASHBOARD='true'
     volumes:
       - ./config:/config
