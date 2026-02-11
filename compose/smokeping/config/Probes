@@ -1,0 +1,13 @@
+*** Probes ***
++ FPing
+binary = /usr/sbin/fping
+
++ DNS
+binary = /usr/bin/dig
+lookup = google.com
+pings = 5
+
++ TCPPing
+binary = /usr/bin/tcpping
+forks = 5
+step = 300

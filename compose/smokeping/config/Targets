@@ -1,0 +1,185 @@
+*** Targets ***
+# --- This line 'registers' the DNS probe if it wasn't loaded yet ---
+probe = FPing
+
+menu = Top
+title = Network Latency
+
+# --- HOME NETWORK ---
++ HomeNetwork
+menu = Home Network
+title = Home Network
+
+++ Router
+menu = Router
+title = Archer C6
+host = 192.168.0.1
+
+++ Switch
+menu = Switch
+title = HORACO
+host = 192.168.0.2
+
+++ Modem
+menu = Modem
+title = HUAWEI
+host = 192.168.100.1
+
+# --- PROXMOX SERVERS ---
++ ProxmoxNodes
+menu = Proxmox Nodes
+title = Proxmox Nodes Status
+++ homelab-vukilis
+probe = TCPPing
+menu = homelab-vukilis
+title = TCP check for Node homelab-vukilis
+host = 192.168.0.200
+port = 8006
+
++ ProxmoxLXC        
+menu = Proxmox LXC
+title = Proxmox Nodes Status
+++ uptime-kuma
+menu = 201-uptime-kuma
+title = Uptime-Kuma Status
+host = 192.168.0.201
+++ adguard    
+menu = 202-adguard    
+title = AdGuard Status    
+host = 192.168.0.202
+++ homepage
+menu = 203-homelage
+title = Homepage Status
+host = 192.168.0.203
+++ qbittorrent
+menu = 204-qbittorrent
+title = qBittorrent Status
+host = 192.168.0.204
+++ Navidrome
+menu = 205-navidrome
+title = Navidrome Status
+host = 192.168.0.205
+++ filebrowser
+menu = 206-filebrowser
+title = Filebrowser Status
+host = 192.168.0.206
+++ vaultwarden
+menu = 207-vaultwarden
+title = Vaultwarden Status
+host = 192.168.0.207
+++ pbs
+menu = 205-proxmox-backup-server
+title = Proxmox Backup Server Status
+host = 192.168.0.208
+++ nmp
+menu = 209-npm
+title = Nginx Proxy Manager Status
+host = 192.168.0.209
+++ medusa
+menu = 210-medusa
+title = Medusa Status
+host = 192.168.0.210
+++ authentik
+menu = 211-authentik
+title = Authentik Status
+host = 192.168.0.211
+++ usememos
+menu = 212-usememos
+title = Usememos Status
+host = 192.168.0.212
+++ cloudflare
+menu = 213-cloudflare
+title = Cloudflare Status
+host = 192.168.0.213
+++ wallos
+menu = 214-wallos
+title = Wallos Status
+host = 192.168.0.214
+++ watchyourlan
+menu = 215-watchyourlan
+title = Watchyourlan Status
+host = 192.168.0.215
+++ dozzle
+menu = 216-dozzle
+title = Dozzle Status
+host = 192.168.0.216
+++ traccar
+menu = 217-traccar
+title = Traccar Status
+host = 192.168.0.217
+++ pocketid
+menu = 218-pocketid
+title = Pocketid Status
+host = 192.168.0.218
+++ jetlog
+menu = 219-jetlog
+title = Jetlof Status
+host = 192.168.0.219
+++ it-tools
+menu = 220-it-tools
+title = It-Tools Status
+host = 192.168.0.220
+++ homeassistant
+menu = 221-homeassistant
+title = HomeAssistant Status
+host = 192.168.0.221
+++ twingate
+menu = 222-twingate
+title = Twingate Status
+host = 192.168.0.222
+++ grafana
+menu = 223-grafana
+title = Grafana Status
+host = 192.168.0.223
+++ beszel
+menu = 224-beszel
+title = Beszel Status
+host = 192.168.0.224
+++ speedtest
+menu = 225-speedtest
+title = Speedtest Status
+host = 192.168.0.225
+++ mealie
+menu = 226-mealie
+title = Mealie Status
+host = 192.168.0.226
+++ linkstack
+menu = 227-linkstack
+title = Linkstack Status
+host = 192.168.0.227
+++ n8n
+menu = 229-n8n
+title = N8N Status
+host = 192.168.0.229
+++ komodo
+menu = 231-komodo
+title = Komodo Status
+host = 192.168.0.231
+++ wikidocs
+menu = 232-wikidocs
+title = Wikidocs Status
+host = 192.168.0.232
+++ yaade
+menu = 233-yaade
+title = Yaade Status
+host = 192.168.0.233
+++ smokeping
+menu = 234-smokeping
+title = Smokeping Status
+host = 192.168.0.234
+# --- WEBSITE DNS CHECK ---
++ Services
+menu = Services
+title = DNS Latency
+++ WebDNSAdGuard
+probe = DNS
+menu = Website DNS Using AdGuard
+title = AdGuard DNS check for vukilis.com 
+host = 192.168.0.202
+lookup = vukilis.com
+++ WebDNSCloudflare
+probe = DNS
+menu = Website DNS Using Cloudflare
+title = Cloudflare DNS check for vukilis.com
+host = 1.1.1.1
+lookup = vukilis.com
