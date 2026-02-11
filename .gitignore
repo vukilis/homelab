@@ -47,3 +47,15 @@ override.tf.json
 # --- OS Specific ---
 .DS_Store
 Thumbs.db
+
+## --- compose specific ignores ---
+
+# smokeping
+compose/smokeping/data
+compose/smokeping/config/site-confs
+compose/smokeping/config/Database
+compose/smokeping/config/httpd.conf
+compose/smokeping/config/Presentation
+compose/smokeping/config/Slaves
+compose/smokeping/config/smokeping_secrets
+compose/smokeping/config/ssmtp.conf
