@@ -30,6 +30,7 @@
 
 - Infrastructure and Data:
     - Proxmox:
+        id: col-small
         href: https://proxmox.lan:8006
         icon: proxmox.png
         description: Proxmox Virtual Environment
@@ -40,6 +41,7 @@
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
     - Proxmox Backup Server:
+        id: col-small
         href: https://pxm.backup.lan:8007
         icon: proxmox.png
         description: Proxmox Backup Server
@@ -61,7 +63,12 @@
         icon: windows-10
         description: Windows 10 Operating System
         ping: 192.168.0.110
-
+    - Turnkey-Fileserver:
+        id: col-small
+        href: http://fileserver.lan
+        icon: https://www.turnkeylinux.org/files/images/icons/erver_0.jpg
+        description: File Server
+        siteMonitor: http://fileserver.lan
 - Security and Identity:
     - AdGuard Home:
         id: col-small
@@ -319,12 +326,6 @@
         icon: linkstack
         description: Link Sharing Platform
         siteMonitor: http://links.lan:8080
-    - Yaade:
-        id: col-small
-        href: http://yaade.vukilis.com
-        icon: yaade
-        description: API Collections
-        siteMonitor: http://yaade.lan:8086
 
 - IoT and Smarthome:
     - Home Assistant:
@@ -454,7 +455,7 @@
     - RD Live:
         id: col-small
         href: https://namesorrel.com/
-        icon: https://namesorrel.com/favicon.ico
+        icon: https://namesorrel.com/assets/favicon.svg
     - Utakmice Stream:
         id: col-small
         href: https://utakmice.stream/
@@ -535,10 +536,10 @@
         href: https://damag.net/
         icon: https://d4.alternativeto.net/vi3mqXneYDJNe3MnGet3m8fkLunRG86iC07IjAB9qzo/rs:fit:280:280:0/g:ce:0:0/exar:1/YWJzOi8vZGlzdC9pY29ucy90b3JyZW50LWdhbGF4eV8yMTgwMjIucG5n.png
         description: Torrent
-    - YIFI:
+    - Knaben:
         id: col-small
-        href: https://yts.mx/
-        icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo-YTS.svg/2560px-Logo-YTS.svg.png
+        href: https://knaben.org/
+        icon: https://knaben.org/favicon.ico
         description: Movies & Series
     - Arcadepunks:
         id: col-small
@@ -601,7 +602,7 @@
     - Gamerant:
         id: col-small
         href: https://gamerant.com/gaming/
-        icon: https://gamerant.com/public/build/images/favicon-192x192.67e9c250.png
+        icon: https://gamerant.com/public/build/images/favicon-192x192.png
     - steamdb.info:
         id: col-small
         href: https://steamdb.info/sales/history/
@@ -729,10 +730,18 @@
         id: col-small
         href: https://check-host.net/
         icon: https://check-host.net/favicon.ico
+    - mxtoolbox:
+        id: col-small
+        href: https://mxtoolbox.com/
+        icon: https://mxtoolbox.com/favicon.ico
     - Asciiflow:
         id: col-small
         href: https://asciiflow.com
         icon: https://raw.githubusercontent.com/lewish/asciiflow/refs/heads/main/client/public/favicon.png
+    - comparetwolists:
+        id: col-small
+        href: https://comparetwolists.com/
+        icon: https://comparetwolists.com/favicon.ico
     - Fetchrss:
         id: col-small
         href: https://fetchrss.com/
