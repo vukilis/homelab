@@ -541,6 +541,11 @@
         href: https://knaben.org/
         icon: https://knaben.org/favicon.ico
         description: Movies & Series
+    - YIFY:
+        id: col-small
+        href: https://yts.bz/
+        icon: https://yts.bz/favicon.ico
+        description: Movies & Series
     - Arcadepunks:
         id: col-small
         href: https://www.arcadepunks.com/
@@ -586,6 +591,31 @@
         href: https://w17.monkrus.ws/
         icon: https://w17.monkrus.ws/favicon.ico
         description: Adobe Cracks
+- Linux:
+    - Flathub:
+        id: col-small
+        href: https://flathub.org/
+        icon: flathub-dark
+    - ChrisTitusGIT:
+        id: col-small
+        href: https://github.com/ChrisTitusTech
+        icon: github-light
+    - ChrisTitus:
+        id: col-small
+        href: https://christitus.com/
+        icon: https://christitus.com/images/favicon.png
+    - ArchWiki:
+        id: col-small
+        href: https://wiki.archlinux.org
+        icon: https://wiki.archlinux.org/favicon.ico
+    - LiNUX:
+        id: col-small
+        href: https://www.linux.com/
+        icon: https://www.linux.com/wp-content/uploads/2019/08/favicon-300x300.png
+    - distrowatch:
+        id: col-small
+        href: https://distrowatch.com/
+        icon: https://distrowatch.com/favicon.ico
 - Gaming & Tech News:
     - Svet Kompjutera:
         id: col-small

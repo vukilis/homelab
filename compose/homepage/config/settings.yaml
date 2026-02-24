@@ -80,6 +80,9 @@ layout:
   Gaming & Tech News:
     tab: BOOKMARKS
     icon: mdi-alpha-n-#FFFFFF
+  Linux:
+    tab: BOOKMARKS
+    icon: linux
   Gaming Clients:
     tab: BOOKMARKS
     icon: mdi-gamepad-#FFFFFF
