@@ -616,6 +616,14 @@
         id: col-small
         href: https://distrowatch.com/
         icon: https://distrowatch.com/favicon.ico
+    - thelinuxbook:
+        id: col-small
+        href: https://thelinuxbook.com/
+        icon: https://thelinuxbook.com/favicon.png
+    - Distrosea:
+        id: col-small
+        href: https://distrosea.com/
+        icon: https://distrosea.com/favicon-32x32.png
 - Gaming & Tech News:
     - Svet Kompjutera:
         id: col-small
