@@ -393,7 +393,7 @@
     - IMDB:
         id: col-small
         href: https://www.imdb.com
-        icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png
+        icon: https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
     - Releases:
         id: col-small
         href: https://www.releases.com/
@@ -641,10 +641,6 @@
         id: col-small
         href: https://gamerant.com/gaming/
         icon: https://gamerant.com/public/build/images/favicon-192x192.png
-    - steamdb.info:
-        id: col-small
-        href: https://steamdb.info/sales/history/
-        icon: https://steamdb.info/favicon.ico
     - Bleepingcomputer:
         id: col-small
         href: https://www.bleepingcomputer.com/
@@ -689,7 +685,7 @@
         id: col-small
         href: https://idiokratija.com/
         icon: https://idiokratija.com/favicon.ico
-- Gaming Clients:
+- Gaming Clients & Info:
     - Steam:
         id: col-small
         href: https://store.steampowered.com/
@@ -718,6 +714,14 @@
         id: col-small
         href: https://www.nexusmods.com/
         icon: https://www.nexusmods.com/favicon.ico
+    - steamdb.info:
+        id: col-small
+        href: https://steamdb.info/sales/history/
+        icon: https://steamdb.info/favicon.ico
+    - HowLongToBeat:
+        id: col-small
+        href: https://www.howlongtobeat.com/
+        icon: https://www.howlongtobeat.com/favicon.ico
 - FileSharing:
     - Google Drive:
         id: col-small
@@ -808,6 +812,16 @@
         href: https://suno.com/
         icon: https://cdn-o.suno.com/favicon-192x192.png
         description: Project Manager
+    - HRTF Database:
+        id: col-small
+        href: https://airtable.com/appayGNkn3nSuXkaz/shruimhjdSakUPg2m/tbloLjoZKWJDnLtTc
+        icon: https://airtable.com/images/favicon/baymax/android-chrome-192x192.png?v=2
+        description: HeSuVi Database
+    - AutoEq:
+        id: col-small
+        href: https://autoeq.app/
+        icon: https://autoeq.app/favicon-32x32.png
+        description: Headphone Equalization
 - Travel:
     - Booking:
         id: col-small

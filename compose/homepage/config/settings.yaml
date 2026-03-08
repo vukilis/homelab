@@ -83,7 +83,7 @@ layout:
   Linux:
     tab: BOOKMARKS
     icon: linux
-  Gaming Clients:
+  Gaming Clients & Info:
     tab: BOOKMARKS
     icon: mdi-gamepad-#FFFFFF
   FileSharing:
