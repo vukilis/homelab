@@ -11,9 +11,9 @@ services:
       USE_DB: sqlite 
       HOST: 0.0.0.0
       PORT: "8840"
-      TRIM_HIST: "48"
+      TRIM_HIST: "24"
       IFACES: eth0
-      LOG_LEVEL: verbose
+      LOG_LEVEL: info
       THEME: sand
       TIMEOUT: 120
       SHOUTRRR_URL: ${VAR_WYL_SHOUTRRR_URL}
