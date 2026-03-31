@@ -7,6 +7,7 @@ services:
     image: vaultwarden/server:latest
     environment:
       - SIGNUPS_ALLOWED=false
+      - DOMAIN='${VAR_VAULTWARDEN_DOMAIN}'
     ports:
       - "80:80"
     restart: unless-stopped
