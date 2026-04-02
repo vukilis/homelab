@@ -33,6 +33,28 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/vuk.lekic
 ```
 
+### 2. Create And Activate The Virtual Environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Requirements And Collections
+
+```bash
+pip install ansible passlib
+ansible-galaxy collection install community.general ansible.posix community.docker
+```
+
+### 4 Check 
+
+```bash
+ansible --version
+```
+
+> NOTE: Executable location should change to: executable location = `~/homelab/ansible/venv/bin/ansible`
+
 ### 3. Usage
 
 Run the main playbook:
