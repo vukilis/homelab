@@ -4,6 +4,9 @@
 *.pub
 *.log
 
+# --- Python Specifics ---
+venv/
+
 # --- Ansible Specifics ---
 ansible/.vault
 ansible/roles/**/files/secrets/
