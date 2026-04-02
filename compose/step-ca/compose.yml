@@ -1,0 +1,90 @@
+services:
+  step-ca:
+    image: smallstep/step-ca:latest
+    container_name: step-ca
+    hostname: step-ca
+    ports:
+      - "9000:9000"
+    user: "65534:65534"
+    read_only: false
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    volumes:
+      - ./data:/home/step/data
+      - ./config:/home/step/config
+      - /run/pcscd/pcscd.comm:/run/pcscd/pcscd.comm:ro
+    environment:
+      # Name of Cert Authority (i.e., PrivateCorp CA). Visible on all issued certs.
+      - "DOCKER_STEPCA_INIT_NAME=${CA_NAME}"
+      # Comma-separated list of hostnames/IP addresses the CA will accept requests on
+      - "DOCKER_STEPCA_INIT_DNS_NAMES=${CA_DNS_NAMES}"
+      # Name for the initial provisioner. Default is 'admin' if left null.
+      - "DOCKER_STEPCA_INIT_PROVISIONER_NAME=${STEP_PROVISIONER_NAME}"
+      # Specify a password for encrypted CA Keys & Default CA Provisioner
+      - "DOCKER_STEPCA_INIT_PASSWORD=${CA_ENCRYPTION_PASS}"
+      # Set this to any non-null value to enable SSH cert support
+      - "DOCKER_STEPCA_INIT_SSH=${INIT_SSH}"
+      # Let step-ca know it should look for a YubiKey
+      - STEP_KMS_TYPE=yubikey
+    dns:
+      - '${DNS1}'
+      - '${DNS2}'
+      - '${DNS3}'
+    dns_search:
+      - '${DOMAIN}'
+    restart: unless-stopped
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=237-step-ca
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+    networks:
+      - docker-proxynet
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+  docker-proxynet:
+    external: true
+    name: komodoagent_docker-proxynet
