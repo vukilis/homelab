@@ -17,7 +17,7 @@
       content: |
         PERIPHERY_ROOT_DIRECTORY={{ periphery_root }}
         PASSKEY={{ passkey }}
-        KOMODO_WEBHOOK_SECRET={{ KOMODO_WEBHOOK_SECRET }}
+        KOMODO_WEBHOOK_SECRET={{ komodo_webhook_secret }}
       owner: "{{ item }}"
       group: "{{ item }}"
       mode: '0600'
@@ -73,7 +73,7 @@
               PERIPHERY_SSL_ENABLED: "true"
               PERIPHERY_DISABLE_TERMINALS: "false"
               PERIPHERY_INCLUDE_DISK_MOUNTS: "/etc/hostname"
-              KOMODO_WEBHOOK_SECRET: "${KOMODO_WEBHOOK_SECRET}"
+              KOMODO_WEBHOOK_SECRET: "${komodo_webhook_secret}"
             volumes:
               - /proc:/proc
               - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
