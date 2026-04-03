@@ -1,0 +1,99 @@
+---
+services:
+  semaphore_db:
+    image: mysql:latest
+    container_name: semaphore_db
+    environment:
+        MYSQL_USER: ${SEMAPHORE_DB_USER:?error}
+        MYSQL_PASSWORD: ${SEMAPHORE_DB_PASS:?error}
+        MYSQL_DATABASE: ${SEMAPHORE_DB_NAME:?error}
+        MYSQL_RANDOM_ROOT_PASSWORD: yes
+    volumes:
+        - ./ysql:/var/lib/mysql
+    networks:
+        - docker-proxynet
+        - app-net
+  semaphore:
+    ports:
+      - 3000:3000
+    depends_on:
+      - semaphore_db
+    image: semaphoreui/semaphore:latest
+    container_name: semaphore
+    environment:
+      SEMAPHORE_DB_DIALECT: mysql
+      SEMAPHORE_DB_HOST: ${SEMAPHORE_DB_HOST:?error}
+      SEMAPHORE_DB_NAME: ${SEMAPHORE_DB_NAME:?error}
+      SEMAPHORE_DB_USER: ${SEMAPHORE_DB_USER:?error}
+      SEMAPHORE_DB_PASS: ${SEMAPHORE_DB_PASS:?error}
+      SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN:?error}
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD:?error}
+      SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME:?error}
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL:?error}
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: "${SEMAPHORE_ACCESS_KEY_ENCRYPTION:?error}"
+      SEMAPHORE_SCHEDULE_TIMEZONE: "Europe/Belgrade"
+      SEMAPHORE_EVENT_LOG_FORMAT: "json"
+      SEMAPHORE_TASK_LOG_FORMAT: "json"
+      SEMAPHORE_GOTIFY_ALERT: "True"
+      SEMAPHORE_GOTIFY_URL: "${SEMAPHORE_GOTIFY_URL:?error}"
+      SEMAPHORE_GOTIFY_TOKEN: "${SEMAPHORE_GOTIFY_TOKEN:?error}"
+    volumes:
+      - ./data:/var/lib/semaphore:ro
+      - ./config:/etc/semaphore:rw
+      - ./tmp:/tmp/semaphore:ro
+    networks:
+      - docker-proxynet
+      - app-net
+
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp:/tmp
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=237-semaphore
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp
+    networks:
+      - docker-proxynet
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+  docker-proxynet:
+    external: true
+    name: komodoagent_docker-proxynet
