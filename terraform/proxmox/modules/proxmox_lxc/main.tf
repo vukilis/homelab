@@ -67,7 +67,7 @@ resource "null_resource" "ssh_config_provisioner" {
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
-                -i "~/.ssh/vuk.lekic" root@${var.pve_connection} \
+                -i "$HOME/.ssh/vuk.lekic" root@${var.pve_connection} \
                 "pct exec ${proxmox_lxc.container.vmid} -- sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config && \
                 pct exec ${proxmox_lxc.container.vmid} -- systemctl restart ssh"
         EOT
@@ -89,7 +89,7 @@ resource "null_resource" "alpine_ssh" {
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
-                -i "~/.ssh/vuk.lekic" root@${var.pve_connection} \
+                -i "$HOME/.ssh/vuk.lekic" root@${var.pve_connection} \
                 "pct exec ${proxmox_lxc.container.vmid} -- apk add --no-cache openssh && \
                 pct exec ${proxmox_lxc.container.vmid} -- sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config && \
                 pct exec ${proxmox_lxc.container.vmid} -- rc-update add sshd default && \
