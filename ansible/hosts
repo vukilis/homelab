@@ -25,6 +25,7 @@ komodo ansible_host=192.168.0.231
 wikidocs ansible_host=192.168.0.232
 yaade ansible_host=192.168.0.233
 smokeping ansible_host=192.168.0.234
+semaphore ansible_host=192.168.0.237
 
 [test-containers]
 stremio ansible_host=192.168.0.251
