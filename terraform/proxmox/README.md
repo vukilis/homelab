@@ -27,7 +27,16 @@ terraform/
             └── variables.tf     # The required inputs (RAM, CPU, Disk) for the module
 ```
 
-### 1. Initialize Project
+### 1. Export Variables
+
+Initialize locally Cloudflare R2 API.
+
+```bash
+export AWS_ACCESS_KEY_ID=""  
+export AWS_SECRET_ACCESS_KEY=""
+```
+
+### 2. Initialize Project
 
 Download providers and initialize the backend.
 
@@ -35,7 +44,7 @@ Download providers and initialize the backend.
 terraform init
 ```
 
-### 2. Plan Infrastructure
+### 3. Plan Infrastructure
 
 Review the changes before they are made. This step is critical to avoid accidental deletions.
 
@@ -43,7 +52,7 @@ Review the changes before they are made. This step is critical to avoid accident
 terraform plan
 ```
 
-### 3. Apply Changes
+### 4. Apply Changes
 
 Deploy the infrastructure to the proxmox.
 
@@ -51,7 +60,7 @@ Deploy the infrastructure to the proxmox.
 terraform apply
 ```
 
-### 4. Target Specific Deletion
+### 5. Target Specific Deletion
 
 To destroy a specific module (like a test environment) without affecting the entire stack:
 
