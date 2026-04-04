@@ -63,11 +63,11 @@ resource "null_resource" "ssh_config_provisioner" {
         command = <<EOT
             sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
-            ssh -v -o StrictHostKeyChecking=no \
+            ssh -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
-                -i "/home/semaphore/.ssh/vuk.lekic" root@${var.pve_connection} \
+                -i "~/.ssh/vuk.lekic" root@${var.pve_connection} \
                 "pct exec ${proxmox_lxc.container.vmid} -- sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config && \
                 pct exec ${proxmox_lxc.container.vmid} -- systemctl restart ssh"
         EOT
@@ -85,11 +85,11 @@ resource "null_resource" "alpine_ssh" {
             # Random sleep to prevent SSH collisions during bulk creation
             sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
-            ssh -v -o StrictHostKeyChecking=no \
+            ssh -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
-                -i "/home/semaphore/.ssh/vuk.lekic" root@${var.pve_connection} \
+                -i "~/.ssh/vuk.lekic" root@${var.pve_connection} \
                 "pct exec ${proxmox_lxc.container.vmid} -- apk add --no-cache openssh && \
                 pct exec ${proxmox_lxc.container.vmid} -- sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config && \
                 pct exec ${proxmox_lxc.container.vmid} -- rc-update add sshd default && \
