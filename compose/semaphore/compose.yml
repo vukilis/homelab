@@ -40,7 +40,7 @@ services:
     volumes:
       - ./data:/var/lib/semaphore:ro
       - ./config:/etc/semaphore:rw
-      - ./tmp:/tmp/semaphore:ro
+      - ./tmp:/tmp/semaphore:rw
     networks:
       - docker-proxynet
       - app-net
