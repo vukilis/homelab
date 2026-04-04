@@ -61,7 +61,7 @@ resource "null_resource" "ssh_config_provisioner" {
     }
     provisioner "local-exec" {
         command = <<EOT
-            sleep $[ ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ]
+            sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
             ssh -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
@@ -83,7 +83,7 @@ resource "null_resource" "alpine_ssh" {
     provisioner "local-exec" {
         command = <<EOT
             # Random sleep to prevent SSH collisions during bulk creation
-            sleep $[ ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ]
+            sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
             ssh -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
