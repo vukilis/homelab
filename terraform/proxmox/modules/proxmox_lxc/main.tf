@@ -63,7 +63,7 @@ resource "null_resource" "ssh_config_provisioner" {
         command = <<EOT
             sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
-            ssh -o StrictHostKeyChecking=no \
+            ssh -v -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
@@ -85,7 +85,7 @@ resource "null_resource" "alpine_ssh" {
             # Random sleep to prevent SSH collisions during bulk creation
             sleep $(( ( ${proxmox_lxc.container.vmid} % 5 ) + 1 ))
 
-            ssh -o StrictHostKeyChecking=no \
+            ssh -v -o StrictHostKeyChecking=no \
                 -o UserKnownHostsFile=/dev/null \
                 -o IdentitiesOnly=yes \
                 -o ConnectTimeout=10 \
