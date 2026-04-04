@@ -35,14 +35,14 @@ output "all_containers" {
             "gotify"           = try(module.gotify, null)  
             "turnkey-fileserver" = try(module.turnkey-fileserver, null)  
             "navidrome"        = try(module.navidrome, null)  
+            "semaphore"        = try(module.semaphore, null)  
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)
         } : name => {
-            id      = data != null ? data.vmid : "Module not targeted"
-            ip      = data != null ? data.ip_address : "Module not targeted"
-            name    = data != null ? data.hostname : "Module not targeted"
-            # ip = try(tostring(data.ip_address), "Pending/Known after apply")
-        }
+            id   = try(data.vmid, "Not in state")
+            ip   = try(data.ip_address, "Not in state")
+            name = try(data.hostname, "Not in state")
+        } if data != null
     }
 }

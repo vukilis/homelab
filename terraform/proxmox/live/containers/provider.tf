@@ -2,6 +2,21 @@ terraform {
 
     required_version = ">= 0.13.0"
 
+    backend "s3" {
+        bucket                      = "homelab-terraform-state"
+        key                         = "proxmox/live/containers/terraform.tfstate"
+        region                      = "auto"
+        endpoints = {
+          s3 = "https://7171193dbdb036550cb7f3cf33ef37e3.r2.cloudflarestorage.com"
+        }
+
+        skip_credentials_validation = true
+        skip_region_validation      = true
+        skip_requesting_account_id  = true
+        skip_metadata_api_check     = true
+        skip_s3_checksum            = true
+    }
+
     required_providers {
       proxmox = {
         source  = "Telmate/proxmox"
