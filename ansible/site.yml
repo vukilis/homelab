@@ -6,19 +6,37 @@
     - packages.yml
   remote_user: "{{ remote_user }}"
   become: true
-  gather_facts: yes                   # no/yes for Alpine Linux compatibility
+  gather_facts: "{{ gather_facts_enabled | default(true) | bool }}"            # no/yes for Alpine Linux compatibility
+  pre_tasks:
+    - name: "Verified: The following roles will be executed"
+      debug:
+        msg: "Role [{{ item }}] is set to: {{ vars[item] | default(false) | bool }}"
+      loop:
+        - debian_containers
+        - alpine_containers
+        - debian_containers_hardened
+        - debian_install_docker
+        - alpine_install_docker
+        - debian_comodo_agent_docker
+        - alpine_comodo_agent_docker
+        - prepare_dozzle_agent
+        - cleanup_docker_resources
+      when: vars[item] | default(false) | bool
+      tags: [always]
   roles:
-    # - debian-containers             # Role to prepare container template
-    # - alpine-containers             # Role to prepare container template for Alpine Linux
+    # --- Infrastructure Layer ---
+    - { role: debian-containers, when: debian_containers | default(false) | bool }                       # Role to prepare container template
+    - { role: alpine-containers, when: alpine_containers | default(false) | bool }                       # Role to prepare container template for Alpine Linux
+    - { role: debian-containers-hardened, when: debian_containers_hardened | default(false) | bool }     # Role to make container more secure 
 
-    # - debian-containers-hardened    # Role to make container more secure 
+    # --- Docker Layer ---
+    - { role: debian-install-docker, when: debian_install_docker | default(false) | bool }               # Role to install Docker Engine and related components
+    - { role: alpine-install-docker, when: alpine_install_docker | default(false) | bool }               # Role to install Docker Engine on Alpine Linux
 
-    # - debian-install-docker         # Role to install Docker Engine and related components
-    # - alpine-install-docker         # Role to install Docker Engine on Alpine Linux
+    # --- Agent Layer ---
+    - { role: debian-comodo-agent-docker, when: debian_comodo_agent_docker | default(false) | bool }     # Role to deploy Komodo Agent container   
+    - { role: alpine-comodo-agent-docker, when: alpine_comodo_agent_docker | default(false) | bool }     # Role to deploy Komodo Agent on Alpine container 
+    - { role: prepare-dozzle-agent, when: prepare_dozzle_agent | default(false) | bool }                 # Role to prepare /tmp directory for Dozzle logs
 
-    # - debian-comodo-agent-docker    # Role to deploy Komodo Agent container    
-    # - alpine-comodo-agent-docker    # Role to deploy Komodo Agent container  
-
-    # - prepare-dozzle-agent          # Role to prepare /tmp directory for Dozzle logs
-
-    # - cleanup-docker-resources      # Role to clean up unused Docker resources
+    # --- Maintenance ---
+    - { role: cleanup-docker-resources, when: cleanup_docker_resources | default(false) | bool }         # Role to clean up unused Docker resources
