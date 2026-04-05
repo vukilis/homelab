@@ -81,14 +81,14 @@ services:
     security_opt:
       - no-new-privileges
     volumes:
-      - ./tmp:/tmp
+      - ./tmp-dozzle:/tmp
     ports:
       - 7007:7007
     environment:
       - PORT=7007
       - BESZEL_HOSTNAME=237-semaphore
       - DOCKER_HOST=tcp://dockerproxy:2375
-      - HOME=/tmp
+      - HOME=/tmp-dozzle
     networks:
       - docker-proxynet
       - app-net
