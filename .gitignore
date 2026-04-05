@@ -14,6 +14,9 @@ ansible/roles/**/vars/*.yml
 ansible/roles/update-docker-app
 ansible/roles/ct-from-template
 ansible/roles/mount-points
+ansible/collections/
+ansible/.ansible/
+ansible/*.retry
 # ansible/
 
 # --- Terraform Specifics ---
