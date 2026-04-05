@@ -22,6 +22,7 @@ services:
     container_name: semaphore
     environment:
       SEMAPHORE_WEB_ROOT: "/"
+      SEMAPHORE_PASSWORD_LOGIN_DISABLED: true
       SEMAPHORE_DB_DIALECT: mysql
       SEMAPHORE_DB_HOST: ${SEMAPHORE_DB_HOST:?error}
       SEMAPHORE_DB_NAME: ${SEMAPHORE_DB_NAME:?error}
@@ -38,7 +39,6 @@ services:
       SEMAPHORE_GOTIFY_ALERT: "True"
       SEMAPHORE_GOTIFY_URL: "${SEMAPHORE_GOTIFY_URL:?error}"
       SEMAPHORE_GOTIFY_TOKEN: "${SEMAPHORE_GOTIFY_TOKEN:?error}"
-      SEMAPHORE_TOTP_ENABLED: "True"
     volumes:
       - ./data:/var/lib/semaphore:ro
       - ./config:/etc/semaphore:rw
