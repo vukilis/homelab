@@ -188,6 +188,12 @@
         icon: n8n
         description: Workflow Automation Platform
         siteMonitor: http://n8n.lan:5678
+    - Semaphore:
+        id: col-small
+        href: https://semaphore.vukilis.com
+        icon: semaphore
+        description: CI/CD Platform
+        siteMonitor: http://semaphore.lan:3000
 
 - Monitoring:
     - UptimeKuma:
