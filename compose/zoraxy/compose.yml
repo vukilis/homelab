@@ -1,0 +1,76 @@
+services:
+  zoraxy:
+    image: tobiaskoch/zoraxy
+    container_name: zoraxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8000:8000"
+    volumes:
+      - ./config/:/opt/zoraxy/config/
+      - ./plugin/:/opt/zoraxy/plugin/
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      FASTGEOIP: "true"
+      TZ: "Europe/Belgrade"
+    networks:
+        - docker-proxynet
+        - app-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    ports:
+      - 45876:45876
+    environment:
+      PORT: 45876
+      KEY: '${VAR_BESZEL_KEY}'
+      DOCKER_HOST: "tcp://dockerproxy:2375"
+    networks:
+      - docker-proxynet
+      - app-net
+
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: unless-stopped
+    user: 65534:65534
+    read_only: true
+    mem_limit: 256M
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - ./tmp-dozzle:/tmp
+    ports:
+      - 7007:7007
+    environment:
+      - PORT=7007
+      - BESZEL_HOSTNAME=301-zoraxy
+      - DOCKER_HOST=tcp://dockerproxy:2375
+      - HOME=/tmp-dozzle
+    networks:
+      - docker-proxynet
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+  docker-proxynet:
+    external: true
+    name: komodoagent_docker-proxynet
