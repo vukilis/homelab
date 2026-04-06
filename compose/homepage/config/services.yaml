@@ -192,7 +192,7 @@
         id: col-small
         href: https://semaphore.vukilis.com
         icon: semaphore
-        description: CI/CD Platform
+        description: Infrastructure as Code Manager
         siteMonitor: http://semaphore.lan:3000
 
 - Monitoring:
