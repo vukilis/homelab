@@ -57,11 +57,45 @@ ansible --version
 
 ### 3. Usage
 
-Run the main playbook:
+Run the main playbook by targeting specific host groups and defining role flags via extra variables (`-e`).
+
+* **Core Deployment Commands**
+
+| Task | Command |
+| :--- | :--- |
+| **Standard Setup** | `ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"homelab"}'` |
+| **Debian Roles (Root)** | `ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"root", "debian_containers":true}'` |
+| **Alpine Roles (Root)** | `ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"root", "alpine_containers":true, "gather_facts":false}'` |
+
+* **System Hardening**
+
+Use the `-K` flag to prompt for the `sudo` password for the `homelab` user.
 
 ```bash
-ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"homelab"}'
+ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"homelab", "debian_containers_hardened":true}' -K
 ```
 
-* Check Connectivity: `ansible all -m ping -i hosts`
-* Dry Run (Check mode): `ansible-playbook site.yml -i hosts --check`
+* **Docker & Agent Deployment**
+
+Installs Docker with the Comodo agent.
+
+```bash
+ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"homelab", "debian_install_docker":true, "debian_comodo_agent_docker":true}' -K
+```
+
+* **Monitoring Agents (Dozzle)**
+
+Prepares and deploys the Dozzle agent.
+
+```bash
+ansible-playbook site.yml -i hosts -e '{"hosts":"containers", "remote_user":"homelab", "prepare_dozzle_agent":true}' -K
+```
+
+### **Flags & Variable Definitions**
+
+| Variable / Flag | Description |
+| :--- | :--- |
+| **`hosts`** | Target group or specific host from the inventory (e.g., `test-container-0`). |
+| **`remote_user`** | The SSH user account (`root` for initial builds or `homelab` for managed nodes). |
+| **`gather_facts`** | Set to `false` when bootstrapping **Alpine** containers that lack a Python environment. |
+| **`-K`** | `--ask-become-pass`: Mandatory when running tasks as the `homelab` user to prompt for `sudo` privileges. |
