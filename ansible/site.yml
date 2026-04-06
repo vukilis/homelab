@@ -6,7 +6,7 @@
     - packages.yml
   remote_user: "{{ remote_user }}"
   become: true
-  gather_facts: "{{ gather_facts_enabled | default(true) | bool }}"            # no/yes for Alpine Linux compatibility
+  gather_facts: "{{ gather_facts | default(true) | bool }}"            # no/yes for Alpine Linux compatibility
   pre_tasks:
     - name: "Verified: The following roles will be executed"
       debug:
