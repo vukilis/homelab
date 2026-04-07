@@ -14,6 +14,7 @@ services:
     environment:
       FASTGEOIP: "true"
       TZ: "Europe/Belgrade"
+      ENABLELOG: "false"
     networks:
         - docker-proxynet
         - app-net
