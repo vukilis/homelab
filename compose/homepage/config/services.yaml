@@ -429,6 +429,14 @@
         id: col-small
         href: https://www.tiktok.com/@vukilis
         icon: tiktok
+    - Telegram:
+        id: col-small
+        href: https://web.telegram.org
+        icon: telegram
+    - Twitter:
+        id: col-small
+        href: https://www.twitter.com
+        icon: twitter
     - Reddit:
         id: col-small
         href: https://www.reddit.com
