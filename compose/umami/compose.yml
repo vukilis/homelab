@@ -7,6 +7,10 @@ services:
     environment:
       - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
       - APP_SECRET=${APP_SECRET}
+      - HASH_SALT=${HASH_SALT}
+      - UMAMI_API_CLIENT_USER_ID=${UMAMI_API_CLIENT_USER_ID}
+      - UMAMI_API_CLIENT_SECRET=${UMAMI_API_CLIENT_SECRET}
+      - UMAMI_API_CLIENT_ENDPOINT=${UMAMI_API_CLIENT_ENDPOINT}
     restart: always
     depends_on:
       db:
