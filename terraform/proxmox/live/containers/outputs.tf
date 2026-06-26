@@ -36,6 +36,7 @@ output "all_containers" {
             "turnkey-fileserver" = try(module.turnkey-fileserver, null)  
             "navidrome"        = try(module.navidrome, null)  
             "semaphore"        = try(module.semaphore, null)  
+            "umami"            = try(module.umami, null)
             
             "test-container-0" = try(module.test-container-0, null)
             "test-container-1" = try(module.test-container-1, null)
