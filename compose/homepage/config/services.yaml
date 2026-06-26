@@ -56,7 +56,7 @@
     - BlackBox:
         id: col-small
         icon: windows-11
-        description: Windows 11 Operating System
+        description: Linux - CachyOS
         ping: 192.168.0.152
     - HomePC:
         id: col-small
