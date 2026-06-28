@@ -347,10 +347,6 @@
         id: col-small
         href: https://www.google.rs
         icon: google
-    - Bing:
-        id: col-small
-        href: https://www.bing.com/
-        icon: bing
     - Brave:
         id: col-small
         href: https://search.brave.com/
@@ -359,6 +355,10 @@
         id: col-small
         href: https://duckduckgo.com/
         icon: duckduckgo
+    - Perplexity:
+        id: col-small
+        href: https://perplexity.ai/
+        icon: perplexity
     - ChatGPT:
         id: col-small
         href: https://chatgpt.com/
@@ -836,6 +836,16 @@
         href: https://autoeq.app/
         icon: https://autoeq.app/favicon-32x32.png
         description: Headphone Equalization
+    - linuxserver:
+        id: col-small
+        href: https://www.linuxserver.io/
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/linuxserver-io.webp
+        description: Docker images
+    - selfh:
+        id: col-small
+        href: https://selfh.st/icons/
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/selfh-st.webp
+        description: Dashboard Icons
 - Travel:
     - Booking:
         id: col-small
