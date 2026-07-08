@@ -557,13 +557,13 @@
         description: Movies & Series
     - YIFY:
         id: col-small
-        href: https://yts.bz/
-        icon: https://yts.bz/favicon.ico
+        href: https://yts.gg/home
+        icon: https://yts.gg/assets/images/website/favicon.ico
         description: Movies & Series
     - Arcadepunks:
         id: col-small
         href: https://www.arcadepunks.com/
-        icon: https://pbs.twimg.com/profile_images/1839651897503801344/iykEsMYJ_400x400.jpg
+        icon: https://www.arcadepunks.com/wp-content/uploads/2026/06/Arcade-Punks-Logo.webp
         description: Retro Gaming
     - CS.RIN.RU ETS2:
         id: col-small
