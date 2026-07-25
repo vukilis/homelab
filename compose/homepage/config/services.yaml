@@ -367,6 +367,10 @@
         id: col-small
         href: https://deepseek.com/
         icon: deepseek
+    - Kimi:
+        id: col-small
+        href: https://www.kimi.com/
+        icon: kimi-ai
     - Copilot:
         id: col-small
         href: https://copilot.microsoft.com/
