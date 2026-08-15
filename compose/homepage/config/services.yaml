@@ -387,6 +387,10 @@
         id: col-small
         href: https://grok.com/
         icon: grok
+    - Z:
+        id: col-small
+        href: https://chat.z.ai/
+        icon: https://z-cdn.chatglm.cn/z-ai/static/logo.svg
 - Online Entertainment:
     - Youtube:
         id: col-small
@@ -472,8 +476,8 @@
         icon: https://static.flashscore.com/res/_fs/image/4_favicons/_fs/favicon.ico?v=8
     - RD Live:
         id: col-small
-        href: https://rd-live.com/
-        icon: https://rd-live.com/assets/favicon.svg
+        href: https://rdaily.live/
+        icon: https://rdaily.live/assets/favicon.svg
     - Utakmice Stream:
         id: col-small
         href: https://utakmice.stream/
@@ -488,12 +492,12 @@
         icon: https://1.bp.blogspot.com/--rZOb4HNm34/YcSjeaN290I/AAAAAAAAAAM/PuBLLKsDccIlfwU7NVyDGEWb6NxHYNvPgCNcBGAsYHQ/s268/messi-tv.png
     - Rojadirectatv:
         id: col-small
-        href: https://www.rojadirectatv.cv
-        icon: https://www.rojadirectatv.cv/favicon.ico
+        href: https://rojadirecta.st/
+        icon: https://rojadirecta.st//favicon.ico
     - Vipleague:
         id: col-small
-        href: https://www.vipleague.pm/
-        icon: https://www.vipleague.pm/favicon.ico
+        href: https://vipleague.vg/
+        icon: https://vipleague.vg/fav/favicon-32x32.png
 - Shop:
     - Wolt:
         id: col-small
@@ -530,7 +534,7 @@
     - track24:
         id: col-small
         href: https://track24.net/
-        icon: https://track24.net/favicon.ico
+        icon: https://track24.net/images/icons/48x48.png
     - Global Cainiao :
         id: col-small
         href: https://global.cainiao.com/
@@ -621,7 +625,7 @@
     - ChrisTitus:
         id: col-small
         href: https://christitus.com/
-        icon: https://christitus.com/images/favicon.png
+        icon: https://christitus.com/favicon/favicon.ico
     - ArchWiki:
         id: col-small
         href: https://wiki.archlinux.org

@@ -18,7 +18,7 @@ quicklaunch:
 
 cardBlur: sm
 
-favicon: https://raw.githubusercontent.com/vukilis/website/main/static/images/favicon.png
+favicon: https://vukilis.com/favicon.png
 theme: dark
 color: slate
 

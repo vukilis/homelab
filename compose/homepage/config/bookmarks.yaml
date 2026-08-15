@@ -4,7 +4,7 @@
 
 - Developer:
     - Website:
-        - icon: https://raw.githubusercontent.com/vukilis/website/main/static/images/favicon.png
+        - icon: https://vukilis.com/favicon.png
           href: https://vukilis.com
     - Github:
         - icon: github.png
@@ -30,13 +30,13 @@
 
 - Social:
     - r/selfhosted:
-        - icon: https://styles.redditmedia.com/t5_32hch/styles/communityIcon_b2t5inv46z331.png
+        - icon: https://styles.redditmedia.com/t5_32hch/styles/communityIcon_zttnt3jjmddh1.png
           href: https://www.reddit.com/r/selfhosted/
     - r/homelab:
         - icon: https://b.thumbs.redditmedia.com/Flac-ySmslzY0SE583PNA42rFbcYxLt7hqgCeUrC11s.png
           href: https://www.reddit.com/r/homelab/
     - r/proxmox:
-        - icon: https://styles.redditmedia.com/t5_2w0wn/styles/communityIcon_l9fx4v8n3cw71.png
+        - icon: https://styles.redditmedia.com/t5_2w0wn/styles/communityIcon_2tscg5wxzaqg1.png
           href: https://www.reddit.com/r/proxmox/
     - r/unixporn:
         - icon: https://styles.redditmedia.com/t5_2sx2i/styles/communityIcon_7fixeonxbxd41.png
