@@ -5,7 +5,7 @@ services:
     ports:
       - 8084:3210
     volumes:
-      - ./wikidocs/datasets:/var/lib/wikidocs/datasets
+      - ./wikidocs:/var/lib/wikidocs/datasets
       - ./wikidocs/custom/submit.php:/var/www/localhost/htdocs/submit.php
       - ./wikidocs/custom/template.inc.php:/var/www/localhost/htdocs/template.inc.php
       - ./wikidocs/custom/Document.class.php:/var/www/localhost/htdocs/classes/Document.class.php
