@@ -782,10 +782,6 @@
         id: col-small
         href: https://community-scripts.github.io/ProxmoxVE/
         icon: https://community-scripts.github.io/ProxmoxVE/logo.png
-    - Check My DNS:
-        id: col-small
-        href: https://cmdns.dev.dns-oarc.net/
-        icon: https://dev.dns-oarc.net/favicon.ico
     - whatsmydns:
         id: col-small
         href: https://www.whatsmydns.net/
@@ -802,10 +798,6 @@
         id: col-small
         href: https://asciiflow.com
         icon: https://raw.githubusercontent.com/lewish/asciiflow/refs/heads/main/client/public/favicon.png
-    - comparetwolists:
-        id: col-small
-        href: https://comparetwolists.com/
-        icon: https://comparetwolists.com/favicon.ico
     - Fetchrss:
         id: col-small
         href: https://fetchrss.com/
