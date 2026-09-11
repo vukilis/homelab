@@ -466,10 +466,10 @@
         id: col-small
         href: https://www.aba-liga.com
         icon: https://www.aba-liga.com/favicon.ico
-    - Super liga Srbije:
+    - Fútbol Argentino:
         id: col-small
-        href: https://www.superliga.rs
-        icon: https://www.superliga.rs/wp-content/themes/newweb-theme/images/favicon/favicon.ico
+        href: https://www.afa.com.ar/es/
+        icon: https://assets1.afa.com.ar/.statics/img/logo-afa-dorado.svg
     - Rezultati:
         id: col-small
         href: https://www.rezultati.com
