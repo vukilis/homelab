@@ -98,6 +98,9 @@ layout:
   Travel:
     tab: BOOKMARKS
     icon: mdi-airplane-#FFFFFF
+  Courses:
+    tab: BOOKMARKS
+    icon: mdi-book-open-#FFFFFF
 
 showStats: true
 statusStyle: "dot"

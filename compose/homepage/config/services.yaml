@@ -534,7 +534,7 @@
     - track24:
         id: col-small
         href: https://track24.net/
-        icon: https://track24.net/images/icons/48x48.png
+        icon: https://track24.net/favicon.ico
     - Global Cainiao :
         id: col-small
         href: https://global.cainiao.com/
@@ -625,7 +625,7 @@
     - ChrisTitus:
         id: col-small
         href: https://christitus.com/
-        icon: https://christitus.com/favicon/favicon.ico
+        icon: https://christitus.com/favicon/favicon.svg
     - ArchWiki:
         id: col-small
         href: https://wiki.archlinux.org
@@ -723,7 +723,7 @@
     - Xbox:
         id: col-small
         href: https://www.xbox.com/en-US/
-        icon: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/2048px-Xbox_one_logo.svg.png
+        icon: https://www.xbox.com/favicon.svg
     - Path Of Exile:
         id: col-small
         href: https://pathofexile.com/
@@ -757,10 +757,10 @@
         id: col-small
         href: https://sharemods.com/
         icon: https://sharemods.com/images/why-us-image-3.png
-    - Paster:
+    - Pastes:
         id: col-small
-        href: https://paster.so/
-        icon: https://paster.so/brand/assets/icon/standard.svg
+        href: https://pastes.io/
+        icon: https://static.pastes.io/assets/img/favicon.ico
     - Streamable:
         id: col-small
         href: https://streamable.com/
@@ -882,3 +882,29 @@
         href: https://www.iatatravelcentre.com/
         icon: https://www.iata.org/favicon-32x32.png
         description: Travel Deals
+- Courses:
+    - ProfaDeele:
+        id: col-small
+        href: https://mas.profedeele.es/
+        icon: https://mas.profedeele.es/content-assets/public/eyJhbGciOiJIUzI1NiJ9.eyJvYmplY3Rfa2V5IjoiYXhpZ2JtMWoxeHZpMm0xcjNhaGxmeGJlNm8zbSIsImRvbWFpbiI6Im1hcy5wcm9mZWRlZWxlLmVzIn0.1xkWCW>
+        description: Spanish Learning 
+    - Aprenderespanol:
+        id: col-small
+        href: https://aprenderespanol.org/
+        icon: https://aprenderespanol.org/imaxes/favicon.ico
+        description: Spanish Learning
+    - Kahoot:
+        id: col-small
+        href: https://create.kahoot.it/
+        icon: https://create.kahoot.it/favicon.ico
+        description: Interactive Quiz
+    - Udemy:
+        id: col-small
+        href: https://www.udemy.com/
+        icon: https://www.udemy.com/frontends-logged-out-homepage/favicon.ico
+        description: Online Courses
+    - Coursera:
+        id: col-small
+        href: https://www.coursera.com/
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/coursera.webp
+        description: Online Courses
