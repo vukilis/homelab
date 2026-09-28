@@ -744,6 +744,10 @@
         id: col-small
         href: https://www.howlongtobeat.com/
         icon: https://www.howlongtobeat.com/favicon.ico
+    - RoyalSpaceSociety:
+        id: col-small
+        href: https://royalspacesociety.com/
+        icon: https://royalspacesociety.com/favicon.ico
 - FileSharing:
     - Google Drive:
         id: col-small
