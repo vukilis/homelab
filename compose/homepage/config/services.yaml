@@ -391,6 +391,10 @@
         id: col-small
         href: https://chat.z.ai/
         icon: https://z-cdn.chatglm.cn/z-ai/static/logo.svg
+    - higgsfield:
+        id: col-small
+        href: https://higgsfield.ai/
+        icon: https://higgsfield.ai/favicon.ico
 - Online Entertainment:
     - Youtube:
         id: col-small
