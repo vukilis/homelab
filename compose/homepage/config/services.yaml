@@ -486,6 +486,10 @@
         id: col-small
         href: https://rdaily.live/
         icon: https://rdaily.live/assets/favicon.svg
+    - DaddyLive:
+        id: col-small
+        href: https://dlive.sx/
+        icon: https://dlive.sx/assets/logos/favicon-32x32.png
     - Utakmice Stream:
         id: col-small
         href: https://utakmice.stream/
