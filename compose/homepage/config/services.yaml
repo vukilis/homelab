@@ -395,6 +395,10 @@
         id: col-small
         href: https://higgsfield.ai/
         icon: https://images.seeklogo.com/logo-png/66/1/higgsfield-logo-png_seeklogo-660244.png
+    - Lovable:
+        id: col-small
+        href: https://lovable.dev/
+        icon: https://lovable.dev/favicon-32x32.png
 - Online Entertainment:
     - Youtube:
         id: col-small
