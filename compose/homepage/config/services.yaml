@@ -830,6 +830,10 @@
         id: col-small
         href: https://posemy.art/
         icon: https://posemy.art/favicon.ico
+    - Adobe Firefly:
+        id: col-small
+        href: https://www.adobe.com/products/firefly/features/remove-background.html
+        icon: adobe
 - Dev Tools:
     - Trello:
         id: col-small
