@@ -658,6 +658,10 @@
         id: col-small
         href: https://distrosea.com/
         icon: https://distrosea.com/favicon-32x32.png
+    - LFX:
+        id: col-small
+        href: https://insights.linuxfoundation.org/
+        icon: https://cdn.platform.linuxfoundation.org/assets/lf-favicon.png
 - Gaming & Tech News:
     - Svet Kompjutera:
         id: col-small
