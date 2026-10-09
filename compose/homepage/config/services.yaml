@@ -874,6 +874,11 @@
         href: https://selfh.st/icons/
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/selfh-st.webp
         description: Dashboard Icons
+    - Yubico:
+        id: col-small
+        href: https://developers.yubico.com/
+        icon: https://developers.yubico.com/favicon-192x192.png
+        description: Yubico Developer
 - Travel:
     - Booking:
         id: col-small
