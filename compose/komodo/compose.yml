@@ -21,7 +21,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
   
   core:
-    image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+    init: true # This should be added regardless of version
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
@@ -40,6 +41,7 @@ services:
       KOMODO_OIDC_CLIENT_SECRET: ${KOMODO_OIDC_CLIENT_SECRET}
     volumes:
       - ${COMPOSE_KOMODO_BACKUPS_PATH}:/backups
+      - keys:/config/keys
       ## Store sync files on server
       #- /path/to/syncs:/syncs
       ## Optionally mount a custom core.config.toml
@@ -53,12 +55,14 @@ services:
   ## or deploy the Periphery binary with systemd using 
   ## https://github.com/moghtech/komodo/tree/main/scripts
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+    init: true # This should be added regardless of version
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
     env_file: ./.env
     volumes:
+      - keys:/config/keys
       ## Mount external docker socket
       - /var/run/docker.sock:/var/run/docker.sock
       ## Allow Periphery to see processes outside of container
@@ -71,6 +75,7 @@ services:
     ports:
       - 8120:8120
 volumes:
+  keys:
   # Mongo
   mongo-data:
   mongo-config:
