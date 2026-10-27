@@ -25,8 +25,6 @@ services:
       - ALL
     security_opt:
       - no-new-privileges
-    depends_on:
-      - dockerproxy
     ports:
       - 45876:45876
     environment:
@@ -51,8 +49,6 @@ services:
       - no-new-privileges
     volumes:
       - ./tmp:/tmp
-    depends_on:
-      - dockerproxy
     ports:
       - 7007:7007
     environment:
@@ -63,35 +59,11 @@ services:
     networks:
       - docker-proxynet
       - app-net
-  dockerproxy:
-    image: wollomatic/socket-proxy:1
-    container_name: dockerproxy
-    restart: unless-stopped
-    user: "65534:${DOCKER_GID}"
-    read_only: true
-    mem_limit: 64M
-    security_opt:
-      - no-new-privileges
-    cap_drop:
-      - ALL
-    command:
-      - '-loglevel=info'
-      - '-allowfrom=beszel-agent,dozzle-agent,jetlog'
-      - '-listenip=0.0.0.0'
-      - '-allowGET=/v1\..{1,2}/(containers/.*|images/.*|info|version|events.*|volumes|networks)'
-      - '-allowHEAD=/_ping'
-      - '-watchdoginterval=300'
-      - '-stoponwatchdog'
-      - '-shutdowngracetime=10'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - docker-proxynet
       
 networks:
   docker-proxynet:
-    internal: true
-    attachable: false
+    external: true
+    name: komodoagent_docker-proxynet
   app-net:
     driver: bridge
     attachable: false
