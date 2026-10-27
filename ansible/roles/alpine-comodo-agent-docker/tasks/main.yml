@@ -60,7 +60,8 @@
       content: |
         services:
           periphery:
-            image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+            image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+            init: true
             container_name: komodo-periphery
             labels:
               komodo.skip: ""
@@ -78,11 +79,14 @@
               PERIPHERY_INCLUDE_DISK_MOUNTS: "/etc/hostname"
               KOMODO_WEBHOOK_SECRET: "${KOMODO_WEBHOOK_SECRET}"
             volumes:
+              - keys:/config/keys
               - /var/run/docker.sock:/var/run/docker.sock
               - /proc:/proc
               - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
             ports:
               - 8120:8120
+        volumes:
+          keys:
       owner: "{{ item }}"
       group: "{{ item }}"
       mode: '0644'
@@ -95,6 +99,6 @@
 
   - name: Run setup inside running container
     ansible.builtin.command:
-      cmd: docker exec -u root komodo-periphery sh -c "mkdir -p /etc/komodo && chown -R 1000:1000 /etc/komodo"
+      cmd: docker exec -u root komodo-periphery sh -c "chown -R 1000:1000 /config/keys"
     register: exec_result
     changed_when: false

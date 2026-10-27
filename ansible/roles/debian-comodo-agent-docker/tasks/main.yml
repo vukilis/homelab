@@ -57,7 +57,8 @@
       content: |
         services:
           periphery:
-            image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+            image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+            init: true
             container_name: komodo-periphery
             labels:
               komodo.skip: ""
@@ -73,8 +74,9 @@
               PERIPHERY_SSL_ENABLED: "true"
               PERIPHERY_DISABLE_TERMINALS: "false"
               PERIPHERY_INCLUDE_DISK_MOUNTS: "/etc/hostname"
-              KOMODO_WEBHOOK_SECRET: "${komodo_webhook_secret}"
+              KOMODO_WEBHOOK_SECRET: "${KOMODO_WEBHOOK_SECRET}"
             volumes:
+              - keys:/config/keys
               - /proc:/proc
               - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
             ports:
@@ -117,6 +119,9 @@
           app-net:
             driver: bridge
             attachable: false
+
+        volumes:
+          keys:
       owner: "{{ item }}"
       group: "{{ item }}"
       mode: '0644'
@@ -134,4 +139,4 @@
       argv:
         - sh
         - -c
-        - "mkdir -p /etc/komodo && chown -R 1000:1000 /etc/komodo"
+        - "chown -R 1000:1000 /config/keys"
