@@ -519,6 +519,14 @@
         id: col-small
         href: https://glovoapp.com/rs/sr/
         icon: https://tavernaamsterdam.com/wp-content/uploads/2023/04/glovo-2.png
+    - Guacamayo:
+        id: col-small
+        href: https://guacamayo.rs
+        icon: https://guacamayo.rs/wp-content/uploads/2025/03/Gua-LOGO-300x300.png
+    - CasaDeMate:
+        id: col-small
+        href: https://casadematesrbija.com/
+        icon: https://casadematesrbija.com/cdn/shop/files/casa-de-mate-logo-krug.png?v=1776868565&width=130
     - AliExpress:
         id: col-small
         href: https://www.aliexpress.com/
